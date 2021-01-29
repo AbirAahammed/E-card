@@ -6,6 +6,7 @@ Tianlei Wang |wangt316@myumanitoba.ca | hocky0414
 Connor Hryhoruk | hryhoru3@myumanitoba.ca	| h-connor
 Abir Sakib | sakiba@myumanitoba.ca	| AbirAahammed
 Connor Gehman | gehmanc@myumanitoba.ca   |	ConnorGehman				
+Chenbo Ma | mac3456@myumanitoba.ca | CBM6
 
 ## languages & techniques
 
