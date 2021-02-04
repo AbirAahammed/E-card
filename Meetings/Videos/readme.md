@@ -33,7 +33,7 @@ Team Requirements:
 
 ## February 3rd, 2:30pm
 
-[Video part 2](https://www.youtube.com/watch?v=VsNMTKBnDV0&feature=youtu.be)
+[Video](https://www.youtube.com/watch?v=VsNMTKBnDV0&feature=youtu.be)
 
 Team Requirements:
 - Assure everything is prepared for Sprint 1. We will go over the sprint to confirm in the meeting.
