@@ -1,0 +1,15 @@
+#remove cache
+__pycache__/
+*.py[cod]
+
+# .idea Files
+.idea/workspace.xml
+.idea/*
+
+venv/*
+.env
+# MacOS
+.DS_Store
+
+# Local configuration file (sdk path, etc)
+local.properties
