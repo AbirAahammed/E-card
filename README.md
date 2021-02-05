@@ -12,20 +12,20 @@ Chenbo Ma | mac3456@myumanitoba.ca | CBM6
 Our primary goal is to develop an android app, supported by An API service in order to access the database.This will enable our customers to share their business card digitally.
 
 
-## languages & techniques
+## Languages & Techniques
 
-**Language used in android app :** For android app developemnt we will be using JAVA.
+**Language used in android app :** An an android application to be developed with Java.
 
 **Data Storage Platform :**  Firebase Realtime Database
 
-## core features
+## Core Features
 E-card core features can be found [here](https://github.com/AbirAahammed/E-card/issues?q=label%3A%22Core+Features%22)
 
-**Account creation**: To start our users will create their profile. They will provide all necessary information needed to advertise themselves to potential customer.
+**Account creation**: Providing information needed to advertise themselves as a customer or a user, through the creation of their profile and account.
 
 **Login**: Secure login option for user to safeguard user interest. User privacy and securiy is out greatest priority.
 **Profile Modification**: 
 -   By user: User can add new capabilites, update their info anytime they want.
 -   By service receiver: The receipient of a service can remark his or her service provider.
 
-**Profile Sharing**: this is the primary feature of our app. This is replacement of real world buiness card. As we all know how cumbersome it is to carry a business card always on. Our solution is to share digital bunsiness card via QR code. The shared business card will always be avaible for you to access even without data connection.
+**Profile Sharing**: this is the primary feature of our app that replaces a real world business card. Our solution is to share our digital business card via QR code. The shared business card will always be avaible for the customer to access at all times. As a result, the customer remains connected to the employee or contractor without having to store or track a physical card of their own.
