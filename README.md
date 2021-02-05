@@ -8,10 +8,11 @@ Connor Hryhoruk | hryhoru3@myumanitoba.ca	| h-connor
 Abir Sakib | sakiba@myumanitoba.ca	| AbirAahammed
 Connor Gehman | gehmanc@myumanitoba.ca   |	ConnorGehman				
 Chenbo Ma | mac3456@myumanitoba.ca | CBM6
+## Objective
+Our primary goal is to develop an android app, supported by An API service in order to access the database.This will enable our customers to share their business card digitally.
+
 
 ## languages & techniques
-
-Our primary goal is to develop an android app, supported by An API service in order to access the database.
 
 **Language used in android app :** For android app developemnt we will be using JAVA.
 
