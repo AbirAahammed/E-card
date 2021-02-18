@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin @see https://firebase.google.com/docs/android/setup
+
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -39,27 +42,47 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 
-//  dependencies used for junit testing    -   start
+    // dependencies used for junit testing    -   start
 
-//  Choose either version 1 or 2
+    // Choose either version 1 or 2
 
-//  version 1 - start
+    // version 1 - start
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-//  version 1 - end
+    // version 1 - end
 
-//  version 2 [from dev-template]- start
-//    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // version 2 [from dev-template]- start
+    // testImplementation 'junit:junit:4.12'
+    // androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    // androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test:runner:1.3.0'
-//  version 2 - end
+    //  version 2 - end
 
-//  dependencies used for junit testing    -   end
+    //  dependencies used for junit testing    -   end
 
-//  These dependencies are from dev-template branch
+    //  These dependencies are from dev-template branch
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
+
+
+    // firebase dependencies @see https://firebase.google.com/docs/android/setup
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
+
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+
+    // Declare the dependency for the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Declare the dependencies for any other desired Firebase products
+    // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth'
+    // firebase storage
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // firebase auth ui
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
 }
