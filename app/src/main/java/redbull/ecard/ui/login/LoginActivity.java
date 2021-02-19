@@ -146,8 +146,9 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Handle both login and account creation using FirebaseAuthUI
-     * @param the view from which the method is called
-     * @return void type*/
+     * @param  the view from which the method is called
+     * @return void type
+     * */
     public void handleLoginRegister(View view) {
         List<AuthUI.IdpConfig> provider = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build()
@@ -159,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setLogo(R.drawable.common_google_signin_btn_icon_dark)
                 .build();
         startActivityForResult(intent, AUTHUI_REQUEST_CODE);
+
     }
 
     @Override

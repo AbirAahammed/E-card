@@ -60,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    @Override
+    public void onDestroy() {
+        FirebaseAuth.getInstance().signOut();
+        super.onDestroy();
+    }
 
     /**
      * Used to logout from the app
@@ -83,5 +88,6 @@ public class MainActivity extends AppCompatActivity {
 //        FirebaseAuth.getInstance().signOut();
 
     }
+
 
 }
