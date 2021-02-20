@@ -1,4 +1,4 @@
-package redbull.ecard.ui.login;
+package redbull.ecard.UILayer.login;
 
 
 import androidx.test.filters.LargeTest;

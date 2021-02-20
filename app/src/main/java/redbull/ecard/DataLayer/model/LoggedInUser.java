@@ -1,4 +1,4 @@
-package redbull.ecard.data.model;
+package redbull.ecard.DataLayer.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

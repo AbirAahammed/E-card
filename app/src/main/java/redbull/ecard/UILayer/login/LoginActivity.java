@@ -1,4 +1,4 @@
-package redbull.ecard.ui.login;
+package redbull.ecard.UILayer.login;
 
 import android.app.Activity;
 
@@ -34,8 +34,6 @@ import java.util.List;
 
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
-import redbull.ecard.ui.login.LoginViewModel;
-import redbull.ecard.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
-package redbull.ecard.data;
+package redbull.ecard.DataLayer;
 
-import redbull.ecard.data.model.LoggedInUser;
+import redbull.ecard.DataLayer.model.LoggedInUser;
 
 import java.io.IOException;
 

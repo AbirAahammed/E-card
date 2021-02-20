@@ -1,4 +1,4 @@
-package redbull.ecard.ui.notifications;
+package redbull.ecard.UILayer.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

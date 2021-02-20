@@ -1,4 +1,4 @@
-package redbull.ecard.ui.home;
+package redbull.ecard.UILayer.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

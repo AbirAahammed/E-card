@@ -19,7 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import redbull.ecard.ui.login.LoginActivity;
+import redbull.ecard.UILayer.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";

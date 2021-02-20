@@ -1,4 +1,4 @@
-package redbull.ecard.ui.login;
+package redbull.ecard.UILayer.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import redbull.ecard.data.LoginRepository;
-import redbull.ecard.data.Result;
-import redbull.ecard.data.model.LoggedInUser;
+import redbull.ecard.DataLayer.LoginRepository;
+import redbull.ecard.DataLayer.Result;
+import redbull.ecard.DataLayer.model.LoggedInUser;
 import redbull.ecard.R;
 
 public class LoginViewModel extends ViewModel {
