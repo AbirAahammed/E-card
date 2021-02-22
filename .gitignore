@@ -17,7 +17,7 @@ app/google-services.json
 app/build/*
 app/.gradle/*
 # gradle
-.gradle/*
+.gradle
 
 # Generated files
 bin/
