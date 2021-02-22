@@ -65,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
+    @Override
+    public void onPause() {
+        AuthUI.getInstance().signOut(this);
+        super.onPause();
+    }
+    @Override
+    public void onResume() {
+        //TODO: invoke a login here
+        super.onResume();
+    }
 
     /**
      * Used to logout from the app
