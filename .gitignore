@@ -18,3 +18,7 @@ app/build/*
 app/.gradle/*
 # gradle
 .gradle/*
+
+# Generated files
+bin/
+gen/
