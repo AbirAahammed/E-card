@@ -59,12 +59,14 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0'
     //  version 2 - end
 
+    androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
+
+
     //  dependencies used for junit testing    -   end
 
     //  These dependencies are from dev-template branch
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
 
 
     // firebase dependencies @see https://firebase.google.com/docs/android/setup

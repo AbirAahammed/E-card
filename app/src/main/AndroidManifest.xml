@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecard">
         <service
-            android:name=".ui.QuitService"
+            android:name=".UILayer.QuitService"
             android:stopWithTask="true"
             >
         </service>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".UILayer.login.LoginActivity"
             android:theme="@style/Theme.Ecard.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
