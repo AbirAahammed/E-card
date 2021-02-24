@@ -4,6 +4,13 @@ plugins {
 
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin @see https://firebase.google.com/docs/android/setup
 
+task wrapper(type: Wrapper){
+    gradleVersion = '2.14.1'
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
 
 android {
     compileSdkVersion 30
