@@ -1,0 +1,55 @@
+redbull/ecard/UILayer/login/LoginResult.java
+ redbull.ecard.UILayer.login.LoginResult
+redbull/ecard/UILayer/login/LoginViewModelFactory.java
+ redbull.ecard.UILayer.login.LoginViewModelFactory
+redbull/ecard/UILayer/home/HomeViewModel.java
+ redbull.ecard.UILayer.home.HomeViewModel
+redbull/ecard/DataLayer/LoginRepository.java
+ redbull.ecard.DataLayer.LoginRepository
+redbull/ecard/PersistenceLayer/PersistenceDummyClass.java
+ redbull.ecard.PersistenceLayer.PersistenceDummyClass
+redbull/ecard/UILayer/notifications/NotificationsViewModel.java
+ redbull.ecard.UILayer.notifications.NotificationsViewModel
+redbull/ecard/DataLayer/Result.java
+ redbull.ecard.DataLayer.Result
+ redbull.ecard.DataLayer.Result$1
+ redbull.ecard.DataLayer.Result$Error
+ redbull.ecard.DataLayer.Result$Success
+redbull/ecard/UILayer/dashboard/DashboardViewModel.java
+ redbull.ecard.UILayer.dashboard.DashboardViewModel
+redbull/ecard/DataLayer/model/LoggedInUser.java
+ redbull.ecard.DataLayer.model.LoggedInUser
+redbull/ecard/UILayer/login/LoggedInUserView.java
+ redbull.ecard.UILayer.login.LoggedInUserView
+redbull/ecard/UILayer/login/LoginViewModel.java
+ redbull.ecard.UILayer.login.LoginViewModel
+redbull/ecard/DataLayer/LoginDataSource.java
+ redbull.ecard.DataLayer.LoginDataSource
+redbull/ecard/MainActivity.java
+ redbull.ecard.MainActivity
+ redbull.ecard.MainActivity$1
+redbull/ecard/UILayer/dashboard/DashboardFragment.java
+ redbull.ecard.UILayer.dashboard.DashboardFragment
+ redbull.ecard.UILayer.dashboard.DashboardFragment$1
+redbull/ecard/LogicLayer/LogicDummyClass.java
+ redbull.ecard.LogicLayer.LogicDummyClass
+redbull/ecard/UILayer/home/HomeFragment.java
+ redbull.ecard.UILayer.home.HomeFragment
+ redbull.ecard.UILayer.home.HomeFragment$1
+redbull/ecard/UILayer/login/LoginActivity.java
+ redbull.ecard.UILayer.login.LoginActivity
+ redbull.ecard.UILayer.login.LoginActivity$1
+ redbull.ecard.UILayer.login.LoginActivity$2
+ redbull.ecard.UILayer.login.LoginActivity$3
+ redbull.ecard.UILayer.login.LoginActivity$4
+ redbull.ecard.UILayer.login.LoginActivity$5
+ redbull.ecard.UILayer.login.LoginActivity$5$1
+redbull/ecard/UILayer/login/LoginFormState.java
+ redbull.ecard.UILayer.login.LoginFormState
+redbull/ecard/UILayer/notifications/CameraFragment.java
+ redbull.ecard.UILayer.notifications.CameraFragment
+ redbull.ecard.UILayer.notifications.CameraFragment$1
+redbull/ecard/UILayer/QuitService.java
+ redbull.ecard.UILayer.QuitService
+redbull/ecard/BuildConfig.java
+ redbull.ecard.BuildConfig

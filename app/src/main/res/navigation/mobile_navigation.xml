@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/cards_view">
+
+    <fragment
+        android:id="@+id/cards_view"
+        android:name="redbull.ecard.UILayer.home.HomeFragment"
+        android:label="@string/card_view"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/profile_dashboard"
+        android:name="redbull.ecard.UILayer.dashboard.DashboardFragment"
+        android:label="@string/profile_view"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/camera_view"
+        android:name="redbull.ecard.UILayer.notifications.CameraFragment"
+        android:label="@string/camera_view"
+        tools:layout="@layout/fragment_camera" />
+</navigation>
