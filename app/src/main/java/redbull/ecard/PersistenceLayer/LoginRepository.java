@@ -1,5 +1,7 @@
-package redbull.ecard.DataLayer;
+package redbull.ecard.PersistenceLayer;
 
+import redbull.ecard.DataLayer.LoginDataSource;
+import redbull.ecard.DataLayer.Result;
 import redbull.ecard.DataLayer.model.LoggedInUser;
 
 /**
