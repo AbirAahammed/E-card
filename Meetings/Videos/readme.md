@@ -5,6 +5,10 @@ Meetings are posted on a #meeting-schedule discord channel, and scheduled at the
 Meetings are composed of individual requirements, requirements for a particular or each individual team member to complete. Alongside, team requirements
 where everyone must resolve or aid in completion of the task by completion of the meeting.
 
+# Demo
+
+We have a screen recording demo for Sprint 2 of the use of the application from [here](https://www.youtube.com/watch?v=KzYLWNqLeZw&feature=youtu.be).
+
 ## January 20th, 2:45pm
 
 [Video part 1](https://www.youtube.com/watch?v=B0__YGL-W8w&feature=youtu.be), [Video part 2](https://www.youtube.com/watch?v=yonAxN1TaX0&feature=youtu.be)
