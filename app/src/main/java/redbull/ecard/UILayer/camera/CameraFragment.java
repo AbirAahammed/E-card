@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.notifications;
+package redbull.ecard.UILayer.camera;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import redbull.ecard.R;
 
-public class NotificationsFragment extends Fragment {
+public class CameraFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        cameraViewModel =
+                new ViewModelProvider(this).get(CameraViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_camera, container, false);
         final TextView textView = root.findViewById(R.id.camera_view);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cameraViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,16 +1,16 @@
-package redbull.ecard.UILayer.notifications;
+package redbull.ecard.UILayer.camera;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class CameraViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public CameraViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("Scan a profiles QR code");
     }
 
     public LiveData<String> getText() {
