@@ -24,21 +24,14 @@ public class CardsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-<<<<<<< HEAD:app/src/main/java/redbull/ecard/UILayer/home/HomeFragment.java
-
-//        Delete the following after testing
-        ProfilePersistence pp = new ProfilePersistence(FirebaseDatabase.getInstance());
-        pp.read(123456767L);
-        Log.d("ABIRDEVTAG", "Testing DB call");
 
 
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-=======
+
+ 
         cardsViewModel =
                 new ViewModelProvider(this).get(CardsViewModel.class);
->>>>>>> Committing recent changes:app/src/main/java/redbull/ecard/UILayer/cards/CardsFragment.java
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_cards, container, false);
+        Prototype final
         final TextView textView = root.findViewById(R.id.text_home);
         cardsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

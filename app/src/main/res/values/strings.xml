@@ -2,14 +2,11 @@
     <!-- Unused strings have not been removed from the original template yet
          This is to avoid merge conflicts and build issues with other files -->
     <string name="app_name">E-card</string>
-    <string name="title_home">Home</string>
     <string name="main_screen">Cards</string>
     <string name="img_fail">Img could not be loaded</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="profile_home">Profile</string>
     <string name="camera_home">Camera</string>
     <string name="camera_text">Scan a profiles QR code</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_activity_login">Log IN</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
