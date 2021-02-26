@@ -1,16 +1,16 @@
-package redbull.ecard.UILayer.dashboard;
+package redbull.ecard.UILayer.cards;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class CardsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public CardsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("View your cards here.");
     }
 
     public LiveData<String> getText() {

@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.home;
+package redbull.ecard.UILayer.cards;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +18,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import redbull.ecard.PersistenceLayer.ProfilePersistence;
 import redbull.ecard.R;
 
-public class HomeFragment extends Fragment {
+public class CardsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private CardsViewModel cardsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+<<<<<<< HEAD:app/src/main/java/redbull/ecard/UILayer/home/HomeFragment.java
 
 //        Delete the following after testing
         ProfilePersistence pp = new ProfilePersistence(FirebaseDatabase.getInstance());
@@ -33,9 +34,13 @@ public class HomeFragment extends Fragment {
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
+=======
+        cardsViewModel =
+                new ViewModelProvider(this).get(CardsViewModel.class);
+>>>>>>> Committing recent changes:app/src/main/java/redbull/ecard/UILayer/cards/CardsFragment.java
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cardsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
