@@ -1,7 +1,5 @@
 language: android
 jdk: oraclejdk8
-dist: trusty
-install: ant deps
 sudo: false
 
 android:
