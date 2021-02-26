@@ -13,7 +13,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="76dp"
         android:contentDescription="@string/img_fail"
-        android:src="@drawable/template1"
+        android:src="@drawable/template2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
