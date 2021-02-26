@@ -16,6 +16,7 @@ public class QuitService extends Service {
     @Override
     public void onTaskRemoved(Intent rootIntent){
         Log.i("QuitService","Quit invoked");
+      
         super.onTaskRemoved(rootIntent);
         FirebaseAuth.getInstance().signOut();
     }
