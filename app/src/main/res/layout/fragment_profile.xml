@@ -6,74 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".UILayer.dashboard.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
-        android:contentDescription="@string/img_fail"
-        android:src="@drawable/template2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/template_2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="template2"
-        app:layout_constraintEnd_toStartOf="@+id/template_3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/template_3"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="12dp"
-        android:text="template3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="100dp"
         android:layout_marginBottom="4dp"
         android:text="Card Preview"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/delete_profile"
-        android:layout_width="127dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:text="Reset Profile"
-        android:textColor="#978484"
-        android:textColorHighlight="#BC0E0E"
-        android:textColorLink="#FFFFFF"
-        app:iconTint="#F40000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/template_1"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="template1"
-        app:layout_constraintEnd_toStartOf="@+id/template_2"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -196,5 +147,72 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/delete_profile"
+        android:layout_width="127dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="Reset Profile"
+        android:textColor="#978484"
+        android:textColorHighlight="#BC0E0E"
+        android:textColorLink="#FFFFFF"
+        app:iconTint="#F40000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/template_2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="template2"
+        app:layout_constraintEnd_toStartOf="@+id/template_3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/template_1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="template1"
+        app:layout_constraintEnd_toStartOf="@+id/template_2"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="76dp"
+        android:contentDescription="@string/img_fail"
+        android:src="@drawable/template2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="101dp"
+        android:layout_height="55dp"
+        android:src="@drawable/qr"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/template_3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:text="template3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

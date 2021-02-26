@@ -80,13 +80,13 @@
 
     <Button
         android:id="@+id/button_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="45dp"
         android:layout_marginTop="24dp"
         android:onClick="handleLoginRegister"
         android:text="@string/button_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
@@ -103,4 +103,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.422"
         app:srcCompat="@drawable/ecard" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ public class CardsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         cardsViewModel =
                 new ViewModelProvider(this).get(CardsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_cards, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         cardsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
