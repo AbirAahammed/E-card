@@ -11,4 +11,7 @@ android:
     - android-23
     - sys-img-x86-android-23
     - sys-img-armeabi-v7a-android-23
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
 #add real testing here
