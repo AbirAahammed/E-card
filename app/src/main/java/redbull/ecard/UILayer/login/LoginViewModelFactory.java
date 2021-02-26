@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
 import redbull.ecard.DataLayer.LoginDataSource;
+import redbull.ecard.DataLayer.LoginRepository;
 import redbull.ecard.PersistenceLayer.LoginRepository;
 
 /**

@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.Debug;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,11 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d("CREATION", "A");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
         }
+       // Log.d("CREATION", "Ab");
+        setContentView(R.layout.activity_main);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -64,7 +69,16 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
-
+    @Override
+    public void onPause() {
+        FirebaseAuth.getInstance().signOut();
+        super.onPause();
+    }
+    @Override
+    public void onResume() {
+        //TODO: re-login
+        super.onResume();
+    }
     /**
      * Used to logout from the app
      * @param item that will call this method

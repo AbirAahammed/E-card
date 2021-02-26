@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="redbull.ecard.UILayer.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="redbull.ecard.UILayer.cards.CardsFragment"
+        android:label="@string/main_screen"
+        tools:layout="@layout/fragment_cards" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="redbull.ecard.UILayer.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:name="redbull.ecard.UILayer.dashboard.ProfileFragment"
+        android:label="@string/profile_home"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="redbull.ecard.UILayer.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="redbull.ecard.UILayer.camera.CameraFragment"
+        android:label="@string/camera_home"
+        tools:layout="@layout/fragment_camera" />
 </navigation>
