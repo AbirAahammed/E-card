@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
 import redbull.ecard.DataLayer.LoginDataSource;
-import redbull.ecard.PersistenceLayer.LoginRepository;
+import redbull.ecard.DataLayer.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
