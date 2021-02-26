@@ -11,3 +11,5 @@ android:
     - sys-img-x86-android-23
     - sys-img-armeabi-v7a-android-23
 #add real testing here
+script:
+ - chmod +x ./gradlew build connectedCheck
