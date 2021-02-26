@@ -3,6 +3,7 @@ jdk: oraclejdk8
 sudo: false
 before_install:
  – chmod +x gradlew
+ - yes | sdkmanager "platforms;android-23"
 android:
   components:
     - platform-tools
