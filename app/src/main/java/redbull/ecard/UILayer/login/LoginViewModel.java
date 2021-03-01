@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 import redbull.ecard.DataLayer.LoginRepository;
-import redbull.ecard.PersistenceLayer.LoginRepository;
+
 import redbull.ecard.DataLayer.Result;
 import redbull.ecard.DataLayer.model.LoggedInUser;
 import redbull.ecard.R;
