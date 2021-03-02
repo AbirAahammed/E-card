@@ -29,3 +29,4 @@ E-card core features can be found [here](https://github.com/AbirAahammed/E-card/
 -   By service receiver: The receipient of a service can remark his or her service provider.
 
 **Profile Sharing**: This is the primary feature of our app that replaces a real world business card. Our solution is to share our digital business card via QR code. The shared business card will always be avaible for the customer to access at all times. As a result, the customer remains connected to the employee or contractor without having to store or track a physical card of their own.
+
