@@ -8,6 +8,7 @@
     <string name="camera_home">Camera</string>
     <string name="camera_text">Scan a profiles QR code</string>
     <string name="title_activity_login">Log IN</string>
+    <string name="Preview_Card">Card Preview</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
