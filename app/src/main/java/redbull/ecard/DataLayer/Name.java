@@ -5,7 +5,7 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of a user's name.
  */
 
-public class Name {
+public class Name extends Model {
 	// Variables
 	private String firstName;
 	private String lastName;
@@ -13,6 +13,9 @@ public class Name {
 	
 	//Constructors
 	public Name() {
+		// Superclass default value
+		super();
+
 		// Default Values
 		this.firstName = "First name not given";
 		this.lastName = "Last name not given";
@@ -20,7 +23,8 @@ public class Name {
 	}
 
 
-	public Name(String firstName, String lastName, String middleName) {
+	public Name(String firstName, String lastName, String middleName, long id) {
+		super(id);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;

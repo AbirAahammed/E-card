@@ -4,7 +4,7 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of a user's profile.
  */
 
-public class Profile {
+public class Profile extends Model{
 	// Variables
 	private Name name;
 	private long uID;
@@ -13,6 +13,9 @@ public class Profile {
 	
 	// Constructors
 	public Profile() {
+		// Superclass default value
+		super();
+
 		// Default Values
 		this.name = new Name();
 		this.uID = -1;
@@ -20,7 +23,8 @@ public class Profile {
 		this.address = new Address();
 	}
 
-	public Profile(Name name, long uID, Contact contact, Address address) {
+	public Profile(Name name, long uID, Contact contact, Address address, long id) {
+		super(id);
 		this.name = name;
 		this.uID = uID;
 		this.contact = contact;
@@ -46,6 +50,4 @@ public class Profile {
 	public Address getAddress() {
 		return this.address;
 	}
-
-
 }
