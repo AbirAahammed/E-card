@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "148543896006",
+    "project_id": "e-card-7d459",
+    "storage_bucket": "e-card-7d459.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148543896006:android:b392608b547870aeb2dac7",
+        "android_client_info": {
+          "package_name": "redbull.ecard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148543896006-t61iiqmq837rjksgqk1oth1ljstofk5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT9W4rHqfIHk0nyGcLXr1aRZndUd89kZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148543896006-t61iiqmq837rjksgqk1oth1ljstofk5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
