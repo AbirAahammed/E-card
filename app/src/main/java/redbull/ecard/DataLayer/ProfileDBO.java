@@ -1,8 +1,12 @@
 package redbull.ecard.DataLayer;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 
 public class ProfileDBO extends Model {
     private  static ObjectMapper objectMapper = new ObjectMapper();
@@ -54,7 +58,24 @@ public class ProfileDBO extends Model {
         this.uid = uid;
     }
 
-    public ProfileDBO map(String json) throws IOException {
-        return objectMapper.readValue(json, this.getClass());
+
+    public ProfileDBO map(HashMap<String, Object> map) {
+        this.name = (Long) map.get("name");
+        this.contact = (Long) map.get("contact");
+        this.address = (Long) map.get("address");
+        this.uid = (String) map.get("uid");
+        return this;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileDBO{" +
+                "name=" + name +
+                ", contact=" + contact +
+                ", address=" + address +
+                ", uid='" + uid + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
 }

@@ -1,7 +1,5 @@
 package redbull.ecard.PersistenceLayer;
 
-import android.util.Log;
-
 import redbull.ecard.DataLayer.Model;
 
 public class ResultPersistence extends Persistence{
@@ -12,7 +10,7 @@ public class ResultPersistence extends Persistence{
     }
 
     @Override
-    public Model read(Long id) {
+    public PersistenceInterface read(Long id) {
         return null;
     }
 

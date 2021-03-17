@@ -1,7 +1,5 @@
 package redbull.ecard.PersistenceLayer;
 
-import android.util.Log;
-
 import redbull.ecard.DataLayer.Model;
 
 public class ContactPersistence extends Persistence{
@@ -11,7 +9,7 @@ public class ContactPersistence extends Persistence{
     }
 
     @Override
-    public Model read(Long id) {
+    public PersistenceInterface read(Long id) {
         return null;
     }
 

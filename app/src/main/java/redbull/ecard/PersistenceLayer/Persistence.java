@@ -1,7 +1,10 @@
 package redbull.ecard.PersistenceLayer;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import redbull.ecard.DataLayer.Model;
 
 public abstract class Persistence implements PersistenceInterface {
     protected FirebaseDatabase firebaseDatabaseInstance;

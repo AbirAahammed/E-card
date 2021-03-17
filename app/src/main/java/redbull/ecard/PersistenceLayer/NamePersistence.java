@@ -1,12 +1,8 @@
 package redbull.ecard.PersistenceLayer;
 
-import android.util.Log;
-
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import redbull.ecard.DataLayer.Model;
-import redbull.ecard.DataLayer.Name;
 
 public class NamePersistence extends Persistence{
     private static final String TABLENAME  = "Name";
@@ -23,7 +19,7 @@ public class NamePersistence extends Persistence{
     }
 
     @Override
-    public Model read(Long id) {
+    public PersistenceInterface read(Long id) {
         return null;
     }
 

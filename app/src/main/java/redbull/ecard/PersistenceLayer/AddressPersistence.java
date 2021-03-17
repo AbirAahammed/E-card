@@ -11,7 +11,7 @@ public class AddressPersistence extends Persistence{
     }
 
     @Override
-    public Model read(Long id) {
+    public PersistenceInterface read(Long id) {
         return null;
     }
 
