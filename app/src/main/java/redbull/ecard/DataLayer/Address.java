@@ -5,6 +5,8 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of an address.
  */
 
+import java.util.HashMap;
+
 public class Address extends Model {
 	// Variables
 	private String roadNumber;
@@ -30,9 +32,9 @@ public class Address extends Model {
 
 
 	public Address(String roadNumber, String houseNumber, String postalCode, 
-		String city, String province, String country, long id) {
-		// Superclass value
-		super(id);
+		String city, String province, String country) {
+		super();
+
 		this.roadNumber = roadNumber;
 		this.houseNumber = houseNumber;
 		this.postalCode = postalCode;
@@ -67,5 +69,26 @@ public class Address extends Model {
 
 	public String getCountry() {
 		return this.country;
+	}
+
+	@Override
+	public String toString() {
+		return "Address{" +
+				"roadNumber='" + roadNumber + '\'' +
+				", houseNumber='" + houseNumber + '\'' +
+				", postalCode='" + postalCode + '\'' +
+				", city='" + city + '\'' +
+				", province='" + province + '\'' +
+				", country='" + country + '\'' +
+				'}';
+	}
+
+	public void map(HashMap<String, String> map) {
+		this.roadNumber = map.get("roadNumber");
+		this.houseNumber = map.get("houseNumber");
+		this.postalCode = map.get("postalCode");
+		this.city = map.get("city");
+		this.province = map.get("province");
+		this.country = map.get("country");
 	}
 }
