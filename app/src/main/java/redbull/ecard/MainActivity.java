@@ -1,10 +1,13 @@
 package redbull.ecard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.firebase.ui.auth.AuthUI;
@@ -16,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.Debug;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,14 +35,20 @@ import redbull.ecard.UILayer.login.LoginActivity;
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";
 
+    // Store a reference to the layout of the cards section, for dynamic adding
+    private LinearLayout cardParent = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("CREATION", "A");
+
+        setContentView(R.layout.card_body);
+        cardParent = (LinearLayout)findViewById(R.id.cards_layout);
+
         super.onCreate(savedInstanceState);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
         }
-       // Log.d("CREATION", "Ab");
+
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -49,15 +59,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        //(String serviceName, Name name, Contact contact, Address address, String description, int templateNum)
-        Card testCard = new Card
-                ("", new Name("tim", "doh ", "jim"),
-                        new Contact("123", "123", "123"),
-                        new Address(), "We like stuff", 0);
-
-        // Append the test card
-        //CardGenerator.InsertToView(testCard, (ScrollView)findViewById(R.id.scrollView2), this);
     }
 
     /**

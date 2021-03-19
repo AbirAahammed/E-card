@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".UILayer.cards.CardsFragment">
 
-    <include
-        layout="@layout/card_body"
+    <LinearLayout
+        android:id="@+id/card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/text_home"

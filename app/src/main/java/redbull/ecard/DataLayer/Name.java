@@ -39,8 +39,8 @@ public class Name extends Model {
 	{
 		// The name can really be anything, in theory as long as there is no numbers
 		// A middle name might not be required, only first & last
-		return firstName != null && firstName != "" && firstName.matches(".*\\d.*")
-				&& lastName != null && lastName != "" && lastName.matches(".*\\d.*");
+		return firstName != null && firstName != "" && !firstName.matches(".*\\d.*")
+				&& lastName != null && lastName != "" && !lastName.matches(".*\\d.*");
 	}
 
 	// Methods
