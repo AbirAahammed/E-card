@@ -101,10 +101,6 @@ public class CardGenerator {
     // Retrieve the template resource from its template number
     private static int GrabTemplate(int cardTemplateNum)
     {
-<<<<<<< Updated upstream
-       // View elem = LayoutInflater.from(loc).inflate (R.layout.card_body, null);
-       // view.addView(elem);
-=======
         int ret = -1; // Invalid template
 
         switch (cardTemplateNum)
@@ -117,6 +113,5 @@ public class CardGenerator {
         }
 
         return ret;
->>>>>>> Stashed changes
     }
 }
