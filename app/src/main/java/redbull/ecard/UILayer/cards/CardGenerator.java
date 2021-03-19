@@ -40,6 +40,9 @@ public class CardGenerator {
     // Insert a list of cards to the corresponding view
     public static void InsertToView(Card[] cards, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
+        // Insert the first card twice to resolve the hidden card issue
+        InsertToView(cards[0], rootView, inflater, context);
+
         for (int i = 0; i < cards.length; i++)
             InsertToView(cards[i], rootView, inflater, context);
     }
@@ -102,11 +105,11 @@ public class CardGenerator {
     private static int GrabTemplate(int cardTemplateNum)
     {
         int ret = -1; // Invalid template
-
+        Log.d ("Test", "" + cardTemplateNum);
         switch (cardTemplateNum)
         {
             case 0:
-                ret = R.drawable.template1;
+                ret = R.drawable.template1v1;
                 break;
             case 1:
                 ret = R.drawable.template2v2;

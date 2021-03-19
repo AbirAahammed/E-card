@@ -34,6 +34,21 @@ public class CardDatabaseConnector {
                         "", new Name("james", "bob ", "dylan"),
                         new Contact("(204)call-meba)", "123", "321@gmail.com"),
                         new Address(), "We also like stuff, except its better so...", 1
+                ),
+                new Card (
+                        "", new Name("boo", "bob ", "dylan"),
+                        new Contact("(204)120-2134)", "123", "patty@gmail.com"),
+                        new Address(), "Don't call me, I suck at life", 1
+                ),
+                new Card (
+                        "", new Name("james", "bob ", "dylan"),
+                        new Contact("(204)call-meba)", "123", "321@gmail.com"),
+                        new Address(), "We also like stuff, except its better so...", 1
+                ),
+                new Card (
+                        "", new Name("boo", "bob ", "dylan"),
+                        new Contact("(204)120-2134)", "123", "patty@gmail.com"),
+                        new Address(), "Don't call me, I suck at life", 1
                 )
         };
     }
