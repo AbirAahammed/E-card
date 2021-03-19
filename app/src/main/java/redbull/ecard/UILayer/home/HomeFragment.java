@@ -1,7 +1,6 @@
 package redbull.ecard.UILayer.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 
-import redbull.ecard.PersistenceLayer.ProfilePersistence;
+import redbull.ecard.DataLayer.Address;
+import redbull.ecard.DataLayer.Contact;
+import redbull.ecard.DataLayer.Name;
+import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
+import redbull.ecard.LogicLayer.ProfileLogic;
+import redbull.ecard.LogicLayer.ShareLogic;
 import redbull.ecard.R;
 
 public class HomeFragment extends Fragment {
@@ -25,11 +30,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-//        Delete the following after testing
-        ProfilePersistence pp = new ProfilePersistence(FirebaseDatabase.getInstance());
-        pp.read(123456767L);
-        Log.d("ABIRDEVTAG", "Testing DB call");
+        // remove the following code segment before submitting
+        ProfileLogic profileLogic = ProfileLogic.getInstance();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Profile profile = new Profile(
+                new Name("Abir", "Sakib", "Ahammed"),
+                new Contact("123 456 7891", "987 654 3210", "redbull.com"),
+                new Address("12", "21", "Q3E 2R4", "Winnipeg", "MB", "CANADA"));
+        profileLogic.createProfile(profile);
+        profileLogic.getProfile(uid).addOnProfileGetListener(new OnProfileGetListener() {
+            @Override
+            public void onSuccess(@NonNull Profile profile) {
+                ShareLogic shareLogic = ShareLogic.getInstance(profile);
+                shareLogic.getConnections();
 
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
