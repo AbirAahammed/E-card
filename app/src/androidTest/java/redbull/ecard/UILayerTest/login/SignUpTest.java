@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -34,9 +35,14 @@ public class SignUpTest {
     private final int email_id=2131230902;
     private final int name=2131231038;
     private final int password= 2131231065;
+    private LoginActivity Signup;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
             new IntentsTestRule<>(LoginActivity.class);
+    @Before
+    public void setup(){
+        Signup= intentsTestRule.getActivity();
+    }
     @Test
     public void SignUp_success() {
 

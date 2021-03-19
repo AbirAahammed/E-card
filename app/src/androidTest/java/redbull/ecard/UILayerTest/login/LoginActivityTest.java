@@ -35,11 +35,14 @@ import redbull.ecard.UILayer.login.LoginActivity;
 @LargeTest
 @RunWith(AndroidJUnit4ClassRunner.class)
 public class LoginActivityTest {
-
+    private LoginActivity login;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
             new IntentsTestRule<>(LoginActivity.class);
-
+    @Before
+    public void setup(){
+        login= intentsTestRule.getActivity();
+    }
     @Test
     public void loginActivityTest_success() {
         // successfully login
