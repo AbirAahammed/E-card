@@ -5,7 +5,7 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of an address.
  */
 
-public class Address {
+public class Address extends Model {
 	// Variables
 	private String roadNumber;
 	private String houseNumber;
@@ -16,6 +16,9 @@ public class Address {
 
 	//Constructors
 	public Address() {
+		// Superclass default value
+		super();
+
 		// Default Values
 		this.roadNumber = "No road number given";
 		this.houseNumber = "No house number given";
@@ -27,7 +30,9 @@ public class Address {
 
 
 	public Address(String roadNumber, String houseNumber, String postalCode, 
-		String city, String province, String country) {
+		String city, String province, String country, long id) {
+		// Superclass value
+		super(id);
 		this.roadNumber = roadNumber;
 		this.houseNumber = houseNumber;
 		this.postalCode = postalCode;

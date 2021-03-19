@@ -1,6 +1,7 @@
 package redbull.ecard.UILayer.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.database.FirebaseDatabase;
+
+import redbull.ecard.PersistenceLayer.ProfilePersistence;
 import redbull.ecard.R;
 
 public class HomeFragment extends Fragment {
@@ -20,6 +24,13 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+//        Delete the following after testing
+        ProfilePersistence pp = new ProfilePersistence(FirebaseDatabase.getInstance());
+        pp.read(123456767L);
+        Log.d("ABIRDEVTAG", "Testing DB call");
+
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
