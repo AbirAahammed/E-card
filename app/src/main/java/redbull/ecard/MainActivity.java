@@ -35,14 +35,8 @@ import redbull.ecard.UILayer.login.LoginActivity;
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";
 
-    // Store a reference to the layout of the cards section, for dynamic adding
-    private LinearLayout cardParent = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        setContentView(R.layout.card_body);
-        cardParent = (LinearLayout)findViewById(R.id.cards_layout);
 
         super.onCreate(savedInstanceState);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
