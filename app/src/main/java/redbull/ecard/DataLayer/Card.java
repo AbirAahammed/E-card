@@ -23,8 +23,7 @@ public class Card extends Model {
 		this.address = new Address();
 	}
 
-	public Card(String serviceName, Name name, Contact contact, Address address, long id) {
-		super(id);
+	public Card(String serviceName, Name name, Contact contact, Address address) {
 		this.serviceName = serviceName;
 		this.name = name;
 		this.contact = contact;
