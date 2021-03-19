@@ -37,6 +37,5 @@ public class CardGenerator {
     {
        // View elem = LayoutInflater.from(loc).inflate (R.layout.card_body, null);
        // view.addView(elem);
-
     }
 }
