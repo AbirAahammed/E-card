@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/single_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="392dp"
+        android:layout_height="121dp"
+        android:contentDescription="@string/img_fail"
+        android:paddingStart="-450px"
+        android:paddingEnd="0px"
+        android:src="@drawable/template2v2"
+        android:tag="@string/template_tag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227"
+        app:srcCompat="@drawable/template2v2" />
+
+    <TextView
+        android:id="@+id/descriptionPreview2"
+        android:layout_width="281dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="sans-serif-black"
+        android:tag="@string/description_tag"
+        android:text="@string/description_default"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumPreview2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/emailPreview2"
+        android:layout_width="282dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="95dp"
+        android:fontFamily="sans-serif-black"
+        android:tag="@string/email_tag"
+        android:text="@string/email_default"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/namePreview2"
+        android:layout_width="285dp"
+        android:layout_height="21dp"
+        android:fontFamily="sans-serif-black"
+        android:tag="@string/name_tag"
+        android:text="@string/name_default"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionPreview2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/phoneNumPreview2"
+        android:layout_width="285dp"
+        android:layout_height="21dp"
+        android:fontFamily="sans-serif-black"
+        android:tag="@string/phone_tag"
+        android:text="@string/phone_default"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/emailPreview2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/phone_image"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/phoneNumPreview2"
+        app:srcCompat="@android:drawable/stat_sys_vp_phone_call" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-5dp"
+        android:contentDescription="@string/email_image"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/emailPreview2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:srcCompat="@android:drawable/sym_action_email" />
+</androidx.constraintlayout.widget.ConstraintLayout>
