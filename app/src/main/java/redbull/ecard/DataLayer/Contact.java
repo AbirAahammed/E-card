@@ -26,7 +26,12 @@ public class Contact {
 		this.emailAddress = emailAddress;
 	}
 
-
+	// Atleast one form of contact information must be valid
+	// TODO need to verify that the email is valid, and phone numbers. Should this logic layer?
+	public boolean ValidContact()
+	{
+		return this.cellPhone != null || this.homePhone != null || this.emailAddress != null;
+	}
 
 	// Methods
 	// Get Methods

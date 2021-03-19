@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ScrollView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import redbull.ecard.DataLayer.Address;
+import redbull.ecard.DataLayer.Card;
+import redbull.ecard.DataLayer.Contact;
+import redbull.ecard.DataLayer.Name;
+import redbull.ecard.UILayer.cards.CardGenerator;
 import redbull.ecard.UILayer.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        //(String serviceName, Name name, Contact contact, Address address, String description, int templateNum)
+        Card testCard = new Card
+                ("", new Name("tim", "doh ", "jim"),
+                        new Contact("123", "123", "123"),
+                        new Address(), "We like stuff", 0);
+
+        // Append the test card
+        //CardGenerator.InsertToView(testCard, (ScrollView)findViewById(R.id.scrollView2), this);
     }
 
     /**
