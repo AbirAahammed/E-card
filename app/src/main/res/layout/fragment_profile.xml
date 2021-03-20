@@ -4,216 +4,210 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UILayer.dashboard.ProfileFragment">
+    tools:context=".UILayer.Profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="4dp"
-        android:text="Card Preview"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="428dp"
-        android:layout_height="166dp"
-        android:layout_below="@id/template_3"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/template_2"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/udescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/descriptionvalue"
-                android:layout_width="295dp"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="  A cheap,fast, and reliable source for    filing your income tax."
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/uname"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Name:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/unamevalue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="Donald Trump"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/uemail"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/uemailvalue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="DonaldTrump@icloud.com"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/uphone"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Phone:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/uphonevalue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="1(202)-456-1111"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/delete_profile"
-        android:layout_width="127dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="8dp"
-        android:text="Reset Profile"
-        android:textColor="#978484"
-        android:textColorHighlight="#BC0E0E"
-        android:textColorLink="#FFFFFF"
-        app:iconTint="#F40000"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/template_2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="template2"
-        app:layout_constraintEnd_toStartOf="@+id/template_3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/template_1"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="template1"
-        app:layout_constraintEnd_toStartOf="@+id/template_2"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
-        android:contentDescription="@string/img_fail"
-        android:src="@drawable/template2"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="101dp"
-        android:layout_height="55dp"
-        android:src="@drawable/qr"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="416dp"
+            android:layout_height="189dp"
+            android:layout_below="@id/template_3"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.58000004">
 
-    <Button
-        android:id="@+id/template_3"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="12dp"
-        android:text="template3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Description">
+
+                <EditText
+                    android:id="@+id/serviceInput"
+                    android:layout_width="413dp"
+                    android:layout_height="74dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What service do you provide?"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone">
+
+                <EditText
+                    android:id="@+id/phoneInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What is your phone number?"
+                    android:inputType="phone"
+                    android:textAlignment="center" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Email">
+
+                <EditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What is your email address?"
+                    android:inputType="textEmailAddress"
+                    android:textAlignment="center" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Preview_Card"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/img_fail"
+            android:scaleType="fitXY"
+            android:src="@drawable/template2v2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.715"
+            app:srcCompat="@drawable/template2v2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="128dp"
+            android:layout_height="100dp"
+            android:contentDescription="QR Code scanner"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/descriptionPreview"
+            android:layout_width="288dp"
+            android:layout_height="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/description_default"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.079" />
+
+        <TextView
+            android:id="@+id/emailPreview"
+            android:layout_width="282dp"
+            android:layout_height="26dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Insert Email Of Profile"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.007"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.758" />
+
+        <TextView
+            android:id="@+id/namePreview"
+            android:layout_width="285dp"
+            android:layout_height="21dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/name_default"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <TextView
+            android:id="@+id/phoneNumPreview"
+            android:layout_width="285dp"
+            android:layout_height="21dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/phone_default"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.871" />
+
+        <Button
+            android:id="@+id/template_1"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="template1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <Button
+            android:id="@+id/template_2"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="template2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toEndOf="@+id/template_1"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <Button
+            android:id="@+id/template_3"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="template3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintStart_toEndOf="@+id/template_2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

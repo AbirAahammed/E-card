@@ -33,7 +33,15 @@ public class Name extends Model {
 		this.middleName = middleName;
 	}
 
-
+	// Returns true if this is a valid Name
+	// FIXME should this be in logic layer?
+	public boolean IsValid()
+	{
+		// The name can really be anything, in theory as long as there is no numbers
+		// A middle name might not be required, only first & last
+		return firstName != null && firstName != "" && !firstName.matches(".*\\d.*")
+				&& lastName != null && lastName != "" && !lastName.matches(".*\\d.*");
+	}
 
 	// Methods
 	// Get Methods

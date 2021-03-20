@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="redbull.ecard.UILayer.dashboard.ProfileFragment"
+        android:name="redbull.ecard.UILayer.Profile.ProfileFragment"
         android:label="@string/profile_home"
         tools:layout="@layout/fragment_dashboard" />
 

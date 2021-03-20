@@ -1,5 +1,14 @@
 package redbull.ecard;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +24,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.Debug;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import redbull.ecard.DataLayer.Address;
+import redbull.ecard.DataLayer.Card;
+import redbull.ecard.DataLayer.Contact;
+import redbull.ecard.DataLayer.Name;
+import redbull.ecard.UILayer.cards.CardGenerator;
 import redbull.ecard.UILayer.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d("CREATION", "A");
         super.onCreate(savedInstanceState);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
         }
-       // Log.d("CREATION", "Ab");
+
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -69,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
+  
     @Override
     public void onPause() {
         FirebaseAuth.getInstance().signOut();
@@ -79,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: re-login
         super.onResume();
     }
+  
     /**
      * Used to logout from the app
      * @param item that will call this method
