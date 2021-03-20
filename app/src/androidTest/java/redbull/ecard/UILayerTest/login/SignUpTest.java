@@ -34,9 +34,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class SignUpTest {
-    private final int email_id=2131230902;
-    private final int name=2131231038;
-    private final int password= 2131231065;
+
     private LoginActivity Signup;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
@@ -57,7 +55,7 @@ public class SignUpTest {
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(5000L);
         }catch (Exception e){
 
         }
@@ -85,6 +83,11 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
+        try {
+            Thread.sleep(5000L);
+        }catch (Exception e){
+
+        }
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
