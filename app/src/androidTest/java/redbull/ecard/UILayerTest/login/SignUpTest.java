@@ -25,6 +25,7 @@ import redbull.ecard.DataLayer.testData.testID;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
@@ -45,6 +46,10 @@ public class SignUpTest {
     }
     @Test
     public void SignUp_success() {
+        try {
+            onView(withId(R.id.button_register)).perform(scrollTo());
+        }
+        catch(Exception e) {};
 
         onView(withId(R.id.button_register)).perform(click());
         try {
@@ -66,6 +71,10 @@ public class SignUpTest {
     }
     @Test
     public void SignUp_hasAccount() {
+        try {
+            onView(withId(R.id.button_register)).perform(scrollTo());
+        }
+        catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
         onView(withId(email_id)).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
