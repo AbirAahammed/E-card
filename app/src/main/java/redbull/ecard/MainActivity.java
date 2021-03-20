@@ -9,6 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,14 +40,8 @@ import redbull.ecard.UILayer.login.LoginActivity;
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";
 
-    // Store a reference to the layout of the cards section, for dynamic adding
-    private LinearLayout cardParent = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        setContentView(R.layout.card_body);
-        cardParent = (LinearLayout)findViewById(R.id.cards_layout);
 
         super.onCreate(savedInstanceState);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
+  
     @Override
     public void onPause() {
         FirebaseAuth.getInstance().signOut();
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: re-login
         super.onResume();
     }
+  
     /**
      * Used to logout from the app
      * @param item that will call this method

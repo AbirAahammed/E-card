@@ -4,37 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UILayer.dashboard.ProfileFragment">
+    tools:context=".UILayer.Profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="463dp"
-            android:layout_height="190dp"
+            android:layout_width="416dp"
+            android:layout_height="189dp"
             android:layout_below="@id/template_3"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002">
+            app:layout_constraintVertical_bias="0.58000004">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:hint="Name">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Description">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Insert your name here"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/serviceInput"
+                    android:layout_width="413dp"
+                    android:layout_height="74dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What service do you provide?"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -42,40 +52,31 @@
                 android:layout_height="wrap_content"
                 android:hint="Phone">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/phoneInput"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:hint="Insert your name here"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Description">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="463dp"
                     android:layout_height="match_parent"
-                    android:hint="hint"
-                    android:text="  A cheap,fast, and reliable source for    filing your income tax."
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
-
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What is your phone number?"
+                    android:inputType="phone"
+                    android:textAlignment="center" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
+                android:layout_height="match_parent"
                 android:hint="Email">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/emailInput"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Insert your name here"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:layout_height="61dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="What is your email address?"
+                    android:inputType="textEmailAddress"
+                    android:textAlignment="center" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -93,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="@string/img_fail"
+            android:scaleType="fitXY"
             android:src="@drawable/template2v2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,8 +112,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:layout_constraintVertical_bias="1.0"
-            />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/descriptionPreview"
