@@ -4,6 +4,8 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import redbull.ecard.MainActivity;
 import redbull.ecard.DataLayer.testData.testID;
 import static androidx.test.espresso.Espresso.onView;
@@ -18,6 +20,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -55,6 +58,7 @@ public class LoginActivityTest {
 
         }
         intended(hasComponent(MainActivity.class.getName()));
+        FirebaseAuth.getInstance().signOut();
     }
 
     @Test
@@ -68,5 +72,4 @@ public class LoginActivityTest {
                 .inRoot(withDecorView(not(intentsTestRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
-
 }

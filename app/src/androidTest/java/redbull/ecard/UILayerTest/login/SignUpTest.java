@@ -110,5 +110,7 @@ public class SignUpTest {
 
                     }
                 });
+        FirebaseAuth.getInstance().signOut();
     }
+
 }
