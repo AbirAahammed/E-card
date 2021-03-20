@@ -25,6 +25,12 @@ public class Address {
 		this.country = "No country given";
 	}
 
+	// Returns true if the address is valid
+	// TODO need to assure the validity of the address. Should this logic layer?
+	public boolean IsValid()
+	{
+		return true;
+	}
 
 	public Address(String roadNumber, String houseNumber, String postalCode, 
 		String city, String province, String country) {

@@ -1,9 +1,14 @@
 <resources>
+    <!-- Unused strings have not been removed from the original template yet
+         This is to avoid merge conflicts and build issues with other files -->
     <string name="app_name">E-card</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="main_screen">Cards</string>
+    <string name="img_fail">Img could not be loaded</string>
+    <string name="profile_home">Profile</string>
+    <string name="camera_home">Camera</string>
+    <string name="camera_text">Scan a profiles QR code</string>
     <string name="title_activity_login">Log IN</string>
+    <string name="Preview_Card">Card Preview</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -13,6 +18,22 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <!-- Image text descriptions -->
+    <string name="phone_image">Phone</string>
+    <string name="email_image">Email</string>
+
+    <!-- Default strings for Cards sections -->
+    <string name="name_default">Card Preview</string>
+    <string name="description_default">Cards Description...</string>
+    <string name="phone_default">(204) def-ault</string>
+    <string name="email_default">default@gmail.com</string>
+
+    <!-- Tags of View elements associated with cards -->
+    <string name="name_tag">name</string>
+    <string name="description_tag">description</string>
+    <string name="phone_tag">phone</string>
+    <string name="email_tag">email</string>
+    <string name="template_tag">template</string>
 <!--    Login page resources    -->
     <string name="button_login">Log In</string>
     <string name="button_sign_up">Sign Up</string>

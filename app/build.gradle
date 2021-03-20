@@ -4,6 +4,13 @@ plugins {
 
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin @see https://firebase.google.com/docs/android/setup
 
+task wrapper(type: Wrapper){
+    gradleVersion = '2.14.1'
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
 
 android {
     compileSdkVersion 30
@@ -41,7 +48,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-
+    
+    //this is for QR generator
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation 'com.google.zxing:core:3.3.2'
+    
     // dependencies used for junit testing    -   start
 
     // Choose either version 1 or 2
