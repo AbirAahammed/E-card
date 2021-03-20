@@ -30,6 +30,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class SignUpTest {
@@ -60,10 +61,10 @@ public class SignUpTest {
         }catch (Exception e){
 
         }
-        onView(withId(email_id)).perform(typeText(testID.signup_email),closeSoftKeyboard());
+        onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
-        onView(withId(name)).perform(typeText(testID.signup_name),closeSoftKeyboard());
-        onView(withId(password)).perform(typeText(testID.password),closeSoftKeyboard());
+        onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
+        onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withText("SAVE")).perform(click());
         try {
             Thread.sleep(2000L);
@@ -84,9 +85,9 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
-        onView(withId(email_id)).perform(typeText(testID.email),closeSoftKeyboard());
+        onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
-        onView(withId(password)).perform(typeText(testID.password),closeSoftKeyboard());
+        onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withText("SIGN IN")).perform(click());
         try {
             Thread.sleep(2000L);
