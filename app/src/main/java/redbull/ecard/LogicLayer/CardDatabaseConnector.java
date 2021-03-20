@@ -104,7 +104,7 @@ public class CardDatabaseConnector {
 
     // Save the profile to our list of saved profiles
     // Update the database with the new information
-    public void SavedProfile(Profile profile)
+    public void SavedProfile(Card profile)
     {
         // This is currently incomplete on the UI Side
         // When a QR code is scanned, this method will be called to save the profile that was scanned to the current user
