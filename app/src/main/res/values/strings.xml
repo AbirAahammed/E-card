@@ -34,7 +34,6 @@
     <string name="phone_tag">phone</string>
     <string name="email_tag">email</string>
     <string name="template_tag">template</string>
-
 <!--    Login page resources    -->
     <string name="button_login">Log In</string>
     <string name="button_sign_up">Sign Up</string>

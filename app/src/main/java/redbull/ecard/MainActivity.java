@@ -9,6 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
+  
     @Override
     public void onPause() {
         FirebaseAuth.getInstance().signOut();
@@ -88,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: re-login
         super.onResume();
     }
+  
     /**
      * Used to logout from the app
      * @param item that will call this method

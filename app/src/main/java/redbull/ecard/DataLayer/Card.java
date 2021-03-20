@@ -20,6 +20,7 @@ public class  Card {
 	}
 
 	public Card(String serviceName, Name name, Contact contact, Address address, String description, int templateNum) {
+
 		this.serviceName = serviceName;
 		this.name = name;
 		this.contact = contact;
@@ -53,9 +54,7 @@ public class  Card {
 	public Address getAddress() {
 		return this.address;
 	}
-
 	public int getTemplateNum() { return this.templateNum; }
 
 	public String getDescription() { return this.description; }
-
 }
