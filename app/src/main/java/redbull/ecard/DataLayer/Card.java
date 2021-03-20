@@ -15,12 +15,14 @@ public class  Card {
 
 	// Constructors
 	public Card() {
+		// Superclass default value
+		super();
+
 		// Default Values
 		this ("Service name not given", new Name(), new Contact(), new Address(), null, 0);
 	}
 
 	public Card(String serviceName, Name name, Contact contact, Address address, String description, int templateNum) {
-
 		this.serviceName = serviceName;
 		this.name = name;
 		this.contact = contact;
@@ -56,5 +58,8 @@ public class  Card {
 	}
 	public int getTemplateNum() { return this.templateNum; }
 
+	public int getTemplateNum() { return this.templateNum; }
+
 	public String getDescription() { return this.description; }
+
 }

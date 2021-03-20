@@ -5,7 +5,9 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of a user's name.
  */
 
-public class Name {
+import java.util.HashMap;
+
+public class Name extends Model {
 	// Variables
 	private String firstName;
 	private String lastName;
@@ -13,6 +15,9 @@ public class Name {
 	
 	//Constructors
 	public Name() {
+		// Superclass default value
+		super();
+
 		// Default Values
 		this.firstName = "First name not given";
 		this.lastName = "Last name not given";
@@ -21,6 +26,8 @@ public class Name {
 
 
 	public Name(String firstName, String lastName, String middleName) {
+		super();
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
@@ -48,6 +55,21 @@ public class Name {
 
 	public String getMiddleName() {
 		return this.middleName;
+	}
+
+	@Override
+	public String toString() {
+		return "Name{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", middleName='" + middleName + '\'' +
+				'}';
+	}
+
+	public void map(HashMap<String, String> map) {
+		this.firstName = map.get("firstName");
+		this.lastName = map.get("lastName");
+		this.middleName = map.get("middleName");
 	}
 
 }

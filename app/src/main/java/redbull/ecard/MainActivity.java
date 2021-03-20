@@ -9,11 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -70,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+       // Log.d("CREATION", "Av");
     }
 
     @Override
@@ -83,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onDestroy();
     }
-  
     @Override
     public void onPause() {
         FirebaseAuth.getInstance().signOut();
@@ -94,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         //TODO: re-login
         super.onResume();
     }
-  
     /**
      * Used to logout from the app
      * @param item that will call this method
