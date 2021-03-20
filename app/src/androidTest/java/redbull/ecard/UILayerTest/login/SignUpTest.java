@@ -20,7 +20,7 @@ import org.junit.Test;
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
-import redbull.ecard.testData.testID;
+import redbull.ecard.DataLayer.testData.testID;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

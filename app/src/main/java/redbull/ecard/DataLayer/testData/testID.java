@@ -1,4 +1,4 @@
-package redbull.ecard.testData;
+package redbull.ecard.DataLayer.testData;
 
 public class testID {
     public static final String email="tlw@gmail.com";

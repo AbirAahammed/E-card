@@ -1,16 +1,11 @@
 package redbull.ecard.UILayerTest.login;
 
-import android.content.Intent;
-import android.util.Log;
-
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
-import androidx.test.rule.ActivityTestRule;
 
 import redbull.ecard.MainActivity;
-import redbull.ecard.testData.testID;
+import redbull.ecard.DataLayer.testData.testID;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -33,19 +28,24 @@ import redbull.ecard.UILayer.login.LoginActivity;
 
 
 @LargeTest
-@RunWith(AndroidJUnit4ClassRunner.class)
+@RunWith(AndroidJUnit4.class)
 public class LoginActivityTest {
     private LoginActivity login;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
             new IntentsTestRule<>(LoginActivity.class);
+//    @Rule
+//    public ActivityScenarioRule<LoginActivity> activityTestRule =
+//            new ActivityScenarioRule<>(LoginActivity.class);
     @Before
     public void setup(){
         login= intentsTestRule.getActivity();
+//        intentsTestRule.launchActivity()
     }
     @Test
     public void loginActivityTest_success() {
         // successfully login
+
         onView(withId(R.id.username)).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withId(R.id.button_login)).perform(click());
@@ -68,4 +68,5 @@ public class LoginActivityTest {
                 .inRoot(withDecorView(not(intentsTestRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
+
 }
