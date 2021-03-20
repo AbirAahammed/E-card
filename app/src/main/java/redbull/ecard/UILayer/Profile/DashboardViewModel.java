@@ -1,4 +1,8 @@
+<<<<<<< HEAD:app/src/main/java/redbull/ecard/UILayer/camera/CameraViewModel.java
+package redbull.ecard.UILayer.camera;
+=======
 package redbull.ecard.UILayer.Profile;
+>>>>>>> Profile Update:app/src/main/java/redbull/ecard/UILayer/Profile/DashboardViewModel.java
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
