@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.dashboard;
+package redbull.ecard.UILayer.Profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

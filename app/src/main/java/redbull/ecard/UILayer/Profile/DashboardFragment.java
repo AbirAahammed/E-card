@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.dashboard;
+package redbull.ecard.UILayer.Profile;
 
 
 import android.os.Bundle;
@@ -14,27 +14,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Display;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidmads.library.qrgenearator.QRGContents;
+
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.R;
 
-
-import redbull.ecard.R;
-
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGEncoder;
 public class DashboardFragment extends Fragment {
     private ImageView qrCodeIV;
     private EditText dataEdt;
