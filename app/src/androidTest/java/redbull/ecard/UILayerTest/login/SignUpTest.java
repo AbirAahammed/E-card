@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,12 +18,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.DataLayer.testData.testID;
 
+import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -32,7 +36,9 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
+import static org.hamcrest.Matchers.not;
+@LargeTest
+@RunWith(AndroidJUnit4.class)
 public class SignUpTest {
 
     private LoginActivity Signup;
@@ -55,7 +61,7 @@ public class SignUpTest {
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
         try {
-            Thread.sleep(5000L);
+            Thread.sleep(2000L);
         }catch (Exception e){
 
         }
@@ -84,10 +90,11 @@ public class SignUpTest {
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
         try {
-            Thread.sleep(5000L);
+            Thread.sleep(2000L);
         }catch (Exception e){
 
         }
+        intended(hasComponent(LoginActivity.class.getName()));
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
