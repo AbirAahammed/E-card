@@ -46,12 +46,14 @@ public class SignUpTest {
     }
     @Test
     public void SignUp_success() {
+
+        onView(withId(R.id.username)).perform(closeSoftKeyboard());
         try {
+
             onView(withId(R.id.button_register)).perform(scrollTo());
             Thread.sleep(2000L);
         }
         catch(Exception e) {};
-
         onView(withId(R.id.button_register)).perform(click());
         try {
             Thread.sleep(2000L);
@@ -69,11 +71,14 @@ public class SignUpTest {
 
         }
         intended(hasComponent(MainActivity.class.getName()));
+        remove();
         FirebaseAuth.getInstance().signOut();
     }
     @Test
     public void SignUp_hasAccount() {
+        onView(withId(R.id.username)).perform(closeSoftKeyboard());
         try {
+
             onView(withId(R.id.button_register)).perform(scrollTo());
             Thread.sleep(2000L);
         }
@@ -83,11 +88,16 @@ public class SignUpTest {
         onView(withText("NEXT")).perform(click());
         onView(withId(password)).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withText("SIGN IN")).perform(click());
+        try {
+            Thread.sleep(2000L);
+        }
+        catch(Exception e) {}
         intended(hasComponent(MainActivity.class.getName()));
+        remove();
         FirebaseAuth.getInstance().signOut();
     }
-    @After
-    public void remove(){
+
+    private void remove(){
         final FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();;
         if(user == null){
             return ;
