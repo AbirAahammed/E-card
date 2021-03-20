@@ -110,6 +110,7 @@ public class ProfileLogicTest {
         }catch (Exception e){
 
         }
+        FirebaseAuth.getInstance().signOut();
         System.setOut(originalOut);
         System.setErr(originalErr);
     }
