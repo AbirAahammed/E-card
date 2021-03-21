@@ -56,7 +56,7 @@ public class CardsFragment extends Fragment {
         cardsViewModel =
                 new ViewModelProvider(this).get(CardsViewModel.class);
 
-        final TextView textView = root.findViewById(R.id.text_home);
+//        final TextView textView = root.findViewById(R.id.text_home); // text_home doesn't exist. Never used.
         cardsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
