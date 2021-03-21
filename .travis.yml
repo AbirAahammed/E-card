@@ -10,7 +10,7 @@ android:
     - tools
     - build-tools-30.0.3
     - android-23
-    - sys-img-x86-android-23
+    - sys-img-armeabi-v7a-android-23
     - extra
     - addon
   licenses:
@@ -19,7 +19,7 @@ android:
 #add real testing here
 before_script:
   # Create and start emulator
-  - echo no | android create avd --force -n test -k "system-images;android-23;google_apis;x86" --abi x86
+  - echo no | android create avd --force -n test -t android-28 --abi armeabi-v7a
   - emulator -avd test -skin 854x854 -camera-back none -camera-front none -no-boot-anim -no-window &
   - android-wait-for-emulator
   - adb shell settings put global window_animation_scale 0 &
