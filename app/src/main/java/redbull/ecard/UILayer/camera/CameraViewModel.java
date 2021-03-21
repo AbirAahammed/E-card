@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.Profile;
+package redbull.ecard.UILayer.camera;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

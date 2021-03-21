@@ -1,6 +1,7 @@
-package redbull.ecard.UILayer.Profile;
+package redbull.ecard.UILayer.camera;
 
 
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,22 +20,23 @@ import android.widget.ImageView;
 
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.R;
+import redbull.ecard.UILayer.camera.CameraViewModel;
 
-public class DashboardFragment extends Fragment {
+public class CameraFragment extends Fragment {
     private ImageView qrCodeIV;
     private EditText dataEdt;
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
-    private DashboardViewModel dashboardViewModel;
+    private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         qrCodeIV.findViewById(R.id.imageView2);
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cameraViewModel =
+                new ViewModelProvider(this).get(CameraViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_camera, container, false);
+        final TextView textView = root.findViewById(R.id.camera_view); // was text_dashboard ??
+        cameraViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
