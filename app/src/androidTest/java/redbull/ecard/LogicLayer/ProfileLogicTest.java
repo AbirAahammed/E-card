@@ -79,6 +79,7 @@ public class ProfileLogicTest {
             public void onSuccess(@NonNull Profile profile) {
                 System.out.println("Test passed");
                 System.out.flush();
+                assertEquals(profile.getAddress().getCity(),testID.city);
                 return;
 
             }

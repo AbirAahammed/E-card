@@ -1,9 +1,15 @@
 package redbull.ecard.UILayerTest.login;
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.test.espresso.PerformException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.espresso.util.HumanReadables;
+import androidx.test.espresso.util.TreeIterables;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
@@ -14,18 +20,20 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.junit.After;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.DataLayer.testData.testID;
 
-import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -33,6 +41,7 @@ import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -40,7 +49,9 @@ import static org.hamcrest.Matchers.not;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class SignUpTest {
-
+    private final int email_id=2131230902;
+    private final int name=2131231038;
+    private final int password= 2131231065;
     private LoginActivity Signup;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
@@ -60,11 +71,7 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
-
-        }
+        onView(isRoot()).perform(waitFor(2000));
         onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
@@ -87,14 +94,9 @@ public class SignUpTest {
             onView(withId(R.id.button_register)).perform(scrollTo());
             Thread.sleep(2000L);
         }
-        catch(Exception e) {};
+        catch(Exception e) {}
         onView(withId(R.id.button_register)).perform(click());
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
-
-        }
-        intended(hasComponent(LoginActivity.class.getName()));
+        onView(isRoot()).perform(waitFor(2000));
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
@@ -141,5 +143,24 @@ public class SignUpTest {
                 });
 
     }
+    /**
+     * Perform action of waiting for a specific time.
+     */
+    public static ViewAction waitFor(final long millis) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return isRoot();
+            }
 
-}
+            @Override
+            public String getDescription() {
+                return "Wait for " + millis + " milliseconds.";
+            }
+
+            @Override
+            public void perform(UiController uiController, final View view) {
+                uiController.loopMainThreadForAtLeast(millis);
+            }
+        };
+    }}
