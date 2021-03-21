@@ -80,8 +80,8 @@ public class ProfilePersistence implements PersistenceInterface  {
     }
     private void createUserServices(DatabaseReference dbUserServiceRef, Services services) {
         // Creates a string of comma-separated indexes that match the indexes of the ServicesTypes enum.
-        String servicesDBFormat = services.getServicesInDBFormat();
-        dbUserServiceRef.child("serviceIndexes").setValue(servicesDBFormat);
+        String serviceIndexesDBFormat = services.getIndexesInDBFormat();
+        dbUserServiceRef.child("serviceIndexes").setValue(serviceIndexesDBFormat);
     }
 
     @Override

@@ -12,6 +12,7 @@ public class testID {
     public static final String city= "Winnipeg";
     public static final String province= "MB";
     public static final String country="CANADA";
+    public static final String description="This is a description";
 
     public static final String signup_email="test51231@gmail.com";
     public static final String signup_name="Test Person";

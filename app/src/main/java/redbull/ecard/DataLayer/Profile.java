@@ -118,7 +118,7 @@ public class Profile extends Model{
 		if(map.get("description") instanceof String) {
 			this.description = (String) map.get("description");
 		}
-		this.services.map((HashMap<String, Object>) map.get("services"));
+		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
  	}
 	public void mapConnection(HashMap<String, Object> map) {
 		this.name.map((HashMap<String, String>) map.get("name"));
@@ -127,6 +127,6 @@ public class Profile extends Model{
 		if(map.get("description") instanceof String) {
 			this.description = (String) map.get("description");
 		}
-		this.services.map((HashMap<String, Object>) map.get("services"));
+		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
 	}
 }

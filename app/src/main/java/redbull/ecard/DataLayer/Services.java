@@ -15,9 +15,9 @@ public class Services {
     // index is the index in the array, value is the Service type
     public Services() {
         this.indexes = new ArrayList<Integer>();
-        this.indexes.add(ServiceTypes.NOSERVICES.getValue());
+//        this.indexes.add(ServiceTypes.NOSERVICES.getValue());
         this.services = new ArrayList<String>();
-        this.services.add(ServiceTypes.NOSERVICES.getKey());
+//        this.services.add(ServiceTypes.NOSERVICES.getKey());
     }
 
     // index is the index in the array, value is the Service type
@@ -46,14 +46,14 @@ public class Services {
      * Where each number represents the index of the Enumeration type (ServiceTypes).
      * Used to save space when adding the list of services to the Database for each user.
      */
-    public String getServicesInDBFormat() {
+    public String getIndexesInDBFormat() {
         String servicesDBFormat = "";
-        for(int i = 0; i < services.size(); i++) {
+        for(int i = 0; i < indexes.size(); i++) {
             //Add comma if not first:
             if(i != 0) {
                 servicesDBFormat += ",";
             }
-            servicesDBFormat += services.get(i);
+            servicesDBFormat += indexes.get(i);
         }
         return servicesDBFormat;
     }
@@ -74,21 +74,19 @@ public class Services {
         return services;
     }
 
+    // Maps values from DB
+    // Profiles -> uid -> serviceIndexes -> servicesIndexes -> value
     public void map(HashMap<String, Object> map) {
-        this.indexes = (ArrayList<Integer>) map.get("indexes");
-        this.services = (ArrayList<String>) map.get("lastName");
-        ArrayList<String> indexList = (ArrayList<String>) map.get("indexes");
-        if (indexList != null) {
-            for (String s : indexList) {
-                this.indexes.add(new Integer(s));
-            }
+        String indexString = (String) map.get("serviceIndexes");
+        String[] arr = indexString.split(",");
+        // Fill indexes from map's return value.
+        for(int i = 0; i < arr.length; i++) {
+            this.indexes.add(new Integer(arr[i]));
         }
-
-        ArrayList<String> serviceList = (ArrayList<String>) map.get("services");
-        if (serviceList != null) {
-            for (String s : serviceList) {
-                this.services.add(s);
-            }
+        // Retrieve services from enum by index
+        for(int i = 0; i < indexes.size(); i++) {
+            String s = ServiceTypes.values()[indexes.get(i)].getKey();
+            this.services.add(s);
         }
     }
 }

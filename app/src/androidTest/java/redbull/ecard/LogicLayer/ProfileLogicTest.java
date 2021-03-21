@@ -70,11 +70,17 @@ public class ProfileLogicTest {
 
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Make a ServiceTypes list for Services.
+        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
+        serviceTypeList.add(ServiceTypes.LAWYER);
+        serviceTypeList.add(ServiceTypes.PLUMBER);
+
         Profile profile = new Profile(
                 new Name(testID.name, testID.l_name, ""),
                 new Contact(testID.cell, testID.cell, testID.email),
-                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country));
-
+                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
+                testID.description,
+                new Services(serviceTypeList));
 
 
        profileLogic.createProfile(profile);
