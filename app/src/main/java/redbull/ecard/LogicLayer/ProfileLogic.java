@@ -41,7 +41,7 @@ public class ProfileLogic extends Logic{
         profilePersistence.setPersistenceSync(false);
     }
 
-
+/// return:
     public ProfileLogic getProfile(String uid) {
         ((ProfilePersistence)this.profilePersistence.read(uid)).addOnProfileReadCompleteListener(new OnReadCompleteListener() {
             @Override
