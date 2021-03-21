@@ -1,6 +1,5 @@
 package redbull.ecard.UILayer.camera;
 
-
 import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,19 +22,23 @@ import redbull.ecard.R;
 import redbull.ecard.UILayer.camera.CameraViewModel;
 
 public class CameraFragment extends Fragment {
-    private ImageView qrCodeIV;
-    private EditText dataEdt;
-    Bitmap bitmap;
-    QRGEncoder qrgEncoder;
+
+    // Commented out because it was causing the CameraFragment to crash in app.
+//    private ImageView qrCodeIV;
+//    private EditText dataEdt;
+//    Bitmap bitmap;
+//    QRGEncoder qrgEncoder;
+
     private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        qrCodeIV.findViewById(R.id.imageView2);
+        // Commented out because it was causing the CameraFragment to crash in app.
+//        qrCodeIV.findViewById(R.id.imageView2);
         cameraViewModel =
                 new ViewModelProvider(this).get(CameraViewModel.class);
         View root = inflater.inflate(R.layout.fragment_camera, container, false);
-        final TextView textView = root.findViewById(R.id.camera_view); // was text_dashboard ??
+        final TextView textView = root.findViewById(R.id.camera_view);
         cameraViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
