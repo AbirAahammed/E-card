@@ -19,8 +19,8 @@ android:
 #add real testing here
 before_script:
   # Create and start emulator
-  - echo no | android create avd --force -n test -t android-23 --abi x86 
-  - emulator -avd test -memory 1500 -no-accel -gpu swiftshader -skin WVGA800 -camera-back none -camera-front none -no-boot-anim -no-window &
+  - echo no | android create avd --force -n test -k "system-images;android-23;google_apis;x86" --abi x86
+  - emulator -avd test -skin 854x854 -camera-back none -camera-front none -no-boot-anim -no-window &
   - android-wait-for-emulator
   - adb shell settings put global window_animation_scale 0 &
   - adb shell settings put global transition_animation_scale 0 &
