@@ -1,5 +1,6 @@
 package redbull.ecard.UILayer.camera;
 
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Bitmap;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.R;
+import redbull.ecard.UILayer.camera.CameraViewModel;
 
 public class CameraFragment extends Fragment {
-
     private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
