@@ -22,19 +22,10 @@ import redbull.ecard.R;
 import redbull.ecard.UILayer.camera.CameraViewModel;
 
 public class CameraFragment extends Fragment {
-
-    // Commented out because it was causing the CameraFragment to crash in app.
-//    private ImageView qrCodeIV;
-//    private EditText dataEdt;
-//    Bitmap bitmap;
-//    QRGEncoder qrgEncoder;
-
     private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // Commented out because it was causing the CameraFragment to crash in app.
-//        qrCodeIV.findViewById(R.id.imageView2);
         cameraViewModel =
                 new ViewModelProvider(this).get(CameraViewModel.class);
         View root = inflater.inflate(R.layout.fragment_camera, container, false);
