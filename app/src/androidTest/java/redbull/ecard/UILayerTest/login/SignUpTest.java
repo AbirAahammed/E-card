@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.test.espresso.IdlingRegistry;
+import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -33,14 +35,17 @@ import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.DataLayer.testData.testID;
+import redbull.ecard.util.ViewShownIdlingResource;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
@@ -49,9 +54,6 @@ import static org.hamcrest.Matchers.not;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class SignUpTest {
-    private final int email_id=2131230902;
-    private final int name=2131231038;
-    private final int password= 2131231065;
     private LoginActivity Signup;
     @Rule
     public IntentsTestRule<LoginActivity> intentsTestRule =
@@ -71,7 +73,7 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
-        onView(isRoot()).perform(waitFor(20000));
+        waitViewShown(withResourceName("email"));
         onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
@@ -96,7 +98,7 @@ public class SignUpTest {
         }
         catch(Exception e) {}
         onView(withId(R.id.button_register)).perform(click());
-        onView(isRoot()).perform(waitFor(20000));
+        waitViewShown(withResourceName("email"));
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
@@ -163,4 +165,14 @@ public class SignUpTest {
                 uiController.loopMainThreadForAtLeast(millis);
             }
         };
-    }}
+    }
+    public void waitViewShown(Matcher<View> matcher) {
+        IdlingResource idlingResource = new ViewShownIdlingResource(matcher);///
+        try {
+            IdlingRegistry.getInstance().register(idlingResource);
+            onView(matcher).check(matches(isDisplayed()));
+        } finally {
+            IdlingRegistry.getInstance().unregister(idlingResource);
+        }
+    }
+}
