@@ -1,9 +1,11 @@
-package redbull.ecard.PersistenceLayer;
+package redbull.ecard.local.PersistenceLayer;
+
+import androidx.test.filters.SmallTest;
 
 import junit.framework.TestCase;
 
 import redbull.ecard.DataLayer.Profile;
-
+@SmallTest
 public class ProfilePersistenceTest extends TestCase {
 
 //    public void testCreate() {

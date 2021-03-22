@@ -1,12 +1,9 @@
-package redbull.ecard.LogicLayer;
-
-import com.google.firebase.auth.FirebaseAuth;
+package redbull.ecard.local.LogicLayer;
 
 import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Name;
-import redbull.ecard.DataLayer.Profile;
 
 // This class grabs the cards from the database or data-layer
 // Essentially, its the connection between the database and the ui layer

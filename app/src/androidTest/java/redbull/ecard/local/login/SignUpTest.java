@@ -1,4 +1,4 @@
-package redbull.ecard.UILayerTest.login;
+package redbull.ecard.local.login;
 
 import android.util.Log;
 import android.view.View;
@@ -6,14 +6,12 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
-import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.espresso.util.HumanReadables;
-import androidx.test.espresso.util.TreeIterables;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,14 +26,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.util.ViewShownIdlingResource;
+import redbull.ecard.util.testContent;
+import redbull.ecard.util.testWithHWAcceration;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -48,10 +44,8 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.not;
-@LargeTest
+
+@SmallTest
 @RunWith(AndroidJUnit4.class)
 public class SignUpTest {
     private LoginActivity Signup;
@@ -73,17 +67,8 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
-        waitViewShown(withResourceName("email"));
-        onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
-        onView(withText("NEXT")).perform(click());
-        onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
-        onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
-        onView(withText("SAVE")).perform(click());
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
-
-        }
+        testContent follow= new testWithHWAcceration();
+        follow.signUp_test_success();
         intended(hasComponent(MainActivity.class.getName()));
         remove();
         FirebaseAuth.getInstance().signOut();
@@ -98,15 +83,8 @@ public class SignUpTest {
         }
         catch(Exception e) {}
         onView(withId(R.id.button_register)).perform(click());
-        waitViewShown(withResourceName("email"));
-        onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
-        onView(withText("NEXT")).perform(click());
-        onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
-        onView(withText("SIGN IN")).perform(click());
-        try {
-            Thread.sleep(2000L);
-        }
-        catch(Exception e) {}
+        testWithHWAcceration follow= new testWithHWAcceration();
+        follow.signUp_test_success();
         intended(hasComponent(MainActivity.class.getName()));
         remove();
         FirebaseAuth.getInstance().signOut();
@@ -145,34 +123,5 @@ public class SignUpTest {
                 });
 
     }
-    /**
-     * Perform action of waiting for a specific time.
-     */
-    public static ViewAction waitFor(final long millis) {
-        return new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return isRoot();
-            }
 
-            @Override
-            public String getDescription() {
-                return "Wait for " + millis + " milliseconds.";
-            }
-
-            @Override
-            public void perform(UiController uiController, final View view) {
-                uiController.loopMainThreadForAtLeast(millis);
-            }
-        };
-    }
-    public void waitViewShown(Matcher<View> matcher) {
-        IdlingResource idlingResource = new ViewShownIdlingResource(matcher);///
-        try {
-            IdlingRegistry.getInstance().register(idlingResource);
-            onView(matcher).check(matches(isDisplayed()));
-        } finally {
-            IdlingRegistry.getInstance().unregister(idlingResource);
-        }
-    }
 }

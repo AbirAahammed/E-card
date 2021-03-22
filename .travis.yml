@@ -26,4 +26,5 @@ before_script:
   - adb shell input keyevent 82 &
 
 script: 
-  - ./gradlew clean connectedCheck -PdisablePreDex
+  - ./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.size=large
+#  - ./gradlew build test

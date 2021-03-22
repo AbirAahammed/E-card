@@ -20,13 +20,10 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.DataLayer.Profile;
-import redbull.ecard.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.local.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
 import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
 
 public class ProfileFragment extends Fragment{
     private ProfileViewModel profileViewModel;

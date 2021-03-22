@@ -1,14 +1,12 @@
-package redbull.ecard.LogicLayer;
+package redbull.ecard.local.LogicLayer;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-
 import redbull.ecard.DataLayer.Model;
 import redbull.ecard.DataLayer.Profile;
-import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
+import redbull.ecard.local.LogicLayer.Listeners.OnProfileGetListener;
 import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
 import redbull.ecard.PersistenceLayer.ProfilePersistence;
 

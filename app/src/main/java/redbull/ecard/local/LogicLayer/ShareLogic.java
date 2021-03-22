@@ -1,6 +1,4 @@
-package redbull.ecard.LogicLayer;
-
-import android.util.Log;
+package redbull.ecard.local.LogicLayer;
 
 import androidx.annotation.NonNull;
 
@@ -8,7 +6,7 @@ import java.util.ArrayList;
 
 import redbull.ecard.DataLayer.Model;
 import redbull.ecard.DataLayer.Profile;
-import redbull.ecard.LogicLayer.Listeners.OnConnectionsGetListener;
+import redbull.ecard.local.LogicLayer.Listeners.OnConnectionsGetListener;
 import redbull.ecard.PersistenceLayer.ConnectionPersistence;
 import redbull.ecard.PersistenceLayer.Listeners.OnConnectionReadCompleteListener;
 import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
