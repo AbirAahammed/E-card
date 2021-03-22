@@ -71,7 +71,7 @@ public class SignUpTest {
         }
         catch(Exception e) {};
         onView(withId(R.id.button_register)).perform(click());
-        onView(isRoot()).perform(waitFor(2000));
+        onView(isRoot()).perform(waitFor(20000));
         onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
@@ -96,7 +96,7 @@ public class SignUpTest {
         }
         catch(Exception e) {}
         onView(withId(R.id.button_register)).perform(click());
-        onView(isRoot()).perform(waitFor(2000));
+        onView(isRoot()).perform(waitFor(20000));
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
