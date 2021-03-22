@@ -1,36 +1,37 @@
 package redbull.ecard.TravisCiTests;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.test.filters.LargeTest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import static junit.framework.TestCase.*;
+
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.ArrayList;
 
 import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.DataLayer.ServiceTypes;
+import redbull.ecard.DataLayer.Services;
+import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
+import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.local.LogicLayer.Listeners.OnProfileGetListener;
-import redbull.ecard.local.LogicLayer.ProfileLogic;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.fail;
-@LargeTest
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class ProfileLogicTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -53,13 +54,13 @@ public class ProfileLogicTest {
                     FirebaseUser user = auth.getCurrentUser();
                     assertNotNull("failed with login",user);
                 }
-                 else {
-                   System.out.println("Test failed because failed with login");
+                else {
+                    System.out.println("Test failed because failed with login");
                     System.out.flush();
                     fail();
                 }
             }}
-            );
+        );
         try {
             Thread.sleep(2000L);
         }catch (Exception e){
@@ -68,20 +69,25 @@ public class ProfileLogicTest {
 
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Make a ServiceTypes list for Services.
+        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
+        serviceTypeList.add(ServiceTypes.LAWYER);
+        serviceTypeList.add(ServiceTypes.PLUMBER);
+
         Profile profile = new Profile(
                 new Name(testID.name, testID.l_name, ""),
                 new Contact(testID.cell, testID.cell, testID.email),
-                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country));
+                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
+                testID.description,
+                new Services(serviceTypeList));
 
 
-
-       profileLogic.createProfile(profile);
+        profileLogic.createProfile(profile);
         profileLogic.getProfile(uid).addOnProfileGetListener(new OnProfileGetListener() {
             @Override
             public void onSuccess(@NonNull Profile profile) {
                 System.out.println("Test passed");
                 System.out.flush();
-                assertEquals(profile.getAddress().getCity(),testID.city);
                 return;
 
             }

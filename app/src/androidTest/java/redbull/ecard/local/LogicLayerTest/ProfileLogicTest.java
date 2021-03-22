@@ -1,5 +1,4 @@
-package redbull.ecard.LogicLayer;
-
+package redbull.ecard.local.LogicLayerTest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -55,13 +54,13 @@ public class ProfileLogicTest {
                     FirebaseUser user = auth.getCurrentUser();
                     assertNotNull("failed with login",user);
                 }
-                 else {
-                   System.out.println("Test failed because failed with login");
+                else {
+                    System.out.println("Test failed because failed with login");
                     System.out.flush();
                     fail();
                 }
             }}
-            );
+        );
         try {
             Thread.sleep(2000L);
         }catch (Exception e){
@@ -83,7 +82,7 @@ public class ProfileLogicTest {
                 new Services(serviceTypeList));
 
 
-       profileLogic.createProfile(profile);
+        profileLogic.createProfile(profile);
         profileLogic.getProfile(uid).addOnProfileGetListener(new OnProfileGetListener() {
             @Override
             public void onSuccess(@NonNull Profile profile) {

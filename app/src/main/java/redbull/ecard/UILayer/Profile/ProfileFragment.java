@@ -20,7 +20,7 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.local.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
 import android.widget.TextView;

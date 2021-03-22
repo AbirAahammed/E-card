@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import redbull.ecard.DataLayer.Card;
-import redbull.ecard.local.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
 public class CardsFragment extends Fragment {

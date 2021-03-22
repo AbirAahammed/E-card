@@ -1,4 +1,4 @@
-package redbull.ecard.local.LogicLayer;
+package redbull.ecard.LogicLayer;
 
 import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Card;
