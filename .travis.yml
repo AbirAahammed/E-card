@@ -1,34 +1,29 @@
 language: android
-sudo: true
+jdk: oraclejdk8
+sudo: false
+before_install:
+  - chmod +x gradlew  
+  - yes | sdkmanager "platforms;android-30"
 android:
   components:
-    - tools
-    - tools
     - platform-tools
+    - tools
     - build-tools-30.0.3
-    # The SDK version used to compile your project
-    - android-26
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-x86-android-26
+    - android-23
+    - sys-img-x86-android-23
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
-install:
-  - echo y | sdkmanager "ndk-bundle"
+#add real testing here
 before_script:
-  - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-  - android list targets
-  - echo no | android create avd --force -n test -t android-26 --abi x86
-  - emulator -avd test -no-accel test -skin 800x800 -no-audio -no-window &
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-23 --abi x86 
+  - emulator -avd test -no-accel -gpu swiftshader -skin 800x800 -camera-back none -camera-front none -no-boot-anim -no-window &
   - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
 
-# build
-script:
+script: 
   - ./gradlew clean connectedCheck -PdisablePreDex
