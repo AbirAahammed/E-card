@@ -12,10 +12,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -24,11 +24,11 @@
             android:layout_below="@id/template_3"
             android:gravity="center"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.58000004">
+            app:layout_constraintTop_toBottomOf="@+id/template_2"
+            app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
@@ -81,28 +81,37 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Preview_Card"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="@string/img_fail"
             android:scaleType="fitXY"
+            android:scaleX="-1"
             android:src="@drawable/template2v2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.715"
+            app:layout_constraintVertical_bias="0.13"
             app:srcCompat="@drawable/template2v2" />
+
+        <TextView
+            android:id="@+id/phoneNumPreview"
+            android:layout_width="285dp"
+            android:layout_height="21dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/phone_default"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.89"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.871" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -110,25 +119,37 @@
             android:layout_height="100dp"
             android:contentDescription="QR Code scanner"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/descriptionPreview"
-            android:layout_width="288dp"
-            android:layout_height="24dp"
+            android:layout_width="361dp"
+            android:layout_height="48dp"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-black"
+            android:maxLines="2"
             android:text="@string/description_default"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.079" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/Preview_Card"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/emailPreview"
@@ -136,12 +157,12 @@
             android:layout_height="26dp"
             android:fontFamily="sans-serif-black"
             android:text="Insert Email Of Profile"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.007"
+            app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.758" />
@@ -150,63 +171,57 @@
             android:id="@+id/namePreview"
             android:layout_width="285dp"
             android:layout_height="21dp"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-black"
+            android:lines="1"
+            android:maxLines="1"
             android:text="@string/name_default"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.62" />
-
-        <TextView
-            android:id="@+id/phoneNumPreview"
-            android:layout_width="285dp"
-            android:layout_height="21dp"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/phone_default"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.871" />
 
         <Button
             android:id="@+id/template_1"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
             android:text="template1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintBottom_toBottomOf="@+id/template_2"
+            app:layout_constraintEnd_toStartOf="@+id/template_2"
+            app:layout_constraintHorizontal_bias="0.64"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/template_2"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="template2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/template_1"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
             android:id="@+id/template_3"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
             android:text="template3"
+            app:layout_constraintBottom_toBottomOf="@+id/template_2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintHorizontal_bias="0.653"
             app:layout_constraintStart_toEndOf="@+id/template_2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

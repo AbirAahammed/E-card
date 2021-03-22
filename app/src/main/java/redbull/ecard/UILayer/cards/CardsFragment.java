@@ -2,9 +2,10 @@ package redbull.ecard.UILayer.cards;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -42,6 +43,8 @@ public class CardsFragment extends Fragment {
             CardGenerator.InsertToView(cardsCache, root, inflater, getContext());
         }
 
+        addScrollListener((ScrollView)root.findViewById(R.id.cards_scroll));
+
         cardsViewModel =
                 new ViewModelProvider(this).get(CardsViewModel.class);
 
@@ -54,5 +57,24 @@ public class CardsFragment extends Fragment {
         });
 
         return root;
+    }
+
+    // Add a listener to the scroll view
+    // This will store the offset of the Y of the scroll view in fragment cards
+    // The purpose is so that I can track the offset, so when cards are enlarged, the scroll view can be adjusted
+    void addScrollListener(ScrollView scroll)
+    {
+        scroll.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_DOWN)
+                {
+
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
 }

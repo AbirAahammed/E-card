@@ -19,9 +19,9 @@ public class Contact extends Model {
 		super();
 
 		// Default Values
-		this.cellPhone = "No cell phone number given";
-		this.homePhone = "No home phone number given";
-		this.emailAddress = "No email address given";
+		this.cellPhone = "No cell phone number found";
+		this.homePhone = "No home phone number found";
+		this.emailAddress = "No email address found";
 	}
 
 
@@ -54,6 +54,33 @@ public class Contact extends Model {
 		return this.emailAddress;
 	}
 
+	// Returns the cell number in a formatted format
+	// That is, (204) xxx-yyyy
+	public String GetFormattedCell() {
+		StringBuilder ret = new StringBuilder("(");
+
+		for (int i = 0; i < this.cellPhone.length(); i++)
+		{
+			char appendingChar = this.cellPhone.charAt(i);
+			if (i < 3)
+			{
+				ret.append(appendingChar);
+			}
+			else if (i == 3)
+			{
+				ret.append(')');
+				ret.append(appendingChar);
+			}
+			else if (i == 6)
+			{
+				ret.append('-');
+				ret.append(appendingChar);
+			}
+		}
+
+		String retVal = ret.toString();
+		return retVal.equals("(") ? null : retVal;
+	}
 
 	@Override
 	public String toString() {

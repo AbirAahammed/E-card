@@ -7,7 +7,7 @@
     tools:context=".UILayer.cards.CardsFragment">
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/cards_scroll"
         android:layout_width="507dp"
         android:layout_height="925dp"
         android:paddingLeft="55dp"

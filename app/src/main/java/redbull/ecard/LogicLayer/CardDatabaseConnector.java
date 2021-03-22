@@ -1,5 +1,7 @@
 package redbull.ecard.LogicLayer;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
@@ -54,6 +56,8 @@ public class CardDatabaseConnector {
     // Retrieve this information from the database
     public Card GetActiveUser()
     {
+        ProfileLogic profileLogic = ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getUid());
+
         // TODO
         // Please complete this method
         // Return a Name object that contains the Name of the current user

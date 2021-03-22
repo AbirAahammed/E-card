@@ -1,7 +1,9 @@
 package redbull.ecard.UILayer.cards;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.FilterOutputStream;
 
 import redbull.ecard.DataLayer.Card;
+import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.R;
 
 // Appends / generates cards to be viewed from the home section
@@ -67,6 +70,111 @@ public class CardGenerator {
         }
 
         ((LinearLayout) rootView.findViewById(R.id.card_layout)).addView(child);
+        AddButtonClickEvents(child, context, card.getContact(), rootView);
+    }
+
+    // Add button click events to the email/phone icons
+    private static void AddButtonClickEvents(View root, Context context, Contact contactInfo, View parentRoot)
+    {
+        // Email onclick event
+        ImageView emailImg = (ImageView)(root.findViewById(R.id.emailIMG));
+        emailImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == emailImg)
+                {
+                    // Open email app to send them an email
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("plain/text");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String [] { contactInfo.getEmailAddress().toString() });
+                    intent.putExtra(Intent.EXTRA_TEXT, "");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Hello! From E-Card");
+                    context.startActivity(Intent.createChooser(intent, "Emailing E-Card Contact"));
+                }
+            }
+        });
+
+        // Phone on click event
+        ImageView phoneImg = (ImageView)(root.findViewById(R.id.phoneIMG));
+        phoneImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v == phoneImg)
+                {
+                    // Open the phone app to call the number
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + contactInfo.getCellPhone()));
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        // Card expansion on click event
+        // If user clicks the background of the card, it will expand to full screen
+        ImageView background = (ImageView)(root.findViewById(R.id.cardBackground));
+        ScrollView scrollLayout = (ScrollView)parentRoot.findViewById(R.id.cards_scroll);
+
+        background.setOnClickListener(new View.OnClickListener() {
+            ViewGroup.LayoutParams initLayout;
+            ImageView.ScaleType initType;
+            boolean resized = false;
+            boolean hasResized = false;
+
+            @Override
+            public void onClick(View v) {
+                if (v == background)
+                {
+                    // Full-screen the image view
+                    if (!hasResized)
+                    {
+                        initResize();
+                    }
+
+                    else
+                    {
+                        resizeImage();
+                    }
+                }
+            }
+
+            private void initResize()
+            {
+                hasResized = true;
+                initType = background.getScaleType();
+                initLayout = background.getLayoutParams();
+
+                resizeImage();
+            }
+
+            private void resizeImage()
+            {
+                if (!resized) {
+                    boolean adjustScroll = false;
+                    final int CLOSE_SCROLL_AMOUNT = 1550;
+                    Log.d ("Cur", "" + (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() ));
+                    if (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() <= CLOSE_SCROLL_AMOUNT)
+                        adjustScroll = true;
+
+                    // Enlarge the card
+                    background.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
+                    background.setScaleType(ImageView.ScaleType.FIT_XY);
+                    resized = true;
+
+                    // FIXME does not work atm
+                    // The reason is most likely that this call is to early, I need to call it in the next frame after the enlarged image is drawn
+                    // To resolve this, I need to wait until the next frame, then perform the action
+                    if (adjustScroll)
+                        scrollLayout.setScrollY(scrollLayout.getHeight());
+                }
+                else
+                {
+                    // De-large the card
+                    background.setLayoutParams(initLayout);
+                    background.setScaleType(initType);
+                    resized = false;
+                }
+            }
+        });
     }
 
     // Change the info of the view to the corresponding info on the card

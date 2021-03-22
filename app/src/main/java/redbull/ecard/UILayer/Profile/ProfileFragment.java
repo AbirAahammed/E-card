@@ -23,6 +23,7 @@ import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ProfileFragment extends Fragment{
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment{
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         connector = new CardDatabaseConnector();
+        root.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
         ProfileDisplaySetup(root);
 
         qrCodeIV = (ImageView) root.findViewById(R.id.imageView2);// this is where the QR gonna be
@@ -52,7 +54,7 @@ public class ProfileFragment extends Fragment{
 
 
         // This QR code is a bit messy, we can clean it up into methods
-        int dimen = 50;// this is QR dimension
+        int dimen = 450;// this is QR dimension
         qrgEncoder = new QRGEncoder("IhnuB3O0gUZgkpf2FQ33hcOem022",null,QRGContents.Type.TEXT,dimen);// now we can generate QR code
         bitmap = qrgEncoder.getBitmap();// get bot map
         qrCodeIV.setImageBitmap(bitmap);//put qr image to qrCodeIV
