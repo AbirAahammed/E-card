@@ -1,32 +1,122 @@
-language: android
-jdk: oraclejdk8
-sudo: false
+sudo: true
+language: generic
+dist: bionic
+
+addons:
+  apt:
+    packages:
+      - bridge-utils
+      - libpulse0
+      - libvirt-bin
+      - qemu-kvm
+      - virtinst
+      - ubuntu-vm-builder
+
+env:
+  global:
+    - ABI=x86_64
+    - API=23
+    - ADB_INSTALL_TIMEOUT=8
+    - ANDROID_HOME=${HOME}/android-sdk
+    - ANDROID_TOOLS_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
+    - EMU_FLAVOR=default # use google_apis flavor if no default flavor emulator
+    - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
+    - JDK="1.8"
+    - TOOLS=${ANDROID_HOME}/tools
+    # PATH order is incredibly important. e.g. the 'emulator' script exists in more than one place!
+    - PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
+
+#branches:
+#  only:
+#    - master
+#
+#jdk:
+#  - oraclejdk8
+
 before_install:
-  - chmod +x gradlew  
-  - yes | sdkmanager "platforms;android-30"
-android:
-  components:
-    - platform-tools
-    - tools
-    - build-tools-30.0.3
-    - android-23
-    - sys-img-x86_64-android-23
-    - extra
-    - addon
-  licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-#add real testing here
-before_script:
-  # Create and start emulator
-  - echo no | android create avd --force -n test -t android-23 --abi x86_64
-  - emulator -avd test -no-accel -skin 854x854 -camera-back none -camera-front none -no-boot-anim -no-window &
-  - android-wait-for-emulator
-  - adb shell settings put global window_animation_scale 0 &
-  - adb shell settings put global transition_animation_scale 0 &
-  - adb shell settings put global animator_duration_scale 0 &
+  # Set up KVM
+  - sudo adduser $USER libvirt
+  - sudo adduser $USER kvm
+
+  # Set up JDK 8 for Android SDK
+  - curl "${GRAVIS}.install-jdk-travis.sh" --output ~/.install-jdk-travis.sh
+  - export TARGET_JDK="${JDK}"
+  - JDK="1.8"
+  - source ~/.install-jdk-travis.sh
+
+  # Set up Android SDK
+  - wget -q "${ANDROID_TOOLS_URL}" -O android-sdk-tools.zip
+  - unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
+  - rm android-sdk-tools.zip
+
+  # Avoid harmless sdkmanager warning
+  - mkdir ~/.android
+  - echo 'count=0' > ~/.android/repositories.cfg
+
+  # Accept all Android license agreements
+  - yes | sdkmanager --licenses
+
+
+install:
+  # Download SDK tools
+  - echo y | sdkmanager "platform-tools" >/dev/null
+  - echo y | sdkmanager "tools" >/dev/null # A second time per Travis docs, gets latest versions
+  - echo y | sdkmanager "build-tools;28.0.3" >/dev/null # Implicit gradle dependency - gradle drives changes
+  - echo y | sdkmanager "platforms;android-$API" >/dev/null # We need the API of the emulator we will run
+  - echo y | sdkmanager "emulator" >/dev/null
+  - echo y | sdkmanager "extras;android;m2repository" >/dev/null
+  - echo y | sdkmanager "system-images;android-$API;$EMU_FLAVOR;$ABI" >/dev/null # install our emulator
+
+  # Create an Android emulator
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-$API;$EMU_FLAVOR;$ABI" -c 10M
+  - |
+    EMU_PARAMS="-verbose -no-snapshot -no-window -skin 800x800 -camera-back none -camera-front none -selinux permissive -qemu -m 2048"
+    EMU_COMMAND="emulator"
+    if [[ $ABI =~ "x86" ]]; then
+      EMU_COMMAND="emulator-headless"
+    fi
+    # This double "sudo" monstrosity is used to have Travis execute the
+    # emulator with its new group permissions and help preserve the rule
+    # of least privilege.
+    sudo -E sudo -u $USER -E bash -c "${ANDROID_HOME}/emulator/${EMU_COMMAND} -avd test ${AUDIO} ${EMU_PARAMS} &"
+  # Wait for emulator to be ready
+  - ./tools/android-wait-for-emulator.sh
   - adb shell input keyevent 82 &
 
+  # Switch back to our target JDK version to build and run tests
+  - JDK="${TARGET_JDK}"
+  - source ~/.install-jdk-travis.sh
+
 script:
-  - android list targets 
-  - ./gradlew connectedAndroidTest --stacktrace
+  - set -o pipefail
+  - ./gradlew clean build :DBPrefs:javadocJar :DBPrefs-lint:test :DBPrefs:assembleDebugAndroidTest :DBPrefs:check --profile --stacktrace --continue 2>&1 | tee build.log
+  - set +o pipefail
+  - ./gradlew connectedUseOldLibDebugAndroidTest
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - curl "${GRAVIS}.clean_gradle_cache.sh" --output ~/.clean_gradle_cache.sh
+  - bash ~/.clean_gradle_cache.sh
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+after_failure:
+  #- cat /home/travis/build/hannesa2/DbPreferences/DBPrefs/build/reports/androidTests/connected/index.html
+  - export MY_MOD="DBPrefs"
+  - export MY_LOG_DIR="$(pwd)/${MY_MOD}/build/reports/androidTests/connected/"
+  - export MY_LOG_DIR_RESULT="$(pwd)/${MY_MOD}/build/reports/androidTest-result/connected/"
+  #- sudo apt-get install -qq lynx && lynx --dump index.html > myIndex.log
+  #- lynx --dump com.android.builder.testing.ConnectedDevice.html > myConnectedDevice.log
+  #- lynx --dump com.android.builder.testing.html > myTesting.log
+  - find $MY_LOG_DIR -name "*.html" | while read -r file ; do echo $file; echo "-------"; cat $file; done
+  - find $MY_LOG_DIR -name "*.xml" | while read -r file ; do echo $file; echo "-------"; cat $file; done
+  - pwd && cd "${MY_LOG_DIR:-.}"
+  - pwd && ls -al
+  - for file in *.html; do echo "$file"; echo "====================="; cat "$file"; done || true
+  - for file in *.xml; do echo "$file"; echo "====================="; cat "$file"; done || true
+#  - pwd && cd "${MY_LOG_DIR_RESULT:-.}" && pwd && ls -al
+#  - for file in *.html; do echo "$file"; echo "====================="; cat "$file"; done || true
+#  - for file in *.xml; do echo "$file"; echo "====================="; cat "$file"; done || true
