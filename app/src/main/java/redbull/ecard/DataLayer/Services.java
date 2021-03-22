@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @SuppressWarnings("ALL")
-public class Services {
+public class Services extends Model {
 
     // The index location of the service in the ServiceTypes enumeration (For storing easily in DB)
     private  ArrayList<Integer> indexes;
