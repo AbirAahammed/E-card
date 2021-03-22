@@ -16,6 +16,9 @@ android:
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     - sys-img-x86-android-26
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
 install:
   - echo y | sdkmanager "ndk-bundle"
   - echo y | sdkmanager "platforms;android-26"
