@@ -1,8 +1,7 @@
-package redbull.ecard.local.LogicLayer;
+package redbull.ecard.LogicLayer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.test.filters.SmallTest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,11 +13,16 @@ import static junit.framework.TestCase.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
-import redbull.ecard.local.LogicLayer.Listeners.OnProfileGetListener;
+import redbull.ecard.DataLayer.ServiceTypes;
+import redbull.ecard.DataLayer.Services;
+import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
+import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.DataLayer.testData.testID;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-@SmallTest
+
 public class ProfileLogicTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -66,11 +70,17 @@ public class ProfileLogicTest {
 
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Make a ServiceTypes list for Services.
+        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
+        serviceTypeList.add(ServiceTypes.LAWYER);
+        serviceTypeList.add(ServiceTypes.PLUMBER);
+
         Profile profile = new Profile(
                 new Name(testID.name, testID.l_name, ""),
                 new Contact(testID.cell, testID.cell, testID.email),
-                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country));
-
+                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
+                testID.description,
+                new Services(serviceTypeList));
 
 
        profileLogic.createProfile(profile);
@@ -79,7 +89,6 @@ public class ProfileLogicTest {
             public void onSuccess(@NonNull Profile profile) {
                 System.out.println("Test passed");
                 System.out.flush();
-                assertEquals(profile.getAddress().getCity(),testID.city);
                 return;
 
             }

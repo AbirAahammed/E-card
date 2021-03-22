@@ -8,6 +8,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import redbull.ecard.DataLayer.Address;
@@ -15,6 +16,7 @@ import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Model;
 import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.DataLayer.Services;
 import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
 
 
@@ -46,6 +48,8 @@ public class ProfilePersistence implements PersistenceInterface  {
             createUserName(dbTableRef.child(profile.getUID()).child("name"), profile.getName());
             createUserAddress(dbTableRef.child(profile.getUID()).child("address"), profile.getAddress());
             createUserContact(dbTableRef.child(profile.getUID()).child("contact"), profile.getContact());
+            createUserDescription(dbTableRef.child(profile.getUID()).child("description"), profile.getDescription());
+            createUserServices(dbTableRef.child(profile.getUID()).child("serviceIndexes"), profile.getServices());
         }
         else {
             String ERROR = "Expected a profile class";
@@ -70,6 +74,14 @@ public class ProfilePersistence implements PersistenceInterface  {
         dbUserContactRef.child("cellPhone").setValue(contact.getCellPhone());
         dbUserContactRef.child("homePhone").setValue(contact.getHomePhone());
         dbUserContactRef.child("emailAddress").setValue(contact.getEmailAddress());
+    }
+    private void createUserDescription(DatabaseReference dbUserDescriptionRef, String description) {
+        dbUserDescriptionRef.child("description").setValue(description);
+    }
+    private void createUserServices(DatabaseReference dbUserServiceRef, Services services) {
+        // Creates a string of comma-separated indexes that match the indexes of the ServicesTypes enum.
+        String serviceIndexesDBFormat = services.getIndexesInDBFormat();
+        dbUserServiceRef.child("serviceIndexes").setValue(serviceIndexesDBFormat);
     }
 
     @Override

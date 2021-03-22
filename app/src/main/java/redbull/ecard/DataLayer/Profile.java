@@ -17,6 +17,8 @@ public class Profile extends Model{
 	private Contact contact;
 	private Address address;
 	private ArrayList<Profile> connections;
+	private String description;
+	private Services services;
 	// Constructors
 	public Profile() {
 		// Superclass default value
@@ -27,16 +29,21 @@ public class Profile extends Model{
 		this.uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 		this.contact = new Contact();
 		this.address = new Address();
-		this.connections = new ArrayList<Profile>();
+		this.connections = new ArrayList<>();
+		this.description = "No description provided";
+		this.services = new Services();
 	}
 
-	public Profile(Name name, Contact contact, Address address) {
+	public Profile(Name name, Contact contact, Address address, String description, Services services) {
 		super();
 		this.name = name;
 		this.uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 		this.contact = contact;
 		this.address = address;
 		this.connections = new ArrayList<>();
+		this.description = description;
+		this.services = new Services();
+		this.services.addServices(services); // Add service to the list of services
 	}
 
 
@@ -45,7 +52,9 @@ public class Profile extends Model{
 		this.uID = uid;
 		this.contact = new Contact();
 		this.address = new Address();
-		this.connections = new ArrayList<Profile>();
+		this.connections = new ArrayList<>();
+		this.description = "No description set";
+		this.services = new Services();
 	}
 
 
@@ -76,6 +85,14 @@ public class Profile extends Model{
 		return connections;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public Services getServices() {
+		return services;
+	}
+
 	@Override
 	public String toString() {
 		return "Profile{" +
@@ -83,6 +100,8 @@ public class Profile extends Model{
 				", uID='" + uID + '\'' +
 				", contact=" + contact +
 				", address=" + address +
+				", description=" + description +
+				", services=" + services +
 				'}';
 	}
 
@@ -96,10 +115,18 @@ public class Profile extends Model{
 				this.connections.add(new Profile(s));
 			}
 		}
+		if(map.get("description") instanceof String) {
+			this.description = (String) map.get("description");
+		}
+		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
  	}
 	public void mapConnection(HashMap<String, Object> map) {
 		this.name.map((HashMap<String, String>) map.get("name"));
 		this.address.map((HashMap<String, String>) map.get("address"));
 		this.contact.map((HashMap<String, String>) map.get("contact"));
+		if(map.get("description") instanceof String) {
+			this.description = (String) map.get("description");
+		}
+		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
 	}
 }
