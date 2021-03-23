@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,9 +57,18 @@ public class MainActivityTest {
     }
     @Test
     public void fragmentTest(){
-
-       onView(withId(R.id.navigation_home)).perform(click());
+    try {
+        onView(withId(R.id.navigation_home)).perform(click());
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withId(R.id.navigation_dashboard)).perform(click());
+    }
+    catch(Exception e){
+        fail();
+    }
+    }
+    @After
+    public void clean(){
+        FirebaseAuth.getInstance().signOut();
+       rule.getScenario().close();
     }
 }
