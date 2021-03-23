@@ -8,11 +8,8 @@
 
     <ScrollView
         android:id="@+id/cards_scroll"
-        android:layout_width="507dp"
-        android:layout_height="925dp"
-        android:paddingLeft="55dp"
-        android:paddingTop="120dp"
-        android:paddingEnd="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:paddingBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
