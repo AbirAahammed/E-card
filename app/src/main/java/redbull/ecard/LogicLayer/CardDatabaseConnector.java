@@ -56,7 +56,6 @@ public class CardDatabaseConnector {
     // Retrieve this information from the database
     public Card GetActiveUser()
     {
-        ProfileLogic profileLogic = ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getUid());
 
         // TODO
         // Please complete this method

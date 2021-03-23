@@ -105,28 +105,59 @@ public class Profile extends Model{
 				'}';
 	}
 
+	// Get the data for the current profile
 	public void map(HashMap<String, Object> map) {
-		this.name.map((HashMap<String, String>) map.get("name"));
-		this.address.map((HashMap<String, String>) map.get("address"));
-		this.contact.map((HashMap<String, String>) map.get("contact"));
+		if(map.get("name") != null) {
+			this.name.map((HashMap<String, String>) map.get("name"));
+		}
+		if(map.get("address") != null) {
+			this.address.map((HashMap<String, String>) map.get("address"));
+		}
+		if(map.get("contact") != null) {
+			this.contact.map((HashMap<String, String>) map.get("contact"));
+		}
 		ArrayList<String> connectionList = (ArrayList<String>) map.get("connections");
 		if (connectionList != null) {
 			for (String s : connectionList) {
 				this.connections.add(new Profile(s));
 			}
 		}
-		if(map.get("description") instanceof String) {
-			this.description = (String) map.get("description");
+		if(map.get("descriptions") != null) {
+			if(map.get("description") instanceof String) {
+				this.description = (String) map.get("description");
+			}
 		}
-		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+
+		// Ensure the profile on the database has services
+		if(map.get("serviceIndexes") != null) {
+			this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+		}
+
  	}
+
+ 	// Get the data for another profile
 	public void mapConnection(HashMap<String, Object> map) {
-		this.name.map((HashMap<String, String>) map.get("name"));
-		this.address.map((HashMap<String, String>) map.get("address"));
-		this.contact.map((HashMap<String, String>) map.get("contact"));
-		if(map.get("description") instanceof String) {
-			this.description = (String) map.get("description");
+		if(map.get("name") != null) {
+			this.name.map((HashMap<String, String>) map.get("name"));
 		}
-		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+		if(map.get("address") != null) {
+			this.address.map((HashMap<String, String>) map.get("address"));
+		}
+		if(map.get("contact") != null) {
+			this.contact.map((HashMap<String, String>) map.get("contact"));
+		}
+		if(map.get("description") != null) {
+			if(map.get("description") instanceof String) {
+				this.description = (String) map.get("description");
+			}
+		}
+		if(map.get("serviceIndexes") != null) {
+			this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+		}
+
+
+
+
+
 	}
 }
