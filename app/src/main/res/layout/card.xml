@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/single_card"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/cardBackground"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:contentDescription="@string/img_fail"
-        android:paddingTop="15dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:scaleType="fitXY"
         android:scaleX="-1"
         android:src="@drawable/template2v2"
@@ -110,6 +112,7 @@
         android:ellipsize="end"
         android:fontFamily="sans-serif-black"
         android:maxLines="2"
+        android:paddingTop="5dp"
         android:tag="@string/description_tag"
         android:text="@string/description_default"
         android:textAlignment="viewStart"
@@ -120,6 +123,6 @@
         app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="@+id/cardBackground"
         app:layout_constraintTop_toTopOf="@+id/cardBackground"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.43" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

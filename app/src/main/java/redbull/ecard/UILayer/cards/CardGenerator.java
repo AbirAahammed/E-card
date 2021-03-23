@@ -217,7 +217,9 @@ public class CardGenerator {
         switch (cardTemplateNum)
         {
             case 0:
-                ret = R.drawable.template1v1;
+                // FIXME need to have the template determined by the users current setting, not the card
+                //ret = R.drawable.template1v1;
+                ret = R.drawable.template2v2;
                 break;
             case 1:
                 ret = R.drawable.template2v2;
