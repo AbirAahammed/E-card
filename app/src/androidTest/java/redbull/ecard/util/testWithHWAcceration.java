@@ -30,15 +30,11 @@ public class testWithHWAcceration extends testContent {
         waitViewShown(withResourceName("email"));
         onView(withResourceName("email")).perform(typeText(testID.signup_email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
+        waitTime();
         onView(withResourceName("name")).perform(typeText(testID.signup_name),closeSoftKeyboard());
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withText("SAVE")).perform(click());
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
-
-        }
-        intended(hasComponent(MainActivity.class.getName()));
+        waitTime();
     }
 
     @Override
@@ -46,14 +42,19 @@ public class testWithHWAcceration extends testContent {
         waitViewShown(withResourceName("email"));
         onView(withResourceName("email")).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withText("NEXT")).perform(click());
+        waitTime();
         onView(withResourceName("password")).perform(typeText(testID.password),closeSoftKeyboard());
         onView(withText("SIGN IN")).perform(click());
+        waitTime();
+
+    }
+
+    public static void waitTime(){
         try {
             Thread.sleep(2000L);
         }
         catch(Exception e) {}
     }
-
     private void waitViewShown(Matcher<View> matcher) {
         IdlingResource idlingResource = new ViewShownIdlingResource(matcher);///
         try {

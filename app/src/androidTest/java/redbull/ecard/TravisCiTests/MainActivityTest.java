@@ -31,6 +31,7 @@ import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static redbull.ecard.util.testWithHWAcceration.waitTime;
 
 @LargeTest
 public class MainActivityTest {
@@ -58,6 +59,7 @@ public class MainActivityTest {
     @Test
     public void fragmentTest(){
     try {
+        waitTime();
         onView(withId(R.id.navigation_home)).perform(click());
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withId(R.id.navigation_dashboard)).perform(click());

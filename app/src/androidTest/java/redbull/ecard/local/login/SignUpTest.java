@@ -44,6 +44,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static org.junit.Assert.fail;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)
@@ -58,36 +59,51 @@ public class SignUpTest {
     }
     @Test
     public void SignUp_success() {
-
-        onView(withId(R.id.username)).perform(closeSoftKeyboard());
         try {
+            onView(withId(R.id.username)).perform(closeSoftKeyboard());
+            try {
 
-            onView(withId(R.id.button_register)).perform(scrollTo());
-            Thread.sleep(2000L);
+                onView(withId(R.id.button_register)).perform(scrollTo());
+                Thread.sleep(2000L);
+            } catch (Exception e) {
+            }
+            ;
+            onView(withId(R.id.button_register)).perform(click());
+            testContent follow = new testWithHWAcceration();
+            follow.signUp_test_success();
+            intended(hasComponent(MainActivity.class.getName()));
+        }catch (Exception e) {
+            fail();
+            e.printStackTrace();
         }
-        catch(Exception e) {};
-        onView(withId(R.id.button_register)).perform(click());
-        testContent follow= new testWithHWAcceration();
-        follow.signUp_test_success();
-        intended(hasComponent(MainActivity.class.getName()));
-        remove();
-        FirebaseAuth.getInstance().signOut();
+        finally {
+            remove();
+            FirebaseAuth.getInstance().signOut();
+        }
+
     }
     @Test
     public void SignUp_hasAccount() {
-        onView(withId(R.id.username)).perform(closeSoftKeyboard());
         try {
+            onView(withId(R.id.username)).perform(closeSoftKeyboard());
+            try {
 
-            onView(withId(R.id.button_register)).perform(scrollTo());
-            Thread.sleep(2000L);
+                onView(withId(R.id.button_register)).perform(scrollTo());
+                Thread.sleep(2000L);
+            } catch (Exception e) {
+            }
+            onView(withId(R.id.button_register)).perform(click());
+            testWithHWAcceration follow = new testWithHWAcceration();
+            follow.signUp_test_fail();
+            intended(hasComponent(MainActivity.class.getName()));
+        }catch (Exception e) {
+            fail();
+            e.printStackTrace();
         }
-        catch(Exception e) {}
-        onView(withId(R.id.button_register)).perform(click());
-        testWithHWAcceration follow= new testWithHWAcceration();
-        follow.signUp_test_success();
-        intended(hasComponent(MainActivity.class.getName()));
-        remove();
-        FirebaseAuth.getInstance().signOut();
+        finally {
+            remove();
+            FirebaseAuth.getInstance().signOut();
+        }
     }
 
     private void remove(){
