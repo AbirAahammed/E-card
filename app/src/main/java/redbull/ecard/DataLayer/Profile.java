@@ -105,6 +105,7 @@ public class Profile extends Model{
 				'}';
 	}
 
+	// Get the data for the current profile
 	public void map(HashMap<String, Object> map) {
 		this.name.map((HashMap<String, String>) map.get("name"));
 		this.address.map((HashMap<String, String>) map.get("address"));
@@ -120,6 +121,8 @@ public class Profile extends Model{
 		}
 		this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
  	}
+
+ 	// Get the data for another profile
 	public void mapConnection(HashMap<String, Object> map) {
 		this.name.map((HashMap<String, String>) map.get("name"));
 		this.address.map((HashMap<String, String>) map.get("address"));
