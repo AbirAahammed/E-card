@@ -23,6 +23,7 @@ import redbull.ecard.DataLayer.Services;
 import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
 import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.DataLayer.testData.testID;
+import redbull.ecard.util.testContent;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
@@ -114,14 +115,8 @@ public class ProfileLogicTest {
     }
 
     private void clean() {
-        System.out.println(uid);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("profiles").child(uid).removeValue(new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                System.out.println("clean up done");
-            }
-        });
+        testContent clean= new testContent();
+        clean.removeFromDB(uid);
         try {
             Thread.sleep(2000L);
         }catch (Exception e){

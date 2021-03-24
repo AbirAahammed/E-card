@@ -27,8 +27,11 @@ import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.util.testContent;
 
+import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
@@ -46,6 +49,13 @@ public class MainActivityTest {
     public void fragmentTest(){
         testContent test = new testContent();
         test.loginActivityTest_success();
+        closeSoftKeyboard();
+        try{
+            onView(withId(R.id.done)).perform(scrollTo());
+        }catch (Exception e){
+            System.out.println("No need for scroll");
+        }
+        onView(withId(R.id.done)).perform(click());
         onView(withId(R.id.navigation_home)).perform(click());
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withId(R.id.navigation_dashboard)).perform(click());
@@ -53,6 +63,9 @@ public class MainActivityTest {
     }
     @After
     public void clean(){
+        testContent clean = new testContent();
+        String uid= FirebaseAuth.getInstance().getUid();
+        clean.removeFromDB(uid);
         FirebaseAuth.getInstance().signOut();
 
     }
