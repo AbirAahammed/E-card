@@ -19,6 +19,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.Matchers.not;
 
 import org.junit.Before;
@@ -57,7 +58,7 @@ public class LoginActivityTest {
         }catch (Exception e){
 
         }
-        intended(hasComponent(MainActivity.class.getName()));
+        assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
         FirebaseAuth.getInstance().signOut();
     }
 

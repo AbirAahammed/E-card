@@ -3,7 +3,7 @@ package redbull.ecard.TravisCiTests;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-
+import static junit.framework.TestCase.*;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.junit.Before;
@@ -28,6 +28,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 
 
 @LargeTest
@@ -57,7 +58,7 @@ public class LoginActivityTest {
         }catch (Exception e){
 
         }
-        intended(hasComponent(MainActivity.class.getName()));
+        assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
         FirebaseAuth.getInstance().signOut();
     }
 
