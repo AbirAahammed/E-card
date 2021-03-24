@@ -34,8 +34,10 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 @LargeTest
@@ -45,27 +47,19 @@ public class SignUpTest {
     @Rule
     public ActivityTestRule intentsTestRule =
             new ActivityTestRule(LoginActivity.class);
-    @Before
-    public void setup(){
-        Intents.init();
-    }
     @Test
     public void SignUp_success() {
 
         onView(withId(R.id.username)).perform(closeSoftKeyboard());
         try {
-
             onView(withId(R.id.button_register)).perform(scrollTo());
             Thread.sleep(2000L);
         }
         catch(Exception e) {};
-        onView(withId(R.id.button_register)).perform(click());
+        onView(withId(R.id.button_register)).check(matches(isDisplayed()));
         testContent follow= new testContent();
         follow.signUp_test_success();
 
     }
-    @After
-    public void clean(){
-        Intents.release();
-    }
+
 }
