@@ -29,8 +29,12 @@ import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Name;
+import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.UILayer.cards.CardGenerator;
 import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.signup.SignUpActivity;
+import redbull.ecard.LogicLayer.Listeners.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";
@@ -42,6 +46,26 @@ public class MainActivity extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
         }
+        ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnProfileGetListener(new OnProfileGetListener() {
+            @Override
+            public void onSuccess(@NonNull Profile profile) {
+                Log.i(TAG, profile.toString());
+            }
+
+            @Override
+            public void onProfileNotFound() {
+                Log.i(TAG, "profile not found");
+                startSignUpActivity();
+            }
+
+            @Override
+            public void onFailure() {
+                Log.i(TAG, "Failed");
+
+            }
+        });
+//        uncomment this if you want to force invoke this
+//        startActivity(new Intent(this, SignUpActivity.class));
 
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -53,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
     /**
@@ -64,7 +89,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
-       // Log.d("CREATION", "Av");
+    }
+
+
+    // TODO Implement a conditional in the oncreate of this class, try to get the entry from realtime
+    //  db if you see there is none, then call this method, this will open up the window and let the \
+    //  user sign up
+    private void startSignUpActivity() {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
 
     @Override

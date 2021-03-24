@@ -49,7 +49,8 @@ public class ProfilePersistence implements PersistenceInterface  {
             createUserAddress(dbTableRef.child(profile.getUID()).child("address"), profile.getAddress());
             createUserContact(dbTableRef.child(profile.getUID()).child("contact"), profile.getContact());
             createUserDescription(dbTableRef.child(profile.getUID()).child("description"), profile.getDescription());
-            createUserServices(dbTableRef.child(profile.getUID()).child("serviceIndexes"), profile.getServices());
+//            createUserServices(dbTableRef.child(profile.getUID()).child("serviceIndexes"), profile.getServices());
+            dbTableRef.child(profile.getUID()).child("service").setValue(profile.getService());
         }
         else {
             String ERROR = "Expected a profile class";
@@ -78,11 +79,13 @@ public class ProfilePersistence implements PersistenceInterface  {
     private void createUserDescription(DatabaseReference dbUserDescriptionRef, String description) {
         dbUserDescriptionRef.child("description").setValue(description);
     }
-    private void createUserServices(DatabaseReference dbUserServiceRef, Services services) {
-        // Creates a string of comma-separated indexes that match the indexes of the ServicesTypes enum.
-        String serviceIndexesDBFormat = services.getIndexesInDBFormat();
-        dbUserServiceRef.child("serviceIndexes").setValue(serviceIndexesDBFormat);
-    }
+
+//    TODO NO required in the way currently service implemented as we only have one service for one person
+//    private void createUserServices(DatabaseReference dbUserServiceRef, Services services) {
+//        // Creates a string of comma-separated indexes that match the indexes of the ServicesTypes enum.
+//        String serviceIndexesDBFormat = services.getIndexesInDBFormat();
+//        dbUserServiceRef.child("serviceIndexes").setValue(serviceIndexesDBFormat);
+//    }
 
     @Override
     public PersistenceInterface read(String uid) {
@@ -90,8 +93,13 @@ public class ProfilePersistence implements PersistenceInterface  {
         dbTableRef.child(uid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                profile.map((HashMap<String, Object>) task.getResult().getValue());
-                readListener.onSuccess(profile);
+                if (task.getResult().getValue() == null) {
+                    readListener.onProfileNotFound();
+                }
+                else {
+                    profile.map((HashMap<String, Object>) task.getResult().getValue());
+                    readListener.onSuccess(profile);
+                }
             }
         });
         return this;
