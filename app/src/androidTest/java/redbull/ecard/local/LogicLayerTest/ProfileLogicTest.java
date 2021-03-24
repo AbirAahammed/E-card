@@ -80,7 +80,7 @@ public class ProfileLogicTest {
                 new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
                 testID.description,
                 testID.service);
-//                new Services(serviceTypeList));
+//                new Services(serviceTypeList)); 
 
 
         profileLogic.createProfile(profile);
