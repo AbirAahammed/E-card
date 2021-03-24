@@ -69,17 +69,18 @@ public class ProfileLogicTest {
 
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        // Make a ServiceTypes list for Services.
-        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
-        serviceTypeList.add(ServiceTypes.LAWYER);
-        serviceTypeList.add(ServiceTypes.PLUMBER);
+        // Make a ServiceTypes list for Services. (Unused because Services object was replaced)
+//        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
+//        serviceTypeList.add(ServiceTypes.LAWYER);
+//        serviceTypeList.add(ServiceTypes.PLUMBER);
 
         Profile profile = new Profile(
                 new Name(testID.name, testID.l_name, ""),
                 new Contact(testID.cell, testID.cell, testID.email),
                 new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
                 testID.description,
-                new Services(serviceTypeList));
+                testID.service);
+//                new Services(serviceTypeList));
 
 
         profileLogic.createProfile(profile);
@@ -89,6 +90,12 @@ public class ProfileLogicTest {
                 System.out.println("Test passed");
                 System.out.flush();
                 return;
+
+            }
+
+            @Override
+            public void onProfileNotFound() {
+                fail("failed to retrieve profile");
 
             }
 
