@@ -6,6 +6,7 @@ package redbull.ecard.DataLayer;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,22 +18,18 @@ public class Profile extends Model{
 	private Contact contact;
 	private Address address;
 	private ArrayList<Profile> connections;
+	private boolean fetchedConnections;
 	private String description;
 	private String service;
+	private static int viewedTemplate = 1; // The template the user is viewing from (default 1)
+
 	// Constructors
 	public Profile() {
 		// Superclass default value
-		super();
+		this (new Name(), new Contact(), new Address (), "No Description provided", "No service");
 
 		// Default Values
-		this.name = new Name();
 		this.uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-		this.contact = new Contact();
-		this.address = new Address();
-		this.connections = new ArrayList<>();
-		this.description = "No description provided";
-//		this.services = new Services();
-		this.service = "Not Defined";
 	}
 
 	public Profile(Name name, Contact contact, Address address, String description, String service) {
@@ -59,7 +56,28 @@ public class Profile extends Model{
 		this.service = "Not Defined";
 	}
 
+	// Copy constructor
+	// Copy the information from the other profile
+	// DOES NOT copy connections
+	public Profile(Profile profile)
+	{
+		this.name = profile.name;
+		this.uID = profile.uID;
+		this.contact = profile.contact;
+		this.description = profile.description;
+		this.service = profile.service;
+		this.connections = profile.connections;
+	}
 
+
+	// Setters
+	public void setConnections(ArrayList<Profile> connections)
+	{
+		this.connections = connections;
+	}
+
+	// Connections have been fetched
+	public void fetchedCon() { this.fetchedConnections = true; }
 
 	// Methods
 	// Get methods
@@ -75,11 +93,13 @@ public class Profile extends Model{
 		return this.contact;
 	}
 
+	public boolean hasFetchedConnections() { return this.fetchedConnections; }
+
 	public Address getAddress() {
 		return this.address;
 	}
 
-	public String getuID() {
+	public String getID() {
 		return uID;
 	}
 
@@ -93,6 +113,17 @@ public class Profile extends Model{
 
 	public String getService() {
 		return service;
+	}
+
+	public static int getViewedTemplate() {
+		return viewedTemplate;
+	}
+
+	// Returns true if this card does not have any information attached
+	public boolean IsValid()
+	{
+		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.ValidContact()
+				&& this.address != null && this.address.IsValid();
 	}
 
 	@Override
@@ -109,6 +140,9 @@ public class Profile extends Model{
 
 	// Get the data for the current profile
 	public void map(HashMap<String, Object> map) {
+		if (map == null)
+			return;
+
 		if(map.get("name") != null) {
 			this.name.map((HashMap<String, String>) map.get("name"));
 		}
@@ -124,14 +158,14 @@ public class Profile extends Model{
 				this.connections.add(new Profile(s));
 			}
 		}
-		if(map.get("descriptions") != null) {
+		if(map.get("description") != null) {
 			if(map.get("description") instanceof String) {
 				this.description = (String) map.get("description");
 			}
 		}
 
 		// Ensure the profile on the database has services
-		if(map.get("serviceIndexes") != null) {
+		if(map.get("service") != null) {
 			this.service = map.get("service").toString();
 		}
 

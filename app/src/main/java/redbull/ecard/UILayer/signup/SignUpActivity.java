@@ -15,6 +15,7 @@ import io.grpc.EquivalentAddressGroup;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.DataLayer.Services;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
@@ -134,7 +135,12 @@ public class SignUpActivity extends AppCompatActivity {
     public void onClickDone(View view) {
         if (validate()) {
             Profile profile = genarateProfileData();
+
+            // Stash the profile data for later use
+            CardDatabaseConnector.SetCurrentProfile(profile);
+
             ProfileLogic.getInstance().createProfile(profile);
+
             startMainActivity();
         }
     }

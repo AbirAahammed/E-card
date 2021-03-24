@@ -23,9 +23,11 @@ import org.xmlpull.v1.XmlSerializer;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilterOutputStream;
+import java.util.ArrayList;
 
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
+import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.R;
 
 // Appends / generates cards to be viewed from the home section
@@ -33,7 +35,7 @@ public class CardGenerator {
 
     // Appends the card to the home view
     // This will stay throughout the apps life time
-    private static boolean ValidityCheck(Card card)
+    private static boolean ValidityCheck(Profile card)
     {
         // Card must be valid in order to be appended
         // Return true if it is valid
@@ -41,14 +43,18 @@ public class CardGenerator {
     }
 
     // Insert a list of cards to the corresponding view
-    public static void InsertToView(Card[] cards, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void InsertToView(ArrayList<Profile> cards, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
-        for (int i = 0; i < cards.length; i++)
-            InsertToView(cards[i], rootView, inflater, context);
+        // Do nothing on empty cards list
+        if (cards == null)
+            return;
+
+        for (int i = 0; i < cards.size(); i++)
+            InsertToView(cards.get(i), rootView, inflater, context);
     }
 
     // Inserts a card to the corresponding view
-    public static void InsertToView(Card card, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void InsertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Invalid views or invalid cards are ignored completely
         if (!ValidityCheck(card) || rootView == null) {
@@ -176,7 +182,7 @@ public class CardGenerator {
 
     // Change the info of the view to the corresponding info on the card
     // TODO throw an exception if any view has the correct tag but incorrect type
-    private static void InfoToCard(View child, Card card, Context context)
+    private static void InfoToCard(View child, Profile card, Context context)
     {
         String tag = (String)child.getTag();
 
@@ -202,7 +208,7 @@ public class CardGenerator {
         else if (tag == context.getString(R.string.template_tag))
         {
             // View is template
-            ((ImageView)child).setImageResource(GrabTemplate(card.getTemplateNum()));
+            ((ImageView)child).setImageResource(GrabTemplate(1));
         }
     }
 

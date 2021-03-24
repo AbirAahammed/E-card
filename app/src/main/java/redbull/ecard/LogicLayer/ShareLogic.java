@@ -19,6 +19,8 @@ public class ShareLogic extends Logic{
     private ConnectionPersistence connectionPersistence;
     private OnConnectionsGetListener connectionsGetListener;
     private OnConnectionReadCompleteListener onConnectionReadCompleteListener;
+    private ArrayList<RunnableCallBack> onSuccess;
+    private ArrayList<RunnableCallBack> onFailure;
 
     private Profile profile;
     private ShareLogic(ConnectionPersistence connectionPersistence, Profile profile) {
@@ -34,6 +36,12 @@ public class ShareLogic extends Logic{
         this.connectionPersistence.create(uid);
     }
 
+    public void setConnectionsCallBack(ArrayList<RunnableCallBack> success, ArrayList<RunnableCallBack> failure)
+    {
+        this.onSuccess = success;
+        this.onFailure = failure;
+    }
+
     public ShareLogic getConnections() {
         ArrayList<Profile> profiles = new ArrayList<>();
         ((ConnectionPersistence)this.connectionPersistence.read()).addOnCompleteListener(new OnReadCompleteListener() {
@@ -41,9 +49,19 @@ public class ShareLogic extends Logic{
             public void onSuccess(@NonNull Model model) {
                 if (connectionsGetListener != null)
                     connectionsGetListener.onSuccess((Profile)model);
+
                 profiles.add((Profile)model);
+                profile.fetchedCon();
                 if (profiles.size() == profile.getConnections().size() && connectionsGetListener != null){
                     connectionsGetListener.onAllReadSuccess(profiles);
+                }
+
+                Log.d ("con", "Getting there");
+                if (onSuccess != null) {
+                    for (int i = 0; i < onSuccess.size(); i++)
+                            onSuccess.get(i).run();
+
+                    onSuccess.clear();
                 }
             }
 
@@ -54,7 +72,13 @@ public class ShareLogic extends Logic{
 
             @Override
             public void onFailure() {
+                Log.d ("connection", "Getting thereFAIL");
+                if (onFailure != null) {
+                    for (int i = 0; i < onFailure.size(); i++)
+                        onFailure.get(i).run();
 
+                    onFailure.clear();
+                }
             }
         });
         return this;

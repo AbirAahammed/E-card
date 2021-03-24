@@ -32,7 +32,6 @@ public class  Card {
 	}
 
 	// Returns true if this card does not have any information attached
-	// FIXME should this be logic layer?
 	public boolean IsValid()
 	{
 		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.ValidContact()
@@ -59,6 +58,6 @@ public class  Card {
 	public int getTemplateNum() { return this.templateNum; }
 
 
-	public String getDescription() { return this.description; }
+	public String getDescription() { return this.description == null ? "" : this.description; }
 
 }

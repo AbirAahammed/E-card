@@ -21,13 +21,13 @@
             android:id="@+id/linearLayout"
             android:layout_width="416dp"
             android:layout_height="189dp"
-            android:layout_below="@id/template_3"
+            android:layout_below="@id/template_2"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/template_2"
+            app:layout_constraintTop_toBottomOf="@+id/save_changes"
             app:layout_constraintVertical_bias="0.0">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -191,35 +191,36 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="template1"
-            app:layout_constraintBottom_toBottomOf="@+id/template_2"
-            app:layout_constraintEnd_toStartOf="@+id/template_2"
+            android:text="@string/template1"
+            app:layout_constraintBottom_toBottomOf="@+id/save_changes"
+            app:layout_constraintEnd_toStartOf="@+id/save_changes"
             app:layout_constraintHorizontal_bias="0.64"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/template_2"
+            android:id="@+id/save_changes"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="template2"
+            android:backgroundTint="#652727"
+            android:text="@string/SaveChanges"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
-            android:id="@+id/template_3"
+            android:id="@+id/template_2"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="template3"
-            app:layout_constraintBottom_toBottomOf="@+id/template_2"
+            android:text="@string/template2"
+            app:layout_constraintBottom_toBottomOf="@+id/save_changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.653"
-            app:layout_constraintStart_toEndOf="@+id/template_2"
+            app:layout_constraintStart_toEndOf="@+id/save_changes"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="1.0" />
 

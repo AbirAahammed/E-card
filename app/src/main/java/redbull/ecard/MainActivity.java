@@ -2,6 +2,7 @@ package redbull.ecard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,19 +26,20 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import redbull.ecard.DataLayer.Address;
-import redbull.ecard.DataLayer.Card;
-import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.LogicLayer.ProfileLogic;
-import redbull.ecard.UILayer.cards.CardGenerator;
+import redbull.ecard.LogicLayer.RunnableCallBack;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.UILayer.signup.SignUpActivity;
 import redbull.ecard.LogicLayer.Listeners.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final  String TAG = "MainActivity";
+
+    // An extra call back to execute
+    // This is called if the database is loading slow, to fill in details of a profile
+    public static RunnableCallBack excessCallBacks = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+
+                            // Remove the currently signed in profile from our cache
+                            CardDatabaseConnector.SetCurrentProfile(null);
+
                             startLoginActivity();
                         } else {
                             Log.e(TAG, "onComplete : ", task.getException());

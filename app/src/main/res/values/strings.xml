@@ -22,6 +22,11 @@
     <string name="phone_image">Phone</string>
     <string name="email_image">Email</string>
 
+    <!-- Other profile Info -->
+    <string name="template1">Template 1</string>
+    <string name="template2">Template 2</string>
+    <string name="SaveChanges">Save Changes</string>
+
     <!-- Default strings for Cards sections -->
     <string name="name_default">Card Preview</string>
     <string name="description_default">Cards Description...</string>

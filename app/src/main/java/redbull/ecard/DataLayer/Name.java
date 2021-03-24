@@ -59,11 +59,7 @@ public class Name extends Model {
 
 	@Override
 	public String toString() {
-		return "Name{" +
-				"firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", middleName='" + middleName + '\'' +
-				'}';
+		return firstName + " " + middleName + " " + lastName;
 	}
 
 	public void map(HashMap<String, String> map) {
