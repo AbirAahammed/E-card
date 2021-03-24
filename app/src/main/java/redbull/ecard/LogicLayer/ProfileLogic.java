@@ -54,6 +54,11 @@ public class ProfileLogic extends Logic{
                 }
             }
 
+            @Override
+            public void onProfileNotFound() {
+                profileGetListener.onProfileNotFound();
+            }
+
 
             @Override
             public void onFailure() {
