@@ -58,13 +58,25 @@
         <item>AB</item>
         <item>BC</item>
         <item>ON</item>
+        <item>NL</item>
+        <item>PE</item>
+        <item>NS</item>
+        <item>NB</item>
+        <item>QC</item>
+        <item>SK</item>
+        <item>YT</item>
+        <item>NT</item>
+        <item>NU</item>
     </string-array>
     <string-array name="services_spinner_items">
         <item>Doctor</item>
         <item>Software Developer</item>
         <item>Engineer</item>
+        <item>Instructor</item>
+        <item>Teacher Assistant</item>
         <item>Painter</item>
         <item>Cleaner</item>
-        <item>Assasin</item>
+        <item>Assassin</item>
+        <item>Nothing much</item>
     </string-array>
 </resources>
