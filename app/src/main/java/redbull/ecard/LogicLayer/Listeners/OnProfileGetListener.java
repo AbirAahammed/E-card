@@ -6,5 +6,6 @@ import redbull.ecard.DataLayer.Profile;
 
 public interface OnProfileGetListener {
     void onSuccess(@NonNull Profile profile);
+    void onProfileNotFound();
     void onFailure();
 }

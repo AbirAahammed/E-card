@@ -18,7 +18,7 @@ public class Profile extends Model{
 	private Address address;
 	private ArrayList<Profile> connections;
 	private String description;
-	private Services services;
+	private String service;
 	// Constructors
 	public Profile() {
 		// Superclass default value
@@ -31,10 +31,11 @@ public class Profile extends Model{
 		this.address = new Address();
 		this.connections = new ArrayList<>();
 		this.description = "No description provided";
-		this.services = new Services();
+//		this.services = new Services();
+		this.service = "Not Defined";
 	}
 
-	public Profile(Name name, Contact contact, Address address, String description, Services services) {
+	public Profile(Name name, Contact contact, Address address, String description, String service) {
 		super();
 		this.name = name;
 		this.uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -42,8 +43,9 @@ public class Profile extends Model{
 		this.address = address;
 		this.connections = new ArrayList<>();
 		this.description = description;
-		this.services = new Services();
-		this.services.addServices(services); // Add service to the list of services
+//		this.services = new Services();
+//		this.services.addServices(services); // Add service to the list of services
+		this.service = service;
 	}
 
 
@@ -54,7 +56,7 @@ public class Profile extends Model{
 		this.address = new Address();
 		this.connections = new ArrayList<>();
 		this.description = "No description set";
-		this.services = new Services();
+		this.service = "Not Defined";
 	}
 
 
@@ -89,8 +91,8 @@ public class Profile extends Model{
 		return description;
 	}
 
-	public Services getServices() {
-		return services;
+	public String getService() {
+		return service;
 	}
 
 	@Override
@@ -101,7 +103,7 @@ public class Profile extends Model{
 				", contact=" + contact +
 				", address=" + address +
 				", description=" + description +
-				", services=" + services +
+				", services=" + service +
 				'}';
 	}
 
@@ -130,7 +132,7 @@ public class Profile extends Model{
 
 		// Ensure the profile on the database has services
 		if(map.get("serviceIndexes") != null) {
-			this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+			this.service = map.get("service").toString();
 		}
 
  	}
@@ -151,8 +153,8 @@ public class Profile extends Model{
 				this.description = (String) map.get("description");
 			}
 		}
-		if(map.get("serviceIndexes") != null) {
-			this.services.map((HashMap<String, Object>) map.get("serviceIndexes"));
+		if(map.get("service") != null) {
+			this.service = map.get("service").toString();
 		}
 
 

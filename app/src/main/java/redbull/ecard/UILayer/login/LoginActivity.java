@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
+import redbull.ecard.UILayer.signup.SignUpActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -200,7 +201,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "onActivityResult: "+ user.getEmail());
                 if (user.getMetadata().getCreationTimestamp() == user.getMetadata()
                         .getLastSignInTimestamp()) {
-                    Toast.makeText(this, "Welcome new User", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Welcome new User, let's sign you up", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, SignUpActivity.class);
+                    startActivity(intent);
+                    this.finish();
                 } else {
                     Toast.makeText(this, "Welcome back again", Toast.LENGTH_LONG).show();
                 }

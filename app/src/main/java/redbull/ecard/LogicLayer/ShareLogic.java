@@ -1,5 +1,7 @@
 package redbull.ecard.LogicLayer;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -43,6 +45,11 @@ public class ShareLogic extends Logic{
                 if (profiles.size() == profile.getConnections().size() && connectionsGetListener != null){
                     connectionsGetListener.onAllReadSuccess(profiles);
                 }
+            }
+
+            @Override
+            public void onProfileNotFound() {
+                Log.i(TAG, "This id is invalid");
             }
 
             @Override

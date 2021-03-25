@@ -1,5 +1,12 @@
 package redbull.ecard.util;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import redbull.ecard.DataLayer.testData.testID;
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
@@ -29,4 +36,16 @@ public class testContent {
         }
         intended(hasComponent(MainActivity.class.getName()));
     }
+    public void removeFromDB(String uid){
+        System.out.println(uid);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("profiles").child(uid).removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                System.out.println("clean up done");
+            }
+        });
+    }
 }
+
+

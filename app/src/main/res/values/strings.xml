@@ -34,8 +34,49 @@
     <string name="phone_tag">phone</string>
     <string name="email_tag">email</string>
     <string name="template_tag">template</string>
-<!--    Login page resources    -->
+    <!--    Login page resources    -->
     <string name="button_login">Log In</string>
     <string name="button_sign_up">Sign Up</string>
     <string name="button_logout">Log Out </string>
+    <string name="firstName">First Name</string>
+    <string name="middleName">MiddleName</string>
+    <string name="lastName">LastName</string>
+    <string name="name">Name</string>
+    <string name="contact">Contact</string>
+    <string name="roadNumber">Rd #</string>
+    <string name="houseNumber">house #</string>
+    <string name="postalCode">Postal Code</string>
+    <string name="city">City</string>
+    <string name="address">Address</string>
+    <string name="emailAddress">Email</string>
+    <string name="homePhone">Home Phone</string>
+    <string name="cellPhone">Cell</string>
+    <string name="service">Service</string>
+    <string name="done">Done</string>
+    <string-array name="ca_provinces">
+        <item>MB</item>
+        <item>AB</item>
+        <item>BC</item>
+        <item>ON</item>
+        <item>NL</item>
+        <item>PE</item>
+        <item>NS</item>
+        <item>NB</item>
+        <item>QC</item>
+        <item>SK</item>
+        <item>YT</item>
+        <item>NT</item>
+        <item>NU</item>
+    </string-array>
+    <string-array name="services_spinner_items">
+        <item>Doctor</item>
+        <item>Software Developer</item>
+        <item>Engineer</item>
+        <item>Instructor</item>
+        <item>Teacher Assistant</item>
+        <item>Painter</item>
+        <item>Cleaner</item>
+        <item>Assassin</item>
+        <item>Nothing much</item>
+    </string-array>
 </resources>
