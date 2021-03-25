@@ -23,6 +23,7 @@ import redbull.ecard.DataLayer.Services;
 import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
 import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.DataLayer.testData.testID;
+import redbull.ecard.util.testContent;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
@@ -69,17 +70,18 @@ public class ProfileLogicTest {
 
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        // Make a ServiceTypes list for Services.
-        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
-        serviceTypeList.add(ServiceTypes.LAWYER);
-        serviceTypeList.add(ServiceTypes.PLUMBER);
+        // Make a ServiceTypes list for Services. (Unused because Services object was replaced)
+//        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
+//        serviceTypeList.add(ServiceTypes.LAWYER);
+//        serviceTypeList.add(ServiceTypes.PLUMBER);
 
         Profile profile = new Profile(
                 new Name(testID.name, testID.l_name, ""),
                 new Contact(testID.cell, testID.cell, testID.email),
                 new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
                 testID.description,
-                new Services(serviceTypeList));
+                testID.service);
+//                new Services(serviceTypeList));
 
 
         profileLogic.createProfile(profile);
@@ -90,6 +92,12 @@ public class ProfileLogicTest {
                 assertEquals(profile.getAddress().getCity(),testID.city);
                 System.out.flush();
                 return;
+
+            }
+
+            @Override
+            public void onProfileNotFound() {
+                fail("failed to retrieve profile");
 
             }
 
@@ -107,14 +115,8 @@ public class ProfileLogicTest {
     }
 
     private void clean() {
-        System.out.println(uid);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("profiles").child(uid).removeValue(new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                System.out.println("clean up done");
-            }
-        });
+        testContent clean= new testContent();
+        clean.removeFromDB(uid);
         try {
             Thread.sleep(2000L);
         }catch (Exception e){

@@ -19,6 +19,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.Matchers.not;
 
 import org.junit.Before;
@@ -51,13 +52,19 @@ public class LoginActivityTest {
 
         onView(withId(R.id.username)).perform(typeText(testID.email),closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(testID.password),closeSoftKeyboard());
+        try {
+            Thread.sleep(2000L);
+        }catch (Exception e){
+
+        }
+        onView(withId(R.id.button_login)).check(matches(isDisplayed()));
         onView(withId(R.id.button_login)).perform(click());
         try {
             Thread.sleep(2000L);
         }catch (Exception e){
 
         }
-        intended(hasComponent(MainActivity.class.getName()));
+        assertNotNull(FirebaseAuth.getInstance().getCurrentUser());
         FirebaseAuth.getInstance().signOut();
     }
 

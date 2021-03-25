@@ -68,13 +68,42 @@
         <item>AB</item>
         <item>BC</item>
         <item>ON</item>
+        <item>NL</item>
+        <item>PE</item>
+        <item>NS</item>
+        <item>NB</item>
+        <item>QC</item>
+        <item>SK</item>
+        <item>YT</item>
+        <item>NT</item>
+        <item>NU</item>
     </string-array>
     <string-array name="services_spinner_items">
-        <item>Doctor</item>
-        <item>Software Developer</item>
-        <item>Engineer</item>
-        <item>Painter</item>
+        <item>Auto Body Technician</item>
+        <item>Brick and Stone Mason</item>
+        <item>Cabinet Maker</item>
+        <item>Carpenter</item>
         <item>Cleaner</item>
-        <item>Assasin</item>
+        <item>Drywall Finisher and Plasterer</item>
+        <item>Electrician</item>
+        <item>Engineer</item>
+        <item>Hairstylist</item>
+        <item>Heat and Frost Insulator</item>
+        <item>House and Room Designer</item>
+        <item>Instructor</item>
+        <item>Ironworker</item>
+        <item>Locksmith</item>
+        <item>Millwright</item>
+        <item>Mime</item>
+        <item>Musician</item>
+        <item>Nothing much</item>
+        <item>Painter</item>
+        <item>Refrigeration and Air Conditioning Mechanic</item>
+        <item>Personal Doctor</item>
+        <item>Roofer</item>
+        <item>Software Developer</item>
+        <item>Teacher Assistant</item>
+        <item>Therapist</item>
+        <item>Legally an Assassin</item>
     </string-array>
 </resources>

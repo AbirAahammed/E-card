@@ -1,5 +1,6 @@
 package redbull.ecard.UILayer.camera;
 
+import android.content.Intent;
 import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.graphics.Bitmap;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.R;
@@ -36,6 +41,27 @@ public class CameraFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        //------------------
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(CameraFragment.this);
+
+        integrator.setOrientationLocked(false);
+        integrator.setPrompt("Scan QR code");
+        integrator.setBeepEnabled(false);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+        integrator.initiateScan();
         return root;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "Scanned : " + result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 }

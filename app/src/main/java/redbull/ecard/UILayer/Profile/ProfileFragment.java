@@ -59,6 +59,7 @@ public class ProfileFragment extends Fragment{
 
 
         // This QR code is a bit messy, we can clean it up into methods
+        //
         int dimen = 450;// this is QR dimension
         //qrgEncoder = new QRGEncoder("IhnuB3O0gUZgkpf2FQ33hcOem022",null,QRGContents.Type.TEXT,dimen);// now we can generate QR code
         //bitmap = qrgEncoder.getBitmap();// get bot map
