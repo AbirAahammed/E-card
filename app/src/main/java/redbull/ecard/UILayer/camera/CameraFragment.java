@@ -17,6 +17,8 @@ import android.graphics.Bitmap;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.camera.CameraViewModel;
@@ -36,6 +38,17 @@ public class CameraFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        //------------------
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(CameraFragment.this);
+
+        integrator.setOrientationLocked(false);
+        integrator.setPrompt("Scan QR code");
+        integrator.setBeepEnabled(false);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+
+
+        integrator.initiateScan();
         return root;
     }
 }
