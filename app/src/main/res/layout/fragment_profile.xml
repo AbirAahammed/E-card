@@ -33,7 +33,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Description">
+                android:hint="@string/descriptionHint">
 
                 <EditText
                     android:id="@+id/serviceInput"
@@ -50,7 +50,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone">
+                android:hint="@string/phoneHint">
 
                 <EditText
                     android:id="@+id/phoneInput"
@@ -66,7 +66,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Email">
+                android:hint="@string/emailHint">
 
                 <EditText
                     android:id="@+id/emailInput"
@@ -191,7 +191,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="@string/template1"
+            android:text="template1"
             app:layout_constraintBottom_toBottomOf="@+id/save_changes"
             app:layout_constraintEnd_toStartOf="@+id/save_changes"
             app:layout_constraintHorizontal_bias="0.64"
@@ -216,7 +216,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="@string/template2"
+            android:text="template 2"
             app:layout_constraintBottom_toBottomOf="@+id/save_changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.653"

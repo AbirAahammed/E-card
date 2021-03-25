@@ -166,14 +166,23 @@ public class ProfileFragment extends Fragment{
         // Add template changes
         if (!button.hasOnClickListeners())
         {
-
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v)
+                {
+                    (new CardDatabaseConnector()).TemplateUpdate(templateNum);
+                }
+            });
         }
     }
 
     // Save all the input from the user whom changes their profile, onto the database
     private static void setOnClickEventSave (Button button)
     {
+        if (!button.hasOnClickListeners())
+        {
 
+        }
     }
 
     // Create a text event that will update a preview, then return the View type that was changed and update the database

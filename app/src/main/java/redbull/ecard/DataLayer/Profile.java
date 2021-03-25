@@ -79,6 +79,8 @@ public class Profile extends Model{
 	// Connections have been fetched
 	public void fetchedCon() { this.fetchedConnections = true; }
 
+	public static void setViewedTemplate(int newTemplate) { viewedTemplate = newTemplate; }
+
 	// Methods
 	// Get methods
 	public Name getName() {

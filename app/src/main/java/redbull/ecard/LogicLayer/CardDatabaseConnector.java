@@ -31,9 +31,7 @@ public class CardDatabaseConnector {
     ArrayList<RunnableCallBack> successes;
     ArrayList<RunnableCallBack> failures;
 
-    // CallBack functions
-    // arr[0] = success
-    // arr[1] = failure
+    // Setting up with CallBack functions
     public CardDatabaseConnector(ArrayList<RunnableCallBack> callBackSuccess, ArrayList<RunnableCallBack> callBackFailure) {
         if (successes == null)
         {
@@ -44,17 +42,6 @@ public class CardDatabaseConnector {
             failures = new ArrayList<RunnableCallBack>();
         }
 
-        /*
-        for (RunnableCallBack i : callBackSuccess)
-        {
-            successes.add (i);
-        }
-
-        for (RunnableCallBack i : callBackFailure)
-        {
-            failures.add(i);
-        }
-         */
         this.successes = callBackSuccess;
         this.failures = callBackFailure;
     }
@@ -68,7 +55,7 @@ public class CardDatabaseConnector {
         if (cachedProfile == null) {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getUid());
 
-            //logic.enableLocalPersistence();
+            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
             logic.addOnProfileGetListener(new OnProfileGetListener() {
                 @Override
                 public void onSuccess(@NonNull Profile profile) {
@@ -107,7 +94,7 @@ public class CardDatabaseConnector {
         return cachedProfile;
     }
 
-    // Initialize the connects for the profile
+    // Initialize the connections for the profile
     public void initConnectionsOfProfile(ArrayList<Profile> profiles, int index)
     {
         Log.d("fetch", "Profiles to fill: " + profiles.size());
@@ -244,22 +231,28 @@ public class CardDatabaseConnector {
 
     // Update profile
     // Add information to the database
-    // If the profile already exists, the information is overrided
+    // If the profile already exists, the information is overided
+    // The profile should also be added to the list of cards, without an excess database call
     public void ServiceUpdate(Profile profile)
     {
         // TODO
         // Please complete this method
+
+
     }
 
     // The user has updated the template they would like to use for displaying their profile
     // Update the database with the new information
     public void TemplateUpdate(int newTemplateFormat)
     {
-        // This is currently incomplete on the UI Side
         // 'newTemplateFormat' contains the new template for the user
+        Profile.setViewedTemplate(newTemplateFormat);
+    }
 
-        // A template is represented as an integer.
-        // This template will be used to display someones card a specific way for someone who has scanned it
+    // Returns the template associated with the displayed profile
+    public int fetchTemplate()
+    {
+        return Profile.getViewedTemplate();
     }
 
     // Save the profile to our list of saved profiles

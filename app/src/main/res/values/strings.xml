@@ -18,6 +18,11 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <!-- The hints in the UI text -->
+    <string name="descriptionHint">Description</string>
+    <string name="phoneHint">Phone</string>
+    <string name="emailHint">E-mail</string>
+
     <!-- Image text descriptions -->
     <string name="phone_image">Phone</string>
     <string name="email_image">Email</string>
