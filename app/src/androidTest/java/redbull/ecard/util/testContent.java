@@ -34,7 +34,7 @@ public class testContent {
         }catch (Exception e){
 
         }
-        intended(hasComponent(MainActivity.class.getName()));
+
     }
     public void removeFromDB(String uid){
         System.out.println(uid);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
@@ -26,9 +27,11 @@ import redbull.ecard.MainActivity;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.login.LoginActivity;
 import redbull.ecard.util.testContent;
+import redbull.ecard.util.testWithHWAcceration;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
@@ -42,22 +45,26 @@ import static redbull.ecard.util.testWithHWAcceration.waitTime;
 @LargeTest
 public class MainActivityTest {
     @Rule
-    public IntentsTestRule<LoginActivity> intentsTestRule =
-            new IntentsTestRule<>(LoginActivity.class);
+    public ActivityScenarioRule<LoginActivity> intentsTestRule =
+            new ActivityScenarioRule<>(LoginActivity.class);
 
     @Test
     public void fragmentTest(){
+        testWithHWAcceration.waitTime();
         testContent test = new testContent();
         test.loginActivityTest_success();
-        closeSoftKeyboard();
+
         try{
+            ViewActions.closeSoftKeyboard();
             onView(withId(R.id.done)).perform(scrollTo());
+            onView(withId(R.id.done)).perform(click());
         }catch (Exception e){
             System.out.println("No need for scroll");
         }
-        onView(withId(R.id.done)).perform(click());
+        testWithHWAcceration.waitTime();
         onView(withId(R.id.navigation_home)).perform(click());
         onView(withId(R.id.navigation_notifications)).perform(click());
+        pressBack();
         onView(withId(R.id.navigation_dashboard)).perform(click());
 
     }
