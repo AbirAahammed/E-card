@@ -76,6 +76,11 @@ public class Profile extends Model{
 		this.connections = connections;
 	}
 
+	public void setDescription (String description) { this.description = description; }
+	public void setContact (Contact contact) { this.contact = contact; }
+	public void setService (String service) { this.description = service; }
+
+
 	// Connections have been fetched
 	public void fetchedCon() { this.fetchedConnections = true; }
 

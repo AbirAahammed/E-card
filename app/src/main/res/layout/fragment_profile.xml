@@ -82,7 +82,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/previewBackground"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="@string/img_fail"
@@ -106,11 +106,11 @@
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
+            app:layout_constraintEnd_toEndOf="@+id/previewBackground"
             app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="0.871" />
 
         <ImageView
@@ -118,9 +118,9 @@
             android:layout_width="128dp"
             android:layout_height="100dp"
             android:contentDescription="QR Code scanner"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -134,11 +134,11 @@
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
+            app:layout_constraintEnd_toEndOf="@+id/previewBackground"
             app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="0.079" />
 
         <TextView
@@ -148,7 +148,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="8dp"
             android:text="@string/Preview_Card"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/previewBackground"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -160,11 +160,11 @@
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
+            app:layout_constraintEnd_toEndOf="@+id/previewBackground"
             app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="0.758" />
 
         <TextView
@@ -179,11 +179,11 @@
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
+            app:layout_constraintEnd_toEndOf="@+id/previewBackground"
             app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="0.62" />
 
         <Button
@@ -196,7 +196,7 @@
             app:layout_constraintEnd_toStartOf="@+id/save_changes"
             app:layout_constraintHorizontal_bias="0.64"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
@@ -209,7 +209,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/previewBackground" />
 
         <Button
             android:id="@+id/template_2"
@@ -221,7 +221,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.653"
             app:layout_constraintStart_toEndOf="@+id/save_changes"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/previewBackground"
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

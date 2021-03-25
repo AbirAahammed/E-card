@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
 // Appends / generates cards to be viewed from the home section
@@ -208,24 +209,22 @@ public class CardGenerator {
         else if (tag == context.getString(R.string.template_tag))
         {
             // View is template
-            ((ImageView)child).setImageResource(GrabTemplate(1));
+            ((ImageView)child).setImageResource(template (new CardDatabaseConnector().fetchTemplate()));
         }
     }
 
     // Retrieve the template resource from its template number
-    private static int GrabTemplate(int cardTemplateNum)
+    public static int template(int cardTemplateNum)
     {
         int ret = -1; // Invalid template
         Log.d ("Test", "" + cardTemplateNum);
         switch (cardTemplateNum)
         {
-            case 0:
-                // FIXME need to have the template determined by the users current setting, not the card
-                //ret = R.drawable.template1v1;
-                ret = R.drawable.template2v2;
-                break;
             case 1:
                 ret = R.drawable.template2v2;
+                break;
+            case 2:
+                ret = R.drawable.template1v1;
         }
 
         return ret;

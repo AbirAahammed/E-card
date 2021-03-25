@@ -115,6 +115,9 @@ public class ProfileFragment extends Fragment{
             SetViewText((TextView) root.findViewById(R.id.serviceInput), userInfo.getName().toString());
             SetViewText((TextView) root.findViewById(R.id.phoneInput), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailInput), currentEmail);
+
+            // Set the background template
+            setTemplate((new CardDatabaseConnector()).fetchTemplate());
         }
     }
 
@@ -171,9 +174,15 @@ public class ProfileFragment extends Fragment{
                 public void onClick (View v)
                 {
                     (new CardDatabaseConnector()).TemplateUpdate(templateNum);
+                    setTemplate (templateNum);
                 }
             });
         }
+    }
+
+    private static void setTemplate(int template)
+    {
+        ((ImageView)rootView.findViewById(R.id.previewBackground)).setImageResource(template (new CardDatabaseConnector().fetchTemplate()));
     }
 
     // Save all the input from the user whom changes their profile, onto the database
@@ -181,7 +190,13 @@ public class ProfileFragment extends Fragment{
     {
         if (!button.hasOnClickListeners())
         {
-
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v)
+                {
+                    (new CardDatabaseConnector()).profileUpdate();
+                }
+            });
         }
     }
 
@@ -205,8 +220,43 @@ public class ProfileFragment extends Fragment{
 
                 // Pass the updated information to the database (for logic layer to manage)
                 ViewChange(type, value);
+
+                CardDatabaseConnector connector = new CardDatabaseConnector();
+                Profile profile = connector.getCachedUserProfile();
+                Contact oldContact = profile.getContact();
+
+                switch (type)
+                {
+                    case EMAIL:
+                        connector.updateContact(new Contact (oldContact.getCellPhone(), oldContact.getHomePhone(), value));
+                        break;
+                    case SERVICE: // FIXME service / description are inter changeable right now
+                        (new CardDatabaseConnector()).updateDescription(value);
+                        break;
+                    case PHONE:
+                        connector.updateContact(new Contact (value, oldContact.getHomePhone(), oldContact.getEmailAddress()));
+                        break;
+                }
             }
         });
+    }
+
+
+    // Retrieve the template resource from its template number
+    private static int template(int cardTemplateNum)
+    {
+        int ret = -1; // Invalid template
+        Log.d ("Test", "" + cardTemplateNum);
+        switch (cardTemplateNum)
+        {
+            case 1:
+                ret = R.drawable.template2v2;
+                break;
+            case 2:
+                ret = R.drawable.template1v1;
+        }
+
+        return ret;
     }
 
     // Pass the view that was changed to the Logic layer so that the database can be updated accordingly

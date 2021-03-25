@@ -233,12 +233,33 @@ public class CardDatabaseConnector {
     // Add information to the database
     // If the profile already exists, the information is overided
     // The profile should also be added to the list of cards, without an excess database call
-    public void ServiceUpdate(Profile profile)
+    public void profileUpdate()
     {
-        // TODO
-        // Please complete this method
+        // Exclude null args
+        if (cachedProfile == null)
+            return;
 
+        // Update the current users profile information
+        ProfileLogic.getInstance().createProfile(cachedProfile);
+    }
 
+    // Update the description of the cached profile
+    public void updateDescription(String description)
+    {
+        // Exclude null args
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.setDescription(description);
+    }
+
+    public void updateContact (Contact contact)
+    {
+        // Exclude null args
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.setContact(contact);
     }
 
     // The user has updated the template they would like to use for displaying their profile
