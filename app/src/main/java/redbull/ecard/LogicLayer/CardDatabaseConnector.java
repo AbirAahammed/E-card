@@ -68,9 +68,9 @@ public class CardDatabaseConnector {
                     if (successes != null) {
                         for (int i = 0; i < successes.size(); i++)
                             successes.get(i).run();
-                    }
 
-                    successes.clear();
+                        successes.clear();
+                    }
                 }
 
                 @Override
@@ -85,9 +85,9 @@ public class CardDatabaseConnector {
                     if (failures != null) {
                         for (int i = 0; i < failures.size(); i++)
                             failures.get(i).run();
-                    }
 
-                    failures.clear();
+                        failures.clear();
+                    }
                 }
             });
         }
@@ -110,9 +110,9 @@ public class CardDatabaseConnector {
                     if (successes != null) {
                         for (int i = 0; i < successes.size(); i++)
                             successes.get(i).run();
-                    }
 
-                    successes.clear();
+                        successes.clear();
+                    }
                 }
 
                 @Override
@@ -127,9 +127,9 @@ public class CardDatabaseConnector {
                     if (failures != null) {
                         for (int i = 0; i < failures.size(); i++)
                             failures.get(i).run();
-                    }
 
-                    failures.clear();
+                        failures.clear();
+                    }
                 }
             });
 
@@ -147,9 +147,9 @@ public class CardDatabaseConnector {
             if (successes != null) {
                 for (int i = 0; i < successes.size(); i++)
                     successes.get(i).run();
-            }
 
-            successes.clear();
+                successes.clear();
+            }
         }
 
         else
@@ -186,9 +186,9 @@ public class CardDatabaseConnector {
                     if (failures != null) {
                         for (int i = 0; i < failures.size(); i++)
                             failures.get(i).run();
-                    }
 
-                    failures.clear();
+                        failures.clear();
+                    }
                 }
             });
         }
@@ -248,9 +248,9 @@ public class CardDatabaseConnector {
                         if (failures != null) {
                             for (int i = 0; i < failures.size(); i++)
                                 failures.get(i).run();
-                        }
 
-                        failures.clear();
+                            failures.clear();
+                        }
                     }
                 });
             }

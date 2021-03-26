@@ -255,7 +255,7 @@ public class ProfileFragment extends Fragment{
                 ret = R.drawable.template2v2;
                 break;
             case 2:
-                ret = R.drawable.template1v1;
+                ret = R.drawable.template3;;
         }
 
         return ret;
