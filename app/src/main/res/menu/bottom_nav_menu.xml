@@ -15,5 +15,4 @@
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/camera"
         android:title="@string/camera_home" />
-
 </menu>

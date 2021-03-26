@@ -1,6 +1,9 @@
 package redbull.ecard.UILayer.camera;
 
+import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +15,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Bitmap;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
+
+import androidmads.library.qrgenearator.QRGEncoder;
+import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.LogicLayer.RunnableCallBack;
+import redbull.ecard.LogicLayer.ShareLogic;
 import redbull.ecard.R;
+import redbull.ecard.UILayer.camera.CameraViewModel;
 
 public class CameraFragment extends Fragment {
-
     private CameraViewModel cameraViewModel;
+    static String scannedUID;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +49,46 @@ public class CameraFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        //------------------
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(CameraFragment.this);
+
+        integrator.setOrientationLocked(false);
+        integrator.setPrompt("Scan QR code");
+        integrator.setBeepEnabled(false);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+        integrator.initiateScan();
         return root;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "Scanned : " + result.getContents(), Toast.LENGTH_LONG).show();
+                ArrayList<RunnableCallBack> callBackSuccesses = new ArrayList<RunnableCallBack>();
+                callBackSuccesses.add( () -> scanFetchCallbackSuccess());
+
+                ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
+                callBackFailures.add( () -> scanfetchCallbackfailure());
+
+                scannedUID = result.getContents();
+                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchscannerProfileInformation (result.getContents());
+            }
+        }
+    }
+    private void scanFetchCallbackSuccess(){
+        Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
+        Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
+
+        if (scannedUID != null)
+        scannedProfile.setUID (scannedUID);
+
+        curProfile.getConnections().add(scannedProfile);
+
+        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+    }
+    private void scanfetchCallbackfailure(){}
 }

@@ -15,7 +15,7 @@ task prepareKotlinBuildScriptModel {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
+    aaptOptions { cruncherEnabled = false }
     defaultConfig {
         applicationId "redbull.ecard"
         minSdkVersion 23
@@ -25,13 +25,18 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+        animationsDisabled = true
 
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -48,15 +53,22 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-
+    //this is for QR generator
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation 'com.google.zxing:core:3.3.2'
+    implementation('com.journeyapps:zxing-android-embedded:4.2.0') { transitive = false }
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.zxing:core:3.3.0'
     // dependencies used for junit testing    -   start
 
     // Choose either version 1 or 2
 
     // version 1 - start
     testImplementation 'junit:junit:4.+'
+    androidTestImplementation "org.mockito:mockito-core:2.28.2"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
     // version 1 - end
 
     // version 2 [from dev-template]- start
@@ -93,5 +105,12 @@ dependencies {
 
     // firebase auth ui
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
+    // firebase db dependency
+    implementation 'com.google.firebase:firebase-database'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
 
 }
