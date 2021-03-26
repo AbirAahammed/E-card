@@ -22,7 +22,11 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
 import androidmads.library.qrgenearator.QRGEncoder;
+import redbull.ecard.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.LogicLayer.RunnableCallBack;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.camera.CameraViewModel;
 
@@ -60,8 +64,19 @@ public class CameraFragment extends Fragment {
                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getContext(), "Scanned : " + result.getContents(), Toast.LENGTH_LONG).show();
+                ArrayList<RunnableCallBack> callBackSuccesses = new ArrayList<RunnableCallBack>();
+                callBackSuccesses.add( () -> scanfetcnCallbackSuccess());
+
+                ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
+                callBackFailures.add( () -> scanfetchCallbackfailure());
+
+                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchscannerProfileInformation (result.getContents());
             }
         }
     }
-
+    private void scanfetcnCallbackSuccess(){
+        CardDatabaseConnector.getCachedUserProfile().getConnections().add(CardDatabaseConnector.getScannerProfile());
+        (new CardDatabaseConnector()).profileUpdate(); //<--- FIXME ashcrynous bugs not a big deal?
+    }
+    private void scanfetchCallbackfailure(){}
 }

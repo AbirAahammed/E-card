@@ -31,6 +31,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static redbull.ecard.LogicLayer.CardDatabaseConnector.getCachedUserProfile;
+
 public class ProfileFragment extends Fragment{
     private ProfileViewModel profileViewModel;
     public ImageView hImageViewSemafor;
@@ -53,17 +55,16 @@ public class ProfileFragment extends Fragment{
 
         qrCodeIV = (ImageView) rootView.findViewById(R.id.imageView2);// this is where the QR gonna be
         Display display = getActivity().getWindowManager().getDefaultDisplay();// display QR
-//        Point point = new Point();
-//        display.getSize(point);
-
-
-
         // This QR code is a bit messy, we can clean it up into methods
-        //
         int dimen = 450;// this is QR dimension
-        //qrgEncoder = new QRGEncoder("IhnuB3O0gUZgkpf2FQ33hcOem022",null,QRGContents.Type.TEXT,dimen);// now we can generate QR code
-        //bitmap = qrgEncoder.getBitmap();// get bot map
-       // qrCodeIV.setImageBitmap(bitmap);//put qr image to qrCodeIV
+        Profile user = getCachedUserProfile();
+        if(user != null){
+            qrgEncoder = new QRGEncoder(user.getUID(),null,QRGContents.Type.TEXT,dimen);// now we can generate QR code
+            bitmap = qrgEncoder.getBitmap();// get bot map
+            qrCodeIV.setImageBitmap(bitmap);//put qr image to qrCodeIV
+        }else{
+            //Todo: Ashcrynous issue
+        }
         return rootView;
     }
 
@@ -223,7 +224,7 @@ public class ProfileFragment extends Fragment{
                 ViewChange(type, value);
 
                 CardDatabaseConnector connector = new CardDatabaseConnector();
-                Profile profile = connector.getCachedUserProfile();
+                Profile profile = getCachedUserProfile();
                 Contact oldContact = profile.getContact();
 
                 switch (type)

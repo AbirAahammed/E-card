@@ -25,6 +25,7 @@ import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
 public class CardDatabaseConnector {
 
     static Profile cachedProfile;
+    static Profile scannerProfile;
     static boolean fetching;
 
     // Function to execute and return the information to when the data is fetched
@@ -92,6 +93,47 @@ public class CardDatabaseConnector {
         }
 
         return cachedProfile;
+    }
+    public Profile fetchscannerProfileInformation(String uid)
+    {
+            ProfileLogic logic = ProfileLogic.getInstance().getProfile(uid);
+
+            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
+            logic.addOnProfileGetListener(new OnProfileGetListener() {
+                @Override
+                public void onSuccess(@NonNull Profile profile) {
+                    Log.d("test", "Fetching cards");
+                    Log.d("test", profile.getUID());
+                    Log.d("test", profile.getContact().getEmailAddress());
+                    scannerProfile = profile;
+
+                    if (successes != null) {
+                        for (int i = 0; i < successes.size(); i++)
+                            successes.get(i).run();
+                    }
+
+                    successes.clear();
+                }
+
+                @Override
+                public void onProfileNotFound() {
+                    // Empty
+                }
+
+                @Override
+                public void onFailure() {
+                    Log.d("test", "Failed to fetch cards");
+
+                    if (failures != null) {
+                        for (int i = 0; i < failures.size(); i++)
+                            failures.get(i).run();
+                    }
+
+                    failures.clear();
+                }
+            });
+
+        return scannerProfile;
     }
 
     // Initialize the connections for the profile
@@ -303,5 +345,8 @@ public class CardDatabaseConnector {
     public static void SetCurrentProfile(Profile profile)
     {
         cachedProfile = profile;
+    }
+    public static Profile getScannerProfile(){
+        return scannerProfile;
     }
 }
