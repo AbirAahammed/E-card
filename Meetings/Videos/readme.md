@@ -93,7 +93,7 @@ Team Requirements:
 Team Requirements:
 
 - Review requirements for completion of sprint 3
-- 
+
 - Understand the goals of the sprint and features to be completed
 
 ## March 20th, 1:00pm
