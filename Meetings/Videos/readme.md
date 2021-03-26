@@ -83,3 +83,37 @@ Team Requirements:
 - We will also be required to assure requirements of the previous meeting have been met by this point.
 
 - Continue discord communication regularily to assure members are on top of their work, and anyone working in the same area works together.
+
+## March 15th, 3:00pm
+
+[Video part 1](https://www.youtube.com/watch?v=6z260Y8PY1w)
+
+[Video part 2](https://www.youtube.com/watch?v=m2)
+
+Team Requirements:
+
+- Review requirements for completion of sprint 3
+- 
+- Understand the goals of the sprint and features to be completed
+
+## March 20th, 1:00pm
+
+[Video](https://www.youtube.com/watch?v=7ZPysAje0JI)
+
+Participants: Abir A, Connor H, Connor G
+
+Team Requirements:
+
+- Discuss the details of fetching the information from the database.
+
+## March 22nd, 7:00pm
+
+[Video part 1](https://www.youtube.com/watch?v=_6qCOROpW4o)
+
+[Video part 2](https://www.youtube.com/watch?v=_6qCOROpW4o)
+
+Team Requirements:
+
+- Test various aspects of the system
+
+- Discuss work left to do, check with the groups on how they are currently doing for completion of their tasks.
