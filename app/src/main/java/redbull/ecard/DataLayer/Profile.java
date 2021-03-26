@@ -79,7 +79,7 @@ public class Profile extends Model{
 	public void setDescription (String description) { this.description = description; }
 	public void setContact (Contact contact) { this.contact = contact; }
 	public void setService (String service) { this.description = service; }
-
+	public void setUID(String uID) { this.uID = uID; }
 
 	// Connections have been fetched
 	public void fetchedCon() { this.fetchedConnections = true; }

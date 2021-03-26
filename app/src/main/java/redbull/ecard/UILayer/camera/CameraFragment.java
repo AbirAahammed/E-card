@@ -3,6 +3,7 @@ package redbull.ecard.UILayer.camera;
 import android.content.Intent;
 import android.graphics.Camera;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,16 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 
 import androidmads.library.qrgenearator.QRGEncoder;
+import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.LogicLayer.RunnableCallBack;
+import redbull.ecard.LogicLayer.ShareLogic;
 import redbull.ecard.R;
 import redbull.ecard.UILayer.camera.CameraViewModel;
 
 public class CameraFragment extends Fragment {
     private CameraViewModel cameraViewModel;
+    static String scannedUID;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,18 +69,26 @@ public class CameraFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Scanned : " + result.getContents(), Toast.LENGTH_LONG).show();
                 ArrayList<RunnableCallBack> callBackSuccesses = new ArrayList<RunnableCallBack>();
-                callBackSuccesses.add( () -> scanfetcnCallbackSuccess());
+                callBackSuccesses.add( () -> scanFetchCallbackSuccess());
 
                 ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
                 callBackFailures.add( () -> scanfetchCallbackfailure());
 
+                scannedUID = result.getContents();
                 new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchscannerProfileInformation (result.getContents());
             }
         }
     }
-    private void scanfetcnCallbackSuccess(){
-        CardDatabaseConnector.getCachedUserProfile().getConnections().add(CardDatabaseConnector.getScannerProfile());
-        (new CardDatabaseConnector()).profileUpdate(); //<--- FIXME ashcrynous bugs not a big deal?
+    private void scanFetchCallbackSuccess(){
+        Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
+        Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
+
+        if (scannedUID != null)
+        scannedProfile.setUID (scannedUID);
+
+        curProfile.getConnections().add(scannedProfile);
+
+        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
     }
     private void scanfetchCallbackfailure(){}
 }
