@@ -19,17 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
-import redbull.ecard.LogicLayer.RunnableCallBack;
 import redbull.ecard.R;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import static redbull.ecard.LogicLayer.CardDatabaseConnector.getCachedUserProfile;
 
@@ -56,10 +52,10 @@ public class ProfileFragment extends Fragment{
         qrCodeIV = (ImageView) rootView.findViewById(R.id.imageView2);// this is where the QR gonna be
         Display display = getActivity().getWindowManager().getDefaultDisplay();// display QR
         // This QR code is a bit messy, we can clean it up into methods
-        int dimen = 450;// this is QR dimension
+        int dimen = 550;// this is QR dimension
         Profile user = getCachedUserProfile();
         if(user != null){
-            qrgEncoder = new QRGEncoder(user.getUID(),null,QRGContents.Type.TEXT,dimen);// now we can generate QR code
+            qrgEncoder = new QRGEncoder(user.getUID(),null,QRGContents.Type.TEXT, dimen);// now we can generate QR code
             bitmap = qrgEncoder.getBitmap();// get bot map
             qrCodeIV.setImageBitmap(bitmap);//put qr image to qrCodeIV
         }else{
@@ -114,7 +110,7 @@ public class ProfileFragment extends Fragment{
             SetViewText((TextView) root.findViewById(R.id.phoneNumPreview), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailPreview), currentEmail);
 
-            SetViewText((TextView) root.findViewById(R.id.serviceInput), userInfo.getName().toString());
+            SetViewText((TextView) root.findViewById(R.id.ServiceInput), userInfo.getName().toString());
             SetViewText((TextView) root.findViewById(R.id.phoneInput), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailInput), currentEmail);
 
@@ -155,7 +151,7 @@ public class ProfileFragment extends Fragment{
             return;
 
         // Text changing events
-        SetTextEvent(root, (EditText) root.findViewById(R.id.serviceInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.SERVICE);
+        SetTextEvent(root, (EditText) root.findViewById(R.id.ServiceInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.SERVICE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.phoneInput), (TextView) root.findViewById(R.id.phoneNumPreview), AdjustableViews.PHONE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.emailInput), (TextView) root.findViewById(R.id.emailPreview), AdjustableViews.EMAIL);
 
@@ -225,6 +221,11 @@ public class ProfileFragment extends Fragment{
 
                 CardDatabaseConnector connector = new CardDatabaseConnector();
                 Profile profile = getCachedUserProfile();
+
+                // Do nothing if cache is not yet registered
+                if (profile == null)
+                    return;
+
                 Contact oldContact = profile.getContact();
 
                 switch (type)

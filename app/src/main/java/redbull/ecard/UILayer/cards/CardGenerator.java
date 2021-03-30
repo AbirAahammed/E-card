@@ -58,7 +58,7 @@ public class CardGenerator {
     public static void InsertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Invalid views or invalid cards are ignored completely
-        if (!ValidityCheck(card) || rootView == null) {
+        if (!ValidityCheck(card) || rootView == null || context == null) {
             Log.d ("ERROR", "An Invalid card was not inserted into the view.");
             return;
         }
@@ -69,6 +69,9 @@ public class CardGenerator {
         for (int i = 0; i < child.getChildCount(); i++)
         {
             View view = child.getChildAt(i);
+
+            if (view == null)
+                continue; // Encase a child has a null reference? Perhaps removed
 
             InfoToCard(view, card, context);
         }
