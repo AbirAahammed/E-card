@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         }
+
         ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnProfileGetListener(new OnProfileGetListener() {
             @Override
             public void onSuccess(@NonNull Profile profile) {
