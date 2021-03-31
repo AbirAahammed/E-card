@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Bitmap;
 import android.view.Display;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
 
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import static redbull.ecard.LogicLayer.CardDatabaseConnector.getCachedUserProfile;
@@ -100,12 +102,11 @@ public class ProfileFragment extends Fragment{
             Log.d ("null", "ERROR");
         }
         else {
-            String currentService = userInfo.getDescription();
             String currentPhone = userInfo.getContact().getCellPhone();
             String currentEmail = userInfo.getContact().getEmailAddress();
 
             // Set the text for all the preview
-            SetViewText((TextView) root.findViewById(R.id.descriptionPreview), currentService);
+            SetViewText((TextView) root.findViewById(R.id.descriptionPreview), userInfo.getDescription());
             SetViewText((TextView) root.findViewById(R.id.namePreview), userInfo.getName().toString());
             SetViewText((TextView) root.findViewById(R.id.phoneNumPreview), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailPreview), currentEmail);
@@ -113,6 +114,9 @@ public class ProfileFragment extends Fragment{
             SetViewText((TextView) root.findViewById(R.id.ServiceInput), userInfo.getName().toString());
             SetViewText((TextView) root.findViewById(R.id.phoneInput), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailInput), currentEmail);
+
+            SetViewText((TextView) root.findViewById(R.id.addressPreview), userInfo.getAddress().getFormattedAddress());
+            SetViewText((TextView) root.findViewById(R.id.servicePreview), userInfo.getService());
 
             // Set the background template
             setTemplate((new CardDatabaseConnector()).fetchTemplate());
@@ -154,6 +158,10 @@ public class ProfileFragment extends Fragment{
         SetTextEvent(root, (EditText) root.findViewById(R.id.ServiceInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.SERVICE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.phoneInput), (TextView) root.findViewById(R.id.phoneNumPreview), AdjustableViews.PHONE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.emailInput), (TextView) root.findViewById(R.id.emailPreview), AdjustableViews.EMAIL);
+        SetTextEvent(root, (EditText) root.findViewById(R.id.addressInput), (TextView) root.findViewById(R.id.addressPreview), AdjustableViews.ADDRESS);
+
+        // Spinner events
+        SetSpinnerEvent((Spinner)root.findViewById(R.id.serviceSpinnerProfile), (TextView) root.findViewById(R.id.servicePreview));
 
         // Template & save events
         setOnClickEventSave((Button) root.findViewById(R.id.save_changes));
@@ -198,6 +206,32 @@ public class ProfileFragment extends Fragment{
         }
     }
 
+    private static void SetSpinnerEvent(Spinner spinnerObj, TextView targetView)
+    {
+        // Add an on change listener to the spinner to update the users profile
+        if (!spinnerObj.hasOnClickListeners())
+        {
+            spinnerObj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View selectedItemView, int position, long id) {
+                    String newService = parent.getItemAtPosition(position).toString();
+
+                    // Update cached profiles value
+                    (new CardDatabaseConnector()).updateService(newService);
+
+                    // Change the preview's text
+                    targetView.setText(newService);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent)
+                {
+                    // Do nothing if nothing is selected
+                }
+            });
+        }
+    }
+
     // Create a text event that will update a preview, then return the View type that was changed and update the database
     private static void SetTextEvent(View objView, EditText inputView, TextView targetView, AdjustableViews type)
     {
@@ -233,11 +267,14 @@ public class ProfileFragment extends Fragment{
                     case EMAIL:
                         connector.updateContact(new Contact (oldContact.getCellPhone(), oldContact.getHomePhone(), value));
                         break;
-                    case SERVICE: // FIXME service / description are inter changeable right now
+                    case DESCRIPTION:
                         (new CardDatabaseConnector()).updateDescription(value);
                         break;
                     case PHONE:
                         connector.updateContact(new Contact (value, oldContact.getHomePhone(), oldContact.getEmailAddress()));
+                        break;
+                    case ADDRESS:
+                        connector.updateHouseAddress(value);
                         break;
                 }
             }

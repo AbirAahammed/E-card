@@ -190,28 +190,32 @@ public class CardGenerator {
     {
         String tag = (String)child.getTag();
 
+        // Update the corresponding text views based on the provided information of the card
         if (tag == context.getString(R.string.name_tag)) {
-            // View is a name
             ((TextView)child).setText(card.getName().toString());
         }
         else if (tag == context.getString(R.string.description_tag))
         {
-            // View is a description
             ((TextView)child).setText(card.getDescription());
         }
         else if (tag == context.getString(R.string.phone_tag))
         {
-            // View is a phone
             ((TextView)child).setText(card.getContact().getCellPhone());
         }
         else if (tag == context.getString(R.string.email_tag))
         {
-            // View is a email
             ((TextView)child).setText(card.getContact().getEmailAddress());
+        }
+        else if (tag == context.getString(R.string.service_tag))
+        {
+            ((TextView)child).setText(card.getService());
+        }
+        else if (tag == context.getString(R.string.address_tag))
+        {
+            ((TextView)child).setText(card.getAddress().getFormattedAddress());
         }
         else if (tag == context.getString(R.string.template_tag))
         {
-            // View is template
             ((ImageView)child).setImageResource(template (new CardDatabaseConnector().fetchTemplate()));
         }
     }

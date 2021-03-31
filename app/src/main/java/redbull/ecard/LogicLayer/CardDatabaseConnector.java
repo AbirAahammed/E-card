@@ -277,7 +277,6 @@ public class CardDatabaseConnector {
     // The profile should also be added to the list of cards, without an excess database call
     public void profileUpdate()
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
@@ -288,20 +287,34 @@ public class CardDatabaseConnector {
     // Update the description of the cached profile
     public void updateDescription(String description)
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
         cachedProfile.setDescription(description);
     }
 
+    public void updateService(String service)
+    {
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.setService(service);
+    }
+
     public void updateContact (Contact contact)
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
         cachedProfile.setContact(contact);
+    }
+
+    public void updateHouseAddress (String roadAddress)
+    {
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.updateHouseAddress(roadAddress);
     }
 
     // The user has updated the template they would like to use for displaying their profile

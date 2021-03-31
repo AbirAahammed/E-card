@@ -63,7 +63,7 @@
 
                 <TextView
                     android:id="@+id/namePreview"
-                    android:layout_width="285dp"
+                    android:layout_width="287dp"
                     android:layout_height="21dp"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-black"
@@ -75,10 +75,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
                     app:layout_constraintEnd_toEndOf="@+id/previewBackground"
-                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintHorizontal_bias="0.924"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/previewBackground"
-                    app:layout_constraintVertical_bias="0.62" />
+                    app:layout_constraintVertical_bias="0.617" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -134,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:text="template 2"
                     app:layout_constraintBottom_toBottomOf="@+id/save_changes"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -236,16 +237,33 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/addressInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/service"
+                        app:expandedHintEnabled="true"
+                        app:hintEnabled="true">
+
+                        <Spinner
+                            android:id="@+id/serviceSpinnerProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:entries="@array/services_spinner_items"
+                            android:textAlignment="center" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Address">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/addressInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="What is your address?"
                             android:textAlignment="center" />
+
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -258,6 +276,28 @@
                     app:layout_constraintBottom_toTopOf="@+id/previewBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/servicePreview"
+                    android:layout_width="284dp"
+                    android:layout_height="22dp"
+                    android:text="Painter"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/namePreview"
+                    app:layout_constraintEnd_toEndOf="@+id/previewBackground"
+                    app:layout_constraintHorizontal_bias="0.898"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/addressPreview"
+                    android:layout_width="218dp"
+                    android:layout_height="15dp"
+                    android:text="1112 Fake str."
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/previewBackground"
+                    app:layout_constraintStart_toStartOf="@+id/previewBackground" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

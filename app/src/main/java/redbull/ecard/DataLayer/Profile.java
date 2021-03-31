@@ -40,8 +40,6 @@ public class Profile extends Model{
 		this.address = address;
 		this.connections = new ArrayList<>();
 		this.description = description;
-//		this.services = new Services();
-//		this.services.addServices(services); // Add service to the list of services
 		this.service = service;
 	}
 
@@ -77,9 +75,14 @@ public class Profile extends Model{
 	}
 
 	public void setDescription (String description) { this.description = description; }
+
 	public void setContact (Contact contact) { this.contact = contact; }
-	public void setService (String service) { this.description = service; }
+
+	public void setService (String service) { this.service = service; }
+
 	public void setUID(String uID) { this.uID = uID; }
+
+	public void updateHouseAddress(String road) { this.address.setHouseNumber(road); }
 
 	// Connections have been fetched
 	public void fetchedCon() { this.fetchedConnections = true; }

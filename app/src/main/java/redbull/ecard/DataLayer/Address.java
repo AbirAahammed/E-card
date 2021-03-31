@@ -48,8 +48,9 @@ public class Address extends Model {
 		this.province = province;
 		this.country = country;
 	}
-	
 
+	// Setters
+	public void setHouseNumber (String roadNumber) { this.houseNumber = roadNumber; }
 
 	// Methods
 	//Get Methods
@@ -96,5 +97,10 @@ public class Address extends Model {
 		this.city = map.get("city");
 		this.province = map.get("province");
 		this.country = map.get("country");
+	}
+
+	public String getFormattedAddress()
+	{
+		return this.houseNumber;
 	}
 }
