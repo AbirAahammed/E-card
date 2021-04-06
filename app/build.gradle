@@ -4,6 +4,12 @@ plugins {
 
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin @see https://firebase.google.com/docs/android/setup
 
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
+
+// Apply the Performance Monitoring plugin
+apply plugin: 'com.google.firebase.firebase-perf'
+
 task wrapper(type: Wrapper){
     gradleVersion = '2.14.1'
 }
@@ -111,6 +117,16 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Declare the dependency for the Performance Monitoring library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-perf'
 
 
 }
