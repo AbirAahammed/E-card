@@ -3,6 +3,17 @@ package redbull.ecard.DataLayer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+ * Sevices Class is used to manage/hold a list of services that a user wants to provide on their card.
+ * Due to a judgement call, we decided that services would be better done as a single string.
+ * Users instead will offer 1 service maximum via their business card.
+ *
+ * Despite Profile using a string for service, this class does have its purpose.
+ * This class provides functionality to provide multiple services if future developments requested it,
+ * and because it is an object rather than a string, its possible to attach attributes to the services
+ * if a future development wanted something (such as tags!).
+ */
+
 @SuppressWarnings("ALL")
 public class Services extends Model {
 
@@ -66,6 +77,7 @@ public class Services extends Model {
                 '}';
     }
 
+    // Get methods
     public ArrayList<Integer> getIndexes() {
         return indexes;
     }

@@ -2,6 +2,7 @@ package redbull.ecard.DataLayer;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.
+ * Used with Firebase Realtime DB and Authentication to store results.
  */
 public class Result<T> {
     // hide the private constructor to limit subclass types (Success, Error)

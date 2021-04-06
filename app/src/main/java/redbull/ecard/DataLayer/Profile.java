@@ -148,7 +148,7 @@ public class Profile extends Model{
 				'}';
 	}
 
-	// Get the data for the current profile
+	// Used to get the data for the current profile from the realtime database
 	public void map(HashMap<String, Object> map) {
 		if (map == null)
 			return;
@@ -181,7 +181,8 @@ public class Profile extends Model{
 
  	}
 
- 	// Get the data for another profile
+ 	// Used to get the data for another profile from the realtime database.
+	// This gets the data for a shared profile (the profile of someone that isn't the current user)
 	public void mapConnection(HashMap<String, Object> map) {
 		if(map.get("name") != null) {
 			this.name.map((HashMap<String, String>) map.get("name"));
