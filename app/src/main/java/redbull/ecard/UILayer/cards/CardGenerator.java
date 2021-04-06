@@ -184,6 +184,7 @@ public class CardGenerator {
         }
         else if (tag == context.getString(R.string.description_tag))
         {
+            Log.d ("des","Setting the description to: " + card.getDescription());
             ((TextView)child).setText(card.getDescription());
         }
         else if (tag == context.getString(R.string.phone_tag))

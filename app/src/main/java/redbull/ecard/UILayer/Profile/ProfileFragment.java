@@ -111,9 +111,10 @@ public class ProfileFragment extends Fragment{
             SetViewText((TextView) root.findViewById(R.id.phoneNumPreview), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailPreview), currentEmail);
 
-            SetViewText((TextView) root.findViewById(R.id.ServiceInput), userInfo.getName().toString());
+            SetViewText((TextView) root.findViewById(R.id.DescriptionInput), userInfo.getName().toString());
             SetViewText((TextView) root.findViewById(R.id.phoneInput), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailInput), currentEmail);
+            SetViewText((TextView) root.findViewById(R.id.addressInput), userInfo.getAddress().getFormattedAddress());
 
             SetViewText((TextView) root.findViewById(R.id.addressPreview), userInfo.getAddress().getFormattedAddress());
             SetViewText((TextView) root.findViewById(R.id.servicePreview), userInfo.getService());
@@ -155,7 +156,7 @@ public class ProfileFragment extends Fragment{
             return;
 
         // Text changing events
-        SetTextEvent(root, (EditText) root.findViewById(R.id.ServiceInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.SERVICE);
+        SetTextEvent(root, (EditText) root.findViewById(R.id.DescriptionInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.DESCRIPTION);
         SetTextEvent(root, (EditText) root.findViewById(R.id.phoneInput), (TextView) root.findViewById(R.id.phoneNumPreview), AdjustableViews.PHONE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.emailInput), (TextView) root.findViewById(R.id.emailPreview), AdjustableViews.EMAIL);
         SetTextEvent(root, (EditText) root.findViewById(R.id.addressInput), (TextView) root.findViewById(R.id.addressPreview), AdjustableViews.ADDRESS);
@@ -268,7 +269,7 @@ public class ProfileFragment extends Fragment{
                         connector.updateContact(new Contact (oldContact.getCellPhone(), oldContact.getHomePhone(), value));
                         break;
                     case DESCRIPTION:
-                        (new CardDatabaseConnector()).updateDescription(value);
+                        connector.updateDescription(value);
                         break;
                     case PHONE:
                         connector.updateContact(new Contact (value, oldContact.getHomePhone(), oldContact.getEmailAddress()));
