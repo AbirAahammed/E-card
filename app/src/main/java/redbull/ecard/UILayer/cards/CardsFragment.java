@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,12 @@ public class CardsFragment extends Fragment {
             ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
             callBackFailures.add( () -> profileFetchCallBackFailure());
 
+
+            // Play loading animation while we wait for a callback
+            rootView.findViewById(R.id.loadingRotation).startAnimation(
+                    AnimationUtils.loadAnimation(getActivity(), R.anim.rotation)
+            );
+
             new CardDatabaseConnector (callBackSuccesses, callBackFailures).fetchProfileInformation ();
         }
         else
@@ -58,17 +65,6 @@ public class CardsFragment extends Fragment {
             // Skip the database accesses and just grab the cached profile
             setupUIForCardsList(CardDatabaseConnector.getCachedUserProfile());
         }
-
-        cardsViewModel =
-                new ViewModelProvider(this).get(CardsViewModel.class);
-
-//        final TextView textView = root.findViewById(R.id.text_home); // text_home doesn't exist. Never used.
-        cardsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-              //  textView.setText(s);
-            }
-        });
 
         return rootView;
     }
@@ -100,16 +96,14 @@ public class CardsFragment extends Fragment {
     // The connections should be fetched to the database, and then added to the profiles list of connections
     private void cardListFetchCallBackSuccess()
     {
-        Log.d ("fetch", "successfully setup connections!");
+        // Remove & clear the loading bar
+        View loadingView = rootView.findViewById(R.id.loadingRotation);
+        loadingView.clearAnimation();
+        loadingView.setVisibility(View.INVISIBLE);
+
         // Success!!!
         // Now, we can finally setup all the UI
         Profile ourProfile = (new CardDatabaseConnector()).GetActiveUser(); // This cant be null, wouldn't make sense
-
-        for (int i = 0; i < ourProfile.getConnections().size(); i++)
-        {
-            Log.d ("fetch", "contact: " + i + " = " + ourProfile.getConnections().get(i).getContact().toString());
-            Log.d ("fetch", "name: " + i + " = " + ourProfile.getConnections().get(i).getName().toString());
-        }
 
         Log.d ("connection", "Setting up view with the connections...");
         CardGenerator.InsertToView(ourProfile.getConnections(), rootView, rootInflater, getContext()); // Cards fragment setup
@@ -123,12 +117,7 @@ public class CardsFragment extends Fragment {
     // Setups up the UI for the users profile
     private void setupUIForCardsList(Profile myProfile)
     {
-        Log.d ("connection", "Getting 2.0");
-
-        for (int i = 0; i < myProfile.getConnections().size(); i++)
-        {
-            Log.d ("connection", "UID: " + i + " = " + myProfile.getConnections().get(i).getUID());
-        }
+        Log.d ("connection", "Settings up profiles card list...");
 
         CardGenerator.InsertToView(myProfile.getConnections(), rootView, rootInflater, getContext());
     }

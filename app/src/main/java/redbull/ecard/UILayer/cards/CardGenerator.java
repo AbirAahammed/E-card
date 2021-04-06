@@ -59,7 +59,7 @@ public class CardGenerator {
     {
         // Invalid views or invalid cards are ignored completely
         if (!ValidityCheck(card) || rootView == null || context == null) {
-            Log.d ("ERROR", "An Invalid card was not inserted into the view.");
+            Log.d ("NOTICE", "An Invalid card was not inserted into the view.");
             return;
         }
 
@@ -156,22 +156,10 @@ public class CardGenerator {
             private void resizeImage()
             {
                 if (!resized) {
-                    boolean adjustScroll = false;
-                    final int CLOSE_SCROLL_AMOUNT = 1550;
-                    Log.d ("Cur", "" + (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() ));
-                    if (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() <= CLOSE_SCROLL_AMOUNT)
-                        adjustScroll = true;
-
                     // Enlarge the card
                     background.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
                     background.setScaleType(ImageView.ScaleType.FIT_XY);
                     resized = true;
-
-                    // FIXME does not work atm
-                    // The reason is most likely that this call is to early, I need to call it in the next frame after the enlarged image is drawn
-                    // To resolve this, I need to wait until the next frame, then perform the action
-                    if (adjustScroll)
-                        scrollLayout.setScrollY(scrollLayout.getHeight());
                 }
                 else
                 {
