@@ -49,7 +49,6 @@ public class ProfilePersistence implements PersistenceInterface  {
             createUserAddress(dbTableRef.child(profile.getUID()).child("address"), profile.getAddress());
             createUserContact(dbTableRef.child(profile.getUID()).child("contact"), profile.getContact());
             createUserDescription(dbTableRef.child(profile.getUID()).child("description"), profile.getDescription());
-//            createUserServices(dbTableRef.child(profile.getUID()).child("serviceIndexes"), profile.getServices());
             dbTableRef.child(profile.getUID()).child("service").setValue(profile.getService());
         }
         else {

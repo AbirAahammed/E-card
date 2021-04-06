@@ -78,21 +78,19 @@ public class ProfileFragment extends Fragment{
             connector = new CardDatabaseConnector();
 
         // Setup events attached to the profile
-        ProfileEventSetup(rootView);
         InitializeProfile(rootView);
+        ProfileEventSetup(rootView);
     }
 
     // Initialize the profile to what it should be initially
     private static void InitializeProfile(View root)
     {
-        Profile userInfo = connector.GetActiveUser();
+        Profile userInfo = getCachedUserProfile();
         generatedProfile = userInfo != null;
 
         if (!generatedProfile)
         {
-            // TODO throw an exception for this
-            // Create a custom exception, this should not really be null at this point
-            Log.d ("null", "ERROR");
+            // Do nothing if the profile is not setup yet
         }
         else {
             String currentPhone = userInfo.getContact().getCellPhone();
@@ -104,7 +102,7 @@ public class ProfileFragment extends Fragment{
             SetViewText((TextView) root.findViewById(R.id.phoneNumPreview), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailPreview), currentEmail);
 
-            SetViewText((TextView) root.findViewById(R.id.DescriptionInput), userInfo.getName().toString());
+            SetViewText((TextView) root.findViewById(R.id.descriptionInput), userInfo.getDescription());
             SetViewText((TextView) root.findViewById(R.id.phoneInput), currentPhone);
             SetViewText((TextView) root.findViewById(R.id.emailInput), currentEmail);
             SetViewText((TextView) root.findViewById(R.id.addressInput), userInfo.getAddress().getFormattedAddress());
@@ -149,7 +147,7 @@ public class ProfileFragment extends Fragment{
             return;
 
         // Text changing events
-        SetTextEvent(root, (EditText) root.findViewById(R.id.DescriptionInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.DESCRIPTION);
+        SetTextEvent(root, (EditText) root.findViewById(R.id.descriptionInput), (TextView) root.findViewById(R.id.descriptionPreview), AdjustableViews.DESCRIPTION);
         SetTextEvent(root, (EditText) root.findViewById(R.id.phoneInput), (TextView) root.findViewById(R.id.phoneNumPreview), AdjustableViews.PHONE);
         SetTextEvent(root, (EditText) root.findViewById(R.id.emailInput), (TextView) root.findViewById(R.id.emailPreview), AdjustableViews.EMAIL);
         SetTextEvent(root, (EditText) root.findViewById(R.id.addressInput), (TextView) root.findViewById(R.id.addressPreview), AdjustableViews.ADDRESS);
