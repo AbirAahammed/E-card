@@ -82,13 +82,6 @@ public class ProfileFragment extends Fragment{
         InitializeProfile(rootView);
     }
 
-    private static void profileDisplayFailure()
-    {
-        // TODO
-        // Complete this
-        // The user has failed to setup their profile
-    }
-
     // Initialize the profile to what it should be initially
     private static void InitializeProfile(View root)
     {

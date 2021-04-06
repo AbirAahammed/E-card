@@ -56,13 +56,9 @@ public class CardDatabaseConnector {
         if (cachedProfile == null) {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getUid());
 
-            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
             logic.addOnProfileGetListener(new OnProfileGetListener() {
                 @Override
                 public void onSuccess(@NonNull Profile profile) {
-                    Log.d("test", "Fetching cards");
-                    Log.d("test", profile.getUID());
-                    Log.d("test", profile.getContact().getEmailAddress());
                     cachedProfile = profile;
 
                     if (successes != null) {
@@ -329,17 +325,6 @@ public class CardDatabaseConnector {
     public int fetchTemplate()
     {
         return Profile.getViewedTemplate();
-    }
-
-    // Save the profile to our list of saved profiles
-    // Update the database with the new information
-    public void SavedProfile(Profile profile)
-    {
-        // This is currently incomplete on the UI Side
-        // When a QR code is scanned, this method will be called to save the profile that was scanned to the current user
-
-        // This way if they log out, they still have the card saved that they have previously scanned
-        // Note that, this is connected to the GrabCardInstances() call, since a saved profile will be added to that list of returned items.
     }
 
     // Returns whether or not we have the profile cached

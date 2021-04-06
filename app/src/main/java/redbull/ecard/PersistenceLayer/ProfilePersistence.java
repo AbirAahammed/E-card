@@ -77,7 +77,7 @@ public class ProfilePersistence implements PersistenceInterface  {
         dbUserContactRef.child("emailAddress").setValue(contact.getEmailAddress());
     }
     private void createUserDescription(DatabaseReference dbUserDescriptionRef, String description) {
-        dbUserDescriptionRef.child("description").setValue(description);
+        dbUserDescriptionRef.setValue(description);
     }
 
 //    TODO NO required in the way currently service implemented as we only have one service for one person

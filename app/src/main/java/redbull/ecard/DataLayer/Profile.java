@@ -169,9 +169,7 @@ public class Profile extends Model{
 			}
 		}
 		if(map.get("description") != null) {
-			if(map.get("description") instanceof String) {
-				this.description = (String) map.get("description");
-			}
+			this.description = (String) map.get("description");
 		}
 
 		// Ensure the profile on the database has services
@@ -193,9 +191,7 @@ public class Profile extends Model{
 			this.contact.map((HashMap<String, String>) map.get("contact"));
 		}
 		if(map.get("description") != null) {
-			if(map.get("description") instanceof String) {
-				this.description = (String) map.get("description");
-			}
+			this.description = (String) map.get("description");
 		}
 		if(map.get("service") != null) {
 			this.service = map.get("service").toString();
