@@ -75,7 +75,7 @@ public class CameraFragment extends Fragment {
                 callBackFailures.add( () -> scanfetchCallbackfailure());
 
                 scannedUID = result.getContents();
-                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchscannerProfileInformation (result.getContents());
+                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchScannerProfileInformation (result.getContents());
             }
         }
     }

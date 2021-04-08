@@ -2,14 +2,11 @@ package redbull.ecard.UILayer.cards;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.net.Uri;
 import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -18,14 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
 import java.util.ArrayList;
 
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
@@ -36,7 +27,7 @@ public class CardGenerator {
 
     // Appends the card to the home view
     // This will stay throughout the apps life time
-    private static boolean ValidityCheck(Profile card)
+    private static boolean validityCheck(Profile card)
     {
         // Card must be valid in order to be appended
         // Return true if it is valid
@@ -44,21 +35,21 @@ public class CardGenerator {
     }
 
     // Insert a list of cards to the corresponding view
-    public static void InsertToView(ArrayList<Profile> cards, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void insertToView(ArrayList<Profile> cards, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Do nothing on empty cards list
         if (cards == null)
             return;
 
         for (int i = 0; i < cards.size(); i++)
-            InsertToView(cards.get(i), rootView, inflater, context);
+            insertToView(cards.get(i), rootView, inflater, context);
     }
 
     // Inserts a card to the corresponding view
-    public static void InsertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void insertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Invalid views or invalid cards are ignored completely
-        if (!ValidityCheck(card) || rootView == null || context == null) {
+        if (!validityCheck(card) || rootView == null || context == null) {
             Log.d ("NOTICE", "An Invalid card was not inserted into the view.");
             return;
         }
@@ -73,15 +64,15 @@ public class CardGenerator {
             if (view == null)
                 continue; // Encase a child has a null reference? Perhaps removed
 
-            InfoToCard(view, card, context);
+            infoToCard(view, card, context);
         }
 
         ((LinearLayout) rootView.findViewById(R.id.card_layout)).addView(child);
-        AddButtonClickEvents(child, context, card.getContact(), rootView);
+        addButtonClickEvents(child, context, card.getContact(), rootView);
     }
 
     // Add button click events to the email/phone icons
-    private static void AddButtonClickEvents(View root, Context context, Contact contactInfo, View parentRoot)
+    private static void addButtonClickEvents(View root, Context context, Contact contactInfo, View parentRoot)
     {
         // Email onclick event
         ImageView emailImg = (ImageView)(root.findViewById(R.id.emailIMG));
@@ -173,8 +164,7 @@ public class CardGenerator {
     }
 
     // Change the info of the view to the corresponding info on the card
-    // TODO throw an exception if any view has the correct tag but incorrect type
-    private static void InfoToCard(View child, Profile card, Context context)
+    private static void infoToCard(View child, Profile card, Context context)
     {
         String tag = (String)child.getTag();
 
@@ -184,7 +174,6 @@ public class CardGenerator {
         }
         else if (tag == context.getString(R.string.description_tag))
         {
-            Log.d ("des","Setting the description to: " + card.getDescription());
             ((TextView)child).setText(card.getDescription());
         }
         else if (tag == context.getString(R.string.phone_tag))
@@ -213,7 +202,6 @@ public class CardGenerator {
     public static int template(int cardTemplateNum)
     {
         int ret = -1; // Invalid template
-        Log.d ("Test", "" + cardTemplateNum);
         switch (cardTemplateNum)
         {
             case 1:

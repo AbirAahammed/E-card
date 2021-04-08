@@ -1,15 +1,10 @@
 package redbull.ecard;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,8 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.Debug;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -129,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             // Remove the currently signed in profile from our cache
-                            CardDatabaseConnector.SetCurrentProfile(null);
+                            CardDatabaseConnector.setCurrentProfile(null);
 
                             startLoginActivity();
                         } else {

@@ -4,6 +4,8 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of a user's profile.
  */
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -76,7 +78,8 @@ public class Profile extends Model{
 
 	public void setContact (Contact contact) { this.contact = contact; }
 
-	public void setService (String service) { this.service = service; }
+	public void setService (String service) {
+		Log.d("Tag", "Updating service: " + service);this.service = service; }
 
 	public void setUID(String uID) { this.uID = uID; }
 
@@ -130,7 +133,7 @@ public class Profile extends Model{
 	// Returns true if this card does not have any information attached
 	public boolean IsValid()
 	{
-		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.validContact()
+		return this.name != null && this.name.isValid() && this.contact != null && this.contact.validContact()
 				&& this.address != null && this.address.isValid();
 	}
 

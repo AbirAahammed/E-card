@@ -1,24 +1,17 @@
 package redbull.ecard.UILayer.cards;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.ScrollView;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.R;
@@ -47,7 +40,7 @@ public class CardsFragment extends Fragment {
             // The order of these in the list matters!
             ArrayList<RunnableCallBack> callBackSuccesses = new ArrayList<RunnableCallBack>();
             callBackSuccesses.add( () -> profileFetchCallBackSuccess());
-            callBackSuccesses.add( () -> ProfileFragment.ProfileDisplaySetup());
+            callBackSuccesses.add( () -> ProfileFragment.profileDisplaySetup());
 
             ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
             callBackFailures.add( () -> profileFetchCallBackFailure());
@@ -106,7 +99,7 @@ public class CardsFragment extends Fragment {
         Profile ourProfile = (new CardDatabaseConnector()).GetActiveUser(); // This cant be null, wouldn't make sense
 
         Log.d ("connection", "Setting up view with the connections...");
-        CardGenerator.InsertToView(ourProfile.getConnections(), rootView, rootInflater, getContext()); // Cards fragment setup
+        CardGenerator.insertToView(ourProfile.getConnections(), rootView, rootInflater, getContext()); // Cards fragment setup
     }
 
     private void cardListFetchCallBackFailure()
@@ -119,6 +112,6 @@ public class CardsFragment extends Fragment {
     {
         Log.d ("connection", "Settings up profiles card list...");
 
-        CardGenerator.InsertToView(myProfile.getConnections(), rootView, rootInflater, getContext());
+        CardGenerator.insertToView(myProfile.getConnections(), rootView, rootInflater, getContext());
     }
 }

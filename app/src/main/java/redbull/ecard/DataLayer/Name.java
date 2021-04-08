@@ -34,8 +34,7 @@ public class Name extends Model {
 	}
 
 	// Returns true if this is a valid Name
-	// FIXME should this be in logic layer?
-	public boolean IsValid()
+	public boolean isValid()
 	{
 		// The name can really be anything, in theory as long as there is no numbers
 		// A middle name might not be required, only first & last

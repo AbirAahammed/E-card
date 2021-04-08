@@ -6,19 +6,12 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-import redbull.ecard.DataLayer.Address;
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.DataLayer.Model;
-import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.Listeners.OnConnectionsGetListener;
 import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
-import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
 
 // This class grabs the cards from the database or data-layer
 // Essentially, its the connection between the database and the ui layer
@@ -90,7 +83,7 @@ public class CardDatabaseConnector {
 
         return cachedProfile;
     }
-    public Profile fetchscannerProfileInformation(String uid)
+    public Profile fetchScannerProfileInformation(String uid)
     {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(uid);
 
@@ -192,41 +185,31 @@ public class CardDatabaseConnector {
 
     public void fetchConnectionsList()
     {
-        Log.d ("tessss", "Fetching the connections..");
+        Log.d ("connection", "Fetching the connections..");
         if (cachedProfile == null)
         {
             // TODO create a custom exception
             // Throw an exception
             // You should call fetchProfileExceptions first, otherwise there is no profile to insert the connections to
-            Log.d ("tessss", "ERROR: no cached profile exists. Please fetch the profile first.");
             return;
         }
 
         else
         {
-            Log.d ("tessss", "Grabbing the conects..");
-            Log.d ("tessss", "" + cachedProfile.getConnections().size());
-            Log.d ("tessss", "" + cachedProfile.hasFetchedConnections());
             if (!cachedProfile.hasFetchedConnections())
             {
-                Log.d ("tessss", "This should executed");
-
                 ShareLogic instance = ShareLogic.getInstance(cachedProfile);
                 instance.getConnections().addOnConnectionsGetListener(new OnConnectionsGetListener() {
 
                     @Override
                     public void onAllReadSuccess(@NonNull ArrayList<Profile> profiles) {
                         // The array of connections
-                        Log.d ("tessss", "dwadwadwdwadwadwadwadwadwa");
                         if (cachedProfile == null)
                         {
                             // Throw an exception
-                            Log.d ("tessss", "No cached profile exists");
+                            Log.d ("connection", "No cached profile exists");
                             return;
                         }
-
-                        Log.d ("tessss", "the size of the callback"  + profiles.size());
-                        Log.d ("tessss", "1size of the callback: "  + profiles.get(0).getContact().toString());
 
                         cachedProfile.setConnections(profiles);
                         initConnectionsOfProfile (profiles, 0);
@@ -315,7 +298,7 @@ public class CardDatabaseConnector {
 
     // The user has updated the template they would like to use for displaying their profile
     // Update the database with the new information
-    public void TemplateUpdate(int newTemplateFormat)
+    public void templateUpdate(int newTemplateFormat)
     {
         // 'newTemplateFormat' contains the new template for the user
         Profile.setViewedTemplate(newTemplateFormat);
@@ -340,7 +323,7 @@ public class CardDatabaseConnector {
     }
 
     // Update the currently cached profile
-    public static void SetCurrentProfile(Profile profile)
+    public static void setCurrentProfile(Profile profile)
     {
         cachedProfile = profile;
     }
