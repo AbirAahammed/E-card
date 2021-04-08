@@ -7,8 +7,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.MainActivity;
+import redbull.ecard.util.testData.testID;
 import redbull.ecard.R;
 
 import static androidx.test.espresso.Espresso.onView;

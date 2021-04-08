@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.login;
+package redbull.ecard.UILayer.loginActivity;
 
 import androidx.annotation.Nullable;
 

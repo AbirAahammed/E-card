@@ -1,16 +1,10 @@
-package redbull.ecard.local.login;
+package redbull.ecard.local.UITest;
 
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.test.espresso.IdlingRegistry;
-import androidx.test.espresso.IdlingResource;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +14,6 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,8 +21,8 @@ import org.junit.runner.RunWith;
 
 import redbull.ecard.MainActivity;
 import redbull.ecard.R;
-import redbull.ecard.UILayer.login.LoginActivity;
-import redbull.ecard.DataLayer.testData.testID;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
+import redbull.ecard.util.testData.testID;
 import redbull.ecard.util.testContent;
 import redbull.ecard.util.testWithHWAcceration;
 
@@ -37,12 +30,8 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.fail;
 

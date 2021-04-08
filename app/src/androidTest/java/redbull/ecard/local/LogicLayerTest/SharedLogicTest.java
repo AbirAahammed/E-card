@@ -1,44 +1,45 @@
 package redbull.ecard.local.LogicLayerTest;
+
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import static junit.framework.TestCase.*;
+import com.google.firebase.auth.FirebaseUser;
 
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import redbull.ecard.DataLayer.Address;
-import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.DataLayer.Name;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
 import redbull.ecard.DataLayer.Profile;
+import redbull.ecard.LogicLayer.Listeners.OnConnectionsGetListener;
 import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
 import redbull.ecard.LogicLayer.ProfileLogic;
+import redbull.ecard.LogicLayer.ShareLogic;
 import redbull.ecard.util.testData.testID;
-import redbull.ecard.util.testContent;
 
-import com.google.firebase.auth.FirebaseUser;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.fail;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-public class ProfileLogicTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
+public class SharedLogicTest {
     private FirebaseAuth auth;
-    private String uid;
+    private String curr_email,password,uid;
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
+        curr_email=testID.email;
+        password= testID.password;
+        testID.email="Demo@gmail.com";
+        testID.password="123456";
     }
     @Test
-    public void testCreateProfile() {
+    public void shareTest(){
         auth= FirebaseAuth.getInstance();
         auth.signInWithEmailAndPassword(testID.email, testID.password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -59,31 +60,32 @@ public class ProfileLogicTest {
         }catch (Exception e){
 
         }
-
         ProfileLogic profileLogic = ProfileLogic.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        // Make a ServiceTypes list for Services. (Unused because Services object was replaced)
-//        ArrayList<ServiceTypes> serviceTypeList = new ArrayList<>();
-//        serviceTypeList.add(ServiceTypes.LAWYER);
-//        serviceTypeList.add(ServiceTypes.PLUMBER);
-
-        Profile profile = new Profile(
-                new Name(testID.name, testID.l_name, ""),
-                new Contact(testID.cell, testID.cell, testID.email),
-                new Address(testID.road, testID.house, testID.postalCode, testID.city, testID.province, testID.country),
-                testID.description,
-                testID.service);
-//                new Services(serviceTypeList)); 
-
-
-        profileLogic.createProfile(profile);
         profileLogic.getProfile(uid).addOnProfileGetListener(new OnProfileGetListener() {
             @Override
             public void onSuccess(@NonNull Profile profile) {
-                System.out.println("Test passed");
-                System.out.flush();
-                return;
+                ShareLogic instance =ShareLogic.getInstance(profile);
+                instance.getConnections().addOnConnectionsGetListener(new OnConnectionsGetListener() {
 
+                    @Override
+                    public void onAllReadSuccess(@NonNull ArrayList<Profile> profiles) {
+                        // The array of connections
+                        assertEquals(profiles.size(),2);
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull Profile profile) {
+                        // Empty
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        Log.d("test", "Failed to fetch cards");
+
+                       fail();
+                    }
+                });
             }
 
             @Override
@@ -97,25 +99,12 @@ public class ProfileLogicTest {
                 fail("failed to create profile");
             }
         });
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
 
-        }
-        clean();
     }
-
-    private void clean() {
-        testContent clean= new testContent();
-        clean.removeFromDB(uid);
-        try {
-            Thread.sleep(2000L);
-        }catch (Exception e){
-
-        }
+    @After
+    public void clean(){
+        testID.email=curr_email;
+        testID.password=password;
         FirebaseAuth.getInstance().signOut();
-        System.setOut(originalOut);
-        System.setErr(originalErr);
     }
-
 }

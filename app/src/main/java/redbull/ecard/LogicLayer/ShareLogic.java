@@ -81,6 +81,7 @@ public class ShareLogic extends Logic{
                 }
             }
         });
+
         return this;
     }
 

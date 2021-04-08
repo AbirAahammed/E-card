@@ -182,6 +182,9 @@ public class Profile extends Model{
 
  	// Get the data for another profile
 	public void mapConnection(HashMap<String, Object> map) {
+		if(map==null){
+			return;
+		}
 		if(map.get("name") != null) {
 			this.name.map((HashMap<String, String>) map.get("name"));
 		}

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.crashlytics.internal.model.CrashlyticsReport;
 
 import java.util.ArrayList;
 
