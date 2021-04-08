@@ -24,6 +24,7 @@ import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
+import redbull.ecard.LogicLayer.QRGenerator;
 import redbull.ecard.R;
 
 import android.widget.RelativeLayout;
@@ -34,6 +35,7 @@ import android.widget.TextView;
 import static redbull.ecard.LogicLayer.CardDatabaseConnector.getCachedUserProfile;
 
 public class ProfileFragment extends Fragment{
+    private QRGenerator gene;
     private ProfileViewModel profileViewModel;
     public ImageView hImageViewSemafor;
     private ImageView qrCodeIV;
@@ -52,19 +54,19 @@ public class ProfileFragment extends Fragment{
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        gene = new QRGenerator(rootView);
         rootView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
         profileDisplaySetup();
-
-        qrCodeIV = (ImageView) rootView.findViewById(R.id.imageView2);// this is where the QR gonna be
+        gene = new QRGenerator(rootView);
+        qrCodeIV = gene.getPos(R.id.imageView2);
         Display display = getActivity().getWindowManager().getDefaultDisplay();// display QR
         // This QR code is a bit messy, we can clean it up into methods
         int dimen = 550;// this is QR dimension
         Profile user = getCachedUserProfile();
         if(user != null){
-            qrgEncoder = new QRGEncoder(user.getUID(),null,QRGContents.Type.TEXT, dimen);// now we can generate QR code
-            bitmap = qrgEncoder.getBitmap();// get bot map
-            qrCodeIV.setImageBitmap(bitmap);//put qr image to qrCodeIV
+            qrgEncoder = gene.getQRGencoder(user.getID(),dimen);
+            bitmap = gene.getBitmap(qrgEncoder);// get bot map
+            gene.setQr(qrCodeIV,bitmap);
         }else{
             //Todo: Ashcrynous issue
         }
