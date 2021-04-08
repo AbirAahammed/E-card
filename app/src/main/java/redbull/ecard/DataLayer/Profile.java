@@ -6,10 +6,8 @@ package redbull.ecard.DataLayer;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Profile extends Model{
 	// Variables
@@ -132,8 +130,8 @@ public class Profile extends Model{
 	// Returns true if this card does not have any information attached
 	public boolean IsValid()
 	{
-		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.ValidContact()
-				&& this.address != null && this.address.IsValid();
+		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.validContact()
+				&& this.address != null && this.address.isValid();
 	}
 
 	@Override

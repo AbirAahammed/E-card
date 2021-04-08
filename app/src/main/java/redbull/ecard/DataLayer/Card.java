@@ -34,8 +34,8 @@ public class  Card {
 	// Returns true if this card does not have any information attached
 	public boolean IsValid()
 	{
-		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.ValidContact()
-				&& this.address != null && this.address.IsValid();
+		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.validContact()
+				&& this.address != null && this.address.isValid();
 	}
 
 	// Methods

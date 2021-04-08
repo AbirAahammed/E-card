@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import redbull.ecard.DataLayer.Address;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
@@ -239,12 +240,6 @@ public class ProfileFragment extends Fragment{
                 // After they have updated their service information, update the card preview and the information on the database
                 String value = s.toString();
 
-                // Update the text of the preview
-                targetView.setText(value);
-
-                // Pass the updated information to the database (for logic layer to manage)
-                ViewChange(type, value);
-
                 CardDatabaseConnector connector = new CardDatabaseConnector();
                 Profile profile = getCachedUserProfile();
 
@@ -257,16 +252,42 @@ public class ProfileFragment extends Fragment{
                 switch (type)
                 {
                     case EMAIL:
-                        connector.updateContact(new Contact (oldContact.getCellPhone(), oldContact.getHomePhone(), value));
+                        Contact nContactE = new Contact (oldContact.getCellPhone(), oldContact.getHomePhone(), value);
+
+                        // The email was valid
+                        if (nContactE.validEmail()) {
+                            // Update the text of the preview
+                            targetView.setText(value);
+
+                            connector.updateContact(nContactE);
+                        }
                         break;
                     case DESCRIPTION:
+                        // Description can be anything, always valid
+                        targetView.setText(value);
                         connector.updateDescription(value);
                         break;
                     case PHONE:
-                        connector.updateContact(new Contact (value, oldContact.getHomePhone(), oldContact.getEmailAddress()));
+                        Contact nContactP = new Contact (value, oldContact.getHomePhone(), oldContact.getEmailAddress());
+
+                        if (nContactP.validCell())
+                        {
+                            connector.updateContact(nContactP);
+
+                            // Update the text of the preview
+                            targetView.setText(value);
+                        }
+
                         break;
                     case ADDRESS:
-                        connector.updateHouseAddress(value);
+                        Address nAddress = new Address();
+                        nAddress.setHouseNumber(value);
+
+                        if (nAddress.isValid())
+                        {
+                            connector.updateHouseAddress(value);
+                            targetView.setText(value);
+                        }
                         break;
                 }
             }
@@ -289,42 +310,6 @@ public class ProfileFragment extends Fragment{
         }
 
         return ret;
-    }
-
-    // Pass the view that was changed to the Logic layer so that the database can be updated accordingly
-    private static void ViewChange(AdjustableViews viewChanged, String value)
-    {
-        switch (viewChanged)
-        {
-            case EMAIL:
-             //   connector.ContactUpdate(new Contact(null, null, value));
-                break;
-            case PHONE:
-             //   connector.ContactUpdate(new Contact(value, null, null));
-                break;
-            case SERVICE:
-               // connector.ServiceUpdate(value);
-                break;
-            case TEMPLATE:
-
-                int actValue = -1;
-                try {
-                    actValue = Integer.parseInt(value);
-                } catch (NumberFormatException e)
-                {
-                    // We do not have to throw an exception here, rather, do nothing
-                    // This is because a template is defined purely on a button press that calls this function
-                    // In other words, the integer value passed is NOT defined by the user input.
-                    // So, if this fails, we just do nothing.
-                    // TODO throw a custom exception ?
-                    Log.d("dev", "Templates use a numeric value representation. Please do not pass a non-integer value.");
-                }
-
-                if (actValue != -1)
-                    connector.TemplateUpdate(actValue);
-
-                break;
-        }
     }
 }
 
