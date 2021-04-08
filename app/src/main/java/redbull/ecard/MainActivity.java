@@ -24,7 +24,7 @@ import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
 import redbull.ecard.LogicLayer.ProfileLogic;
 import redbull.ecard.LogicLayer.RunnableCallBack;
-import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
 import redbull.ecard.UILayer.signup.SignUpActivity;
 import redbull.ecard.LogicLayer.Listeners.*;
 

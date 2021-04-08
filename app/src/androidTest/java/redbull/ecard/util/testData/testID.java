@@ -1,8 +1,8 @@
-package redbull.ecard.DataLayer.testData;
+package redbull.ecard.util.testData;
 
 public class testID {
-    public static final String email="tlw@gmail.com";
-    public static final String password="password";
+    public static  String email="tlw@gmail.com";
+    public static  String password="password";
     public static final String name="Tester";
     public static final String l_name="Wang";
     public static final String cell="123 456 7891";

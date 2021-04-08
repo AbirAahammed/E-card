@@ -1,34 +1,16 @@
 package redbull.ecard.TravisCiTests;
 
-import android.content.Intent;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.test.espresso.intent.Intents;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.MainActivity;
 import redbull.ecard.R;
-import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
 import redbull.ecard.util.testContent;
-import redbull.ecard.util.testWithHWAcceration;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

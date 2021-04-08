@@ -26,14 +26,11 @@ public class CardsFragment extends Fragment {
     // This is called every time the 'cards' section is opened
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         // Inflate the fragment_cards.xml file
         rootView = inflater.inflate(R.layout.fragment_cards, container, false);
         rootInflater = inflater;
-
         // Append all cards to the Cards section from the database
-        if (!CardDatabaseConnector.profileIsCached()) {
-
+        if(!CardDatabaseConnector.profileIsCached()) {
             // This portion is quite complicated
             // Inserts profileFetchCallBackSuccess and profileFetchCallBackFailure
             // As the function to call when the data is being returned
@@ -45,20 +42,15 @@ public class CardsFragment extends Fragment {
             ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
             callBackFailures.add( () -> profileFetchCallBackFailure());
 
-
             // Play loading animation while we wait for a callback
             rootView.findViewById(R.id.loadingRotation).startAnimation(
                     AnimationUtils.loadAnimation(getActivity(), R.anim.rotation)
             );
-
             new CardDatabaseConnector (callBackSuccesses, callBackFailures).fetchProfileInformation ();
-        }
-        else
-        {
+        }else {
             // Skip the database accesses and just grab the cached profile
             setupUIForCardsList(CardDatabaseConnector.getCachedUserProfile());
         }
-
         return rootView;
     }
 

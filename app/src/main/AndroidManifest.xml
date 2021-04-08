@@ -20,7 +20,7 @@
             android:stopWithTask="true"></service>
 
         <activity
-            android:name=".UILayer.login.LoginActivity"
+            android:name=".UILayer.loginActivity.LoginActivity"
             android:theme="@style/Theme.Ecard.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
