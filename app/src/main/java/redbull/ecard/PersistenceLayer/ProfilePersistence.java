@@ -96,7 +96,7 @@ public class ProfilePersistence implements PersistenceInterface  {
                     readListener.onProfileNotFound();
                 }
                 else {
-//                    profile.map((HashMap<String, Object>) task.getResult().getValue());
+               profile.map((HashMap<String, Object>) task.getResult().getValue());
                     readListener.onSuccess(profile);
                 }
             }
