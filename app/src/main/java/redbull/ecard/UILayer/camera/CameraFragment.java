@@ -82,6 +82,9 @@ public class CameraFragment extends Fragment {
         Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
         Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
 
+        if (scannedProfile == null)
+            return;
+
         if (scannedUID != null)
         scannedProfile.setUID (scannedUID);
 
