@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure() {
                 Log.i(TAG, "Failed");
+                startSignUpActivity();
 
             }
         });
