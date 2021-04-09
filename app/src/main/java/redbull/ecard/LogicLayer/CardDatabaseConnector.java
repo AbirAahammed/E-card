@@ -88,13 +88,9 @@ public class CardDatabaseConnector {
     {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(uid);
 
-            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
             logic.addOnProfileGetListener(new OnProfileGetListener() {
                 @Override
                 public void onSuccess(@NonNull Profile profile) {
-                    Log.d("test", "Fetching cards");
-                    Log.d("test", profile.getUID());
-                    Log.d("test", profile.getContact().getEmailAddress());
                     scannerProfile = profile;
 
                     if (successes != null) {
@@ -112,7 +108,7 @@ public class CardDatabaseConnector {
 
                 @Override
                 public void onFailure() {
-                    Log.d("test", "Failed to fetch cards");
+                    Log.d("ERROR", "Failed to fetch cards");
 
                     if (failures != null) {
                         for (int i = 0; i < failures.size(); i++)
@@ -129,8 +125,6 @@ public class CardDatabaseConnector {
     // Initialize the connections for the profile
     public void initConnectionsOfProfile(ArrayList<Profile> profiles, int index)
     {
-        Log.d("fetch", "Profiles to fill: " + profiles.size());
-        Log.d("fetch", "current profile being filled: " + index);
         if (index >= profiles.size())
         {
             // We have successfully initialized all the connections for this profile
@@ -157,8 +151,6 @@ public class CardDatabaseConnector {
                     // Replace the old value that only had the UID with the actual profiles information
                     cachedProfile.getConnections().set(index, profile);
 
-                    Log.d("test", "profile: " + profile.getContact().toString());
-
                     // Fetch the next profile in this connection
                     initConnectionsOfProfile(profiles, index + 1);
                 }
@@ -170,7 +162,7 @@ public class CardDatabaseConnector {
 
                 @Override
                 public void onFailure() {
-                    Log.d("test", "Failed to fetch cards");
+                    Log.d("ERROR", "Failed to fetch cards");
 
                     // Failed to fetch callback
                     if (failures != null) {
@@ -189,9 +181,7 @@ public class CardDatabaseConnector {
         Log.d ("connection", "Fetching the connections..");
         if (cachedProfile == null)
         {
-            // TODO create a custom exception
-            // Throw an exception
-            // You should call fetchProfileExceptions first, otherwise there is no profile to insert the connections to
+            Log.d("ERROR", "No cache exists yet, doing nothing");
             return;
         }
 
@@ -223,8 +213,7 @@ public class CardDatabaseConnector {
 
                     @Override
                     public void onFailure() {
-                        Log.d("test", "Failed to fetch cards");
-
+                        Log.d("ERROR", "Failed to fetch cards");
                         if (failures != null) {
                             for (int i = 0; i < failures.size(); i++)
                                 failures.get(i).run();

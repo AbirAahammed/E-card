@@ -78,7 +78,7 @@ public class CardsFragment extends Fragment {
     // This method is called when database retrieval fails
     private void profileFetchCallBackFailure()
     {
-        // TODO could not grab information about the profile from the database
+        // Do nothing on failure
     }
 
     // The callback method when fetching the list of connections is successful
@@ -100,7 +100,7 @@ public class CardsFragment extends Fragment {
 
     private void cardListFetchCallBackFailure()
     {
-        // TODO could not grab information about the users connections from the database
+        // Do nothing on failure
     }
 
     // Setups up the UI for the users profile
