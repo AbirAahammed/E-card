@@ -88,9 +88,13 @@ public class CameraFragment extends Fragment {
         if (scannedUID != null)
         scannedProfile.setUID (scannedUID);
 
-        curProfile.getConnections().add(scannedProfile);
+        // First check if we already have that connection
+        // Do not add duplicates
+        if (!curProfile.hasConnection(scannedProfile)) {
+            curProfile.getConnections().add(scannedProfile);
 
-        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+            ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+        }
     }
     private void scanfetchCallbackfailure(){}
 

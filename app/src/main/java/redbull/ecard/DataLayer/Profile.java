@@ -149,6 +149,19 @@ public class Profile extends Model{
 				'}';
 	}
 
+	// Returns true if the current profile has the profile p as a connection
+	public boolean hasConnection (Profile p)
+	{
+		// We already have that UID
+		for (int i = 0; i < this.connections.size(); i++)
+		{
+			if (this.connections.get(i).getUID().equals(p.getID()))
+				return true;
+		}
+
+		return false;
+	}
+
 	// Get the data for the current profile
 	public void map(HashMap<String, Object> map) {
 		if (map == null)
