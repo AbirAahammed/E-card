@@ -39,7 +39,7 @@ public class Contact extends Model {
 	// Atleast one form of contact information must be valid
 	public boolean validContact()
 	{
-		return validCell() || this.homePhone != null || this.emailAddress != null;
+		return validCell() || this.homePhone != null || validEmail();
 	}
 
 	// A valid cell number

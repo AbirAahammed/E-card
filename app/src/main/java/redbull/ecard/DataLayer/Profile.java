@@ -130,10 +130,10 @@ public class Profile extends Model{
 		return viewedTemplate;
 	}
 
-	// Returns true if this card does not have any information attached
-	public boolean IsValid()
+	// Returns false if this card does not have sufficient information attached
+	public boolean isValid()
 	{
-		return this.name != null && this.name.isValid() && this.contact != null && this.contact.validContact()
+		return this.name != null && this.contact != null && this.contact.validContact()
 				&& this.address != null && this.address.isValid();
 	}
 

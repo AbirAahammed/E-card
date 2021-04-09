@@ -43,7 +43,10 @@ public class Address extends Model {
 		String formattedCheck = this.getFormattedAddress();
 		boolean numValid = false;
 
-		// Check if a number exists before a word, if there is, it is valid
+		if (formattedCheck == null)
+			return false;
+
+		// Check if a number exists, if there is, it is valid
 		for (int i = 0; i < formattedCheck.length(); i++)
 		{
 			if (isNumber(formattedCheck.charAt(i)))
@@ -59,7 +62,7 @@ public class Address extends Model {
 		}
 
 
-		return formattedCheck != null && numValid;
+		return numValid;
 	}
 
 	public Address(String roadNumber, String houseNumber, String postalCode, 

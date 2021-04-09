@@ -31,7 +31,7 @@ public class CardGenerator {
     {
         // Card must be valid in order to be appended
         // Return true if it is valid
-        return card != null && card.IsValid();
+        return card != null && card.isValid();
     }
 
     // Insert a list of cards to the corresponding view
