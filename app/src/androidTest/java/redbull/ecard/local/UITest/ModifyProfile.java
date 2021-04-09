@@ -30,17 +30,14 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
 public class ModifyProfile {
-    private String curr_email,password,curr_des,uid;
+    private String curr_des,uid;
     @Rule
     public ActivityScenarioRule<LoginActivity> rule =
             new ActivityScenarioRule<LoginActivity>(LoginActivity.class);
     @Before
     public void setup(){
-        curr_email=testID.email;
-        password= testID.password;
         curr_des="";
-        testID.email="Demo2@gmail.com";
-        testID.password="123456";
+
     }
     @Test
     public void modify() { //this will include view Profile, view added Card and camera usages
@@ -81,8 +78,7 @@ public class ModifyProfile {
     public void clean(){
         onView(withId(R.id.descriptionInput)).perform(replaceText(curr_des),closeSoftKeyboard());
         onView(withId(R.id.save_changes)).perform(click());
-        testID.email=curr_email;
-        testID.password=password;
+
         testContent clean= new testContent();
         clean.removeFromDB(uid);
         try {

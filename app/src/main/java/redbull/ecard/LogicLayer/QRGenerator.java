@@ -15,9 +15,16 @@ public class QRGenerator {
     public QRGenerator(android.view.View rootView){
         this.rootView = rootView;
     }
+    public QRGenerator(){
 
+    };
     public ImageView getPos(int pos){
-        return (ImageView) rootView.findViewById(pos);
+        if(rootView!=null) {
+            return (ImageView) rootView.findViewById(pos);
+        }
+        else{
+            return null;
+        }
     }
 
     public QRGEncoder getQRGencoder(String a,int dimen){

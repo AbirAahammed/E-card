@@ -30,14 +30,15 @@ public class ConnectionPersistence implements PersistenceInterface {
     private FirebaseDatabase firebaseDatabaseInstance;
     private DatabaseReference dbTableRef;
     private Profile profile;
-
-    private long maxid=0L;
+    private static long maxid=0L;
     public ConnectionPersistence(FirebaseDatabase firebaseDatabaseInstance, Profile profile) {
         this.firebaseDatabaseInstance = firebaseDatabaseInstance;
         this.dbTableRef = firebaseDatabaseInstance.getReference(TABLENAME);
         this.profile = profile;
+
     }
     public static ConnectionPersistence getInstance(Profile profile) {
+
         return new ConnectionPersistence(FirebaseDatabase.getInstance(), profile);
     }
 
@@ -45,18 +46,19 @@ public class ConnectionPersistence implements PersistenceInterface {
         this.dbTableRef.child(profile.getUID()).child(CONNECTION).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                    maxid = (snapshot.getChildrenCount());
+                if (snapshot.exists()) {
+                    maxid = snapshot.getChildrenCount();
+                    Log.i("Connection",""+maxid);
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 //        TODO Check if the id exists here
         this.dbTableRef.child(profile.getUID()).child(CONNECTION).child(String.valueOf(maxid)).setValue(uid);
     }
-
     @Override
     public void create(Model model) {
         throw new NotImplementedError();
