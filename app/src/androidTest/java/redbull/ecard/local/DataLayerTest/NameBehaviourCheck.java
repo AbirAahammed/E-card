@@ -20,10 +20,12 @@ public class NameBehaviourCheck {
         assertEquals(testName.getLastName(),testID.l_name);
         assertEquals(testName.getFirstName(),testID.name);
         assertEquals(testName.getMiddleName(),testID.name);
+
         try{
             Name testName = new Name();
         }catch(Exception e){
             fail();
         }
     }
+
 }
