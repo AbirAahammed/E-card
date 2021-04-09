@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import androidmads.library.qrgenearator.QRGEncoder;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
-import redbull.ecard.LogicLayer.QRScanner;
 import redbull.ecard.LogicLayer.RunnableCallBack;
 import redbull.ecard.LogicLayer.ShareLogic;
 import redbull.ecard.R;
@@ -37,7 +36,6 @@ import redbull.ecard.UILayer.camera.CameraViewModel;
 public class CameraFragment extends Fragment {
     private CameraViewModel cameraViewModel;
     static String scannedUID;
-    public QRScanner scan = new QRScanner(scannedUID);
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         cameraViewModel =
@@ -70,27 +68,27 @@ public class CameraFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Scanned : " + result.getContents(), Toast.LENGTH_LONG).show();
                 ArrayList<RunnableCallBack> callBackSuccesses = new ArrayList<RunnableCallBack>();
-                callBackSuccesses.add( () -> scan.scanFetchCallbackSuccess());
+                callBackSuccesses.add( () -> scanFetchCallbackSuccess());
 
                 ArrayList<RunnableCallBack> callBackFailures = new ArrayList<RunnableCallBack>();
-                callBackFailures.add( () -> scan.scanfetchCallbackfailure());
+                callBackFailures.add( () -> scanfetchCallbackfailure());
 
                 scannedUID = result.getContents();
                 new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchScannerProfileInformation (result.getContents());
             }
         }
     }
-//    private void scanFetchCallbackSuccess(){
-//        Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
-//        Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
-//
-//        if (scannedUID != null)
-//        scannedProfile.setUID (scannedUID);
-//
-//        curProfile.getConnections().add(scannedProfile);
-//
-//        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
-//    }
-//    private void scanfetchCallbackfailure(){}
+    private void scanFetchCallbackSuccess(){
+        Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
+        Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
+
+        if (scannedUID != null)
+        scannedProfile.setUID (scannedUID);
+
+        curProfile.getConnections().add(scannedProfile);
+
+        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+    }
+    private void scanfetchCallbackfailure(){}
 
 }
