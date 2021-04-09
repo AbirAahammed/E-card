@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment{
             bitmap = gene.getBitmap(qrgEncoder);// get bot map
             gene.setQr(qrCodeIV,bitmap);
         }else{
-            //Todo: Ashcrynous issue
+            // Not ready to display the QR code
         }
         return rootView;
     }
