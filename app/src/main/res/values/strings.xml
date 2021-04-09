@@ -37,6 +37,7 @@
     <string name="description_default">Cards Description...</string>
     <string name="phone_default">(204) def-ault</string>
     <string name="email_default">default@gmail.com</string>
+    <string name="loading_default">loading</string>
 
     <!-- Tags of View elements associated with cards -->
     <string name="name_tag">name</string>
@@ -44,6 +45,9 @@
     <string name="phone_tag">phone</string>
     <string name="email_tag">email</string>
     <string name="template_tag">template</string>
+    <string name="service_tag">service</string>
+    <string name="address_tag">address</string>
+
     <!--    Login page resources    -->
     <string name="button_login">Log In</string>
     <string name="button_sign_up">Sign Up</string>

@@ -11,10 +11,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.MainActivity;
+import redbull.ecard.util.testData.testID;
 import redbull.ecard.R;
-import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

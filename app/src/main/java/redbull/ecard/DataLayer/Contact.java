@@ -12,6 +12,9 @@ public class Contact extends Model {
 	private String cellPhone;
 	private String homePhone;
 	private String emailAddress;
+
+	// Constants
+	private final int VALID_PHONE_NUM_LEN = 10;
 	
 	//Constructors
 	public Contact() {
@@ -34,10 +37,37 @@ public class Contact extends Model {
 	}
 
 	// Atleast one form of contact information must be valid
-	// TODO need to verify that the email is valid, and phone numbers. Should this logic layer?
-	public boolean ValidContact()
+	public boolean validContact()
 	{
-		return this.cellPhone != null || this.homePhone != null || this.emailAddress != null;
+		return validCell() || this.homePhone != null || validEmail();
+	}
+
+	// A valid cell number
+	public boolean validCell()
+	{
+		boolean isValid = true;
+
+		for (int i = 0; i < this.cellPhone.length(); i++)
+		{
+			if (!((this.cellPhone.charAt(i) >= '0' && this.cellPhone.charAt(i) <= '9') ||
+			// Valid cell chars
+					this.cellPhone.charAt(i) == '(' || this.cellPhone.charAt(i) == ')' ||
+					this.cellPhone.charAt(i) == '-'
+			))
+				isValid = false;
+		}
+															// A phone number may include () or -, with one occurrence, some numbers are also longer
+		return this.cellPhone != null && isValid && this.cellPhone.length() >= VALID_PHONE_NUM_LEN && this.cellPhone.length() <= VALID_PHONE_NUM_LEN + 3;
+	}
+
+	// Returns true if the email is valid
+	// For our purposes, an email is valid as long as it has the '@' symbol, followed by some address
+	public boolean validEmail()
+	{
+		final int MIN_REMAINDER_LEN = 3; // Should have atleast 3 characters after @ '@a.b'
+
+		int index = this.emailAddress.indexOf('@');
+		return this.emailAddress != null && index != -1 && this.emailAddress.substring(index).length() >= MIN_REMAINDER_LEN;
 	}
 
 	// Methods

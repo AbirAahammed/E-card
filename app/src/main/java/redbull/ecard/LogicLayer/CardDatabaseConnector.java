@@ -5,20 +5,14 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.crashlytics.internal.model.CrashlyticsReport;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-import redbull.ecard.DataLayer.Address;
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
-import redbull.ecard.DataLayer.Model;
-import redbull.ecard.DataLayer.Name;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.Listeners.OnConnectionsGetListener;
 import redbull.ecard.LogicLayer.Listeners.OnProfileGetListener;
-import redbull.ecard.PersistenceLayer.Listeners.OnReadCompleteListener;
 
 // This class grabs the cards from the database or data-layer
 // Essentially, its the connection between the database and the ui layer
@@ -56,13 +50,9 @@ public class CardDatabaseConnector {
         if (cachedProfile == null) {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(FirebaseAuth.getInstance().getUid());
 
-            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
             logic.addOnProfileGetListener(new OnProfileGetListener() {
                 @Override
                 public void onSuccess(@NonNull Profile profile) {
-                    Log.d("test", "Fetching cards");
-                    Log.d("test", profile.getUID());
-                    Log.d("test", profile.getContact().getEmailAddress());
                     cachedProfile = profile;
 
                     if (successes != null) {
@@ -94,17 +84,13 @@ public class CardDatabaseConnector {
 
         return cachedProfile;
     }
-    public Profile fetchscannerProfileInformation(String uid)
+    public Profile fetchScannerProfileInformation(String uid)
     {
             ProfileLogic logic = ProfileLogic.getInstance().getProfile(uid);
 
-            //logic.enableLocalPersistence(); <--- FIXME doesn't work?
             logic.addOnProfileGetListener(new OnProfileGetListener() {
                 @Override
                 public void onSuccess(@NonNull Profile profile) {
-                    Log.d("test", "Fetching cards");
-                    Log.d("test", profile.getUID());
-                    Log.d("test", profile.getContact().getEmailAddress());
                     scannerProfile = profile;
 
                     if (successes != null) {
@@ -122,7 +108,7 @@ public class CardDatabaseConnector {
 
                 @Override
                 public void onFailure() {
-                    Log.d("test", "Failed to fetch cards");
+                    Log.d("ERROR", "Failed to fetch cards");
 
                     if (failures != null) {
                         for (int i = 0; i < failures.size(); i++)
@@ -139,8 +125,6 @@ public class CardDatabaseConnector {
     // Initialize the connections for the profile
     public void initConnectionsOfProfile(ArrayList<Profile> profiles, int index)
     {
-        Log.d("fetch", "Profiles to fill: " + profiles.size());
-        Log.d("fetch", "current profile being filled: " + index);
         if (index >= profiles.size())
         {
             // We have successfully initialized all the connections for this profile
@@ -167,8 +151,6 @@ public class CardDatabaseConnector {
                     // Replace the old value that only had the UID with the actual profiles information
                     cachedProfile.getConnections().set(index, profile);
 
-                    Log.d("test", "profile: " + profile.getContact().toString());
-
                     // Fetch the next profile in this connection
                     initConnectionsOfProfile(profiles, index + 1);
                 }
@@ -180,7 +162,7 @@ public class CardDatabaseConnector {
 
                 @Override
                 public void onFailure() {
-                    Log.d("test", "Failed to fetch cards");
+                    Log.d("ERROR", "Failed to fetch cards");
 
                     // Failed to fetch callback
                     if (failures != null) {
@@ -196,41 +178,29 @@ public class CardDatabaseConnector {
 
     public void fetchConnectionsList()
     {
-        Log.d ("tessss", "Fetching the connections..");
+        Log.d ("connection", "Fetching the connections..");
         if (cachedProfile == null)
         {
-            // TODO create a custom exception
-            // Throw an exception
-            // You should call fetchProfileExceptions first, otherwise there is no profile to insert the connections to
-            Log.d ("tessss", "ERROR: no cached profile exists. Please fetch the profile first.");
+            Log.d("ERROR", "No cache exists yet, doing nothing");
             return;
         }
 
         else
         {
-            Log.d ("tessss", "Grabbing the conects..");
-            Log.d ("tessss", "" + cachedProfile.getConnections().size());
-            Log.d ("tessss", "" + cachedProfile.hasFetchedConnections());
             if (!cachedProfile.hasFetchedConnections())
             {
-                Log.d ("tessss", "This should executed");
-
                 ShareLogic instance = ShareLogic.getInstance(cachedProfile);
                 instance.getConnections().addOnConnectionsGetListener(new OnConnectionsGetListener() {
 
                     @Override
                     public void onAllReadSuccess(@NonNull ArrayList<Profile> profiles) {
                         // The array of connections
-                        Log.d ("tessss", "dwadwadwdwadwadwadwadwadwa");
                         if (cachedProfile == null)
                         {
                             // Throw an exception
-                            Log.d ("tessss", "No cached profile exists");
+                            Log.d ("connection", "No cached profile exists");
                             return;
                         }
-
-                        Log.d ("tessss", "the size of the callback"  + profiles.size());
-                        Log.d ("tessss", "1size of the callback: "  + profiles.get(0).getContact().toString());
 
                         cachedProfile.setConnections(profiles);
                         initConnectionsOfProfile (profiles, 0);
@@ -243,8 +213,7 @@ public class CardDatabaseConnector {
 
                     @Override
                     public void onFailure() {
-                        Log.d("test", "Failed to fetch cards");
-
+                        Log.d("ERROR", "Failed to fetch cards");
                         if (failures != null) {
                             for (int i = 0; i < failures.size(); i++)
                                 failures.get(i).run();
@@ -277,7 +246,6 @@ public class CardDatabaseConnector {
     // The profile should also be added to the list of cards, without an excess database call
     public void profileUpdate()
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
@@ -288,25 +256,39 @@ public class CardDatabaseConnector {
     // Update the description of the cached profile
     public void updateDescription(String description)
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
         cachedProfile.setDescription(description);
     }
 
+    public void updateService(String service)
+    {
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.setService(service);
+    }
+
     public void updateContact (Contact contact)
     {
-        // Exclude null args
         if (cachedProfile == null)
             return;
 
         cachedProfile.setContact(contact);
     }
 
+    public void updateHouseAddress (String roadAddress)
+    {
+        if (cachedProfile == null)
+            return;
+
+        cachedProfile.updateHouseAddress(roadAddress);
+    }
+
     // The user has updated the template they would like to use for displaying their profile
     // Update the database with the new information
-    public void TemplateUpdate(int newTemplateFormat)
+    public void templateUpdate(int newTemplateFormat)
     {
         // 'newTemplateFormat' contains the new template for the user
         Profile.setViewedTemplate(newTemplateFormat);
@@ -316,17 +298,6 @@ public class CardDatabaseConnector {
     public int fetchTemplate()
     {
         return Profile.getViewedTemplate();
-    }
-
-    // Save the profile to our list of saved profiles
-    // Update the database with the new information
-    public void SavedProfile(Profile profile)
-    {
-        // This is currently incomplete on the UI Side
-        // When a QR code is scanned, this method will be called to save the profile that was scanned to the current user
-
-        // This way if they log out, they still have the card saved that they have previously scanned
-        // Note that, this is connected to the GrabCardInstances() call, since a saved profile will be added to that list of returned items.
     }
 
     // Returns whether or not we have the profile cached
@@ -342,7 +313,7 @@ public class CardDatabaseConnector {
     }
 
     // Update the currently cached profile
-    public static void SetCurrentProfile(Profile profile)
+    public static void setCurrentProfile(Profile profile)
     {
         cachedProfile = profile;
     }

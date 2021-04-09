@@ -30,11 +30,39 @@ public class Address extends Model {
 		this.country = "No country given";
 	}
 
-	// Returns true if the address is valid
-	// TODO need to assure the validity of the address. Should this logic layer?
-	public boolean IsValid()
+	// Returns true if the character x is a number
+	private boolean isNumber(char x)
 	{
-		return true;
+		return x >= '0' && x <= '9';
+	}
+
+	// Returns true if the formatted address is valid
+	// The address should at-least have a number
+	public boolean isValid()
+	{
+		String formattedCheck = this.getFormattedAddress();
+		boolean numValid = false;
+
+		if (formattedCheck == null)
+			return false;
+
+		// Check if a number exists, if there is, it is valid
+		for (int i = 0; i < formattedCheck.length(); i++)
+		{
+			if (isNumber(formattedCheck.charAt(i)))
+			{
+				numValid = true;
+				break;
+			}
+			else if (formattedCheck.charAt(i) != ' ')
+			{
+				// If its not just a space, its a word, but there is no number yet
+				break;
+			}
+		}
+
+
+		return numValid;
 	}
 
 	public Address(String roadNumber, String houseNumber, String postalCode, 
@@ -48,8 +76,9 @@ public class Address extends Model {
 		this.province = province;
 		this.country = country;
 	}
-	
 
+	// Setters
+	public void setHouseNumber (String roadNumber) { this.houseNumber = roadNumber; }
 
 	// Methods
 	//Get Methods
@@ -96,5 +125,10 @@ public class Address extends Model {
 		this.city = map.get("city");
 		this.province = map.get("province");
 		this.country = map.get("country");
+	}
+
+	public String getFormattedAddress()
+	{
+		return this.houseNumber;
 	}
 }

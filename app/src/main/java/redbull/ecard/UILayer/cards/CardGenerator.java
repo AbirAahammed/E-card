@@ -2,14 +2,11 @@ package redbull.ecard.UILayer.cards;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.net.Uri;
 import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -18,14 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
 import java.util.ArrayList;
 
-import redbull.ecard.DataLayer.Card;
 import redbull.ecard.DataLayer.Contact;
 import redbull.ecard.DataLayer.Profile;
 import redbull.ecard.LogicLayer.CardDatabaseConnector;
@@ -36,30 +27,30 @@ public class CardGenerator {
 
     // Appends the card to the home view
     // This will stay throughout the apps life time
-    private static boolean ValidityCheck(Profile card)
+    private static boolean validityCheck(Profile card)
     {
         // Card must be valid in order to be appended
         // Return true if it is valid
-        return card != null && card.IsValid();
+        return card != null && card.isValid();
     }
 
     // Insert a list of cards to the corresponding view
-    public static void InsertToView(ArrayList<Profile> cards, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void insertToView(ArrayList<Profile> cards, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Do nothing on empty cards list
         if (cards == null)
             return;
 
         for (int i = 0; i < cards.size(); i++)
-            InsertToView(cards.get(i), rootView, inflater, context);
+            insertToView(cards.get(i), rootView, inflater, context);
     }
 
     // Inserts a card to the corresponding view
-    public static void InsertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
+    public static void insertToView(Profile card, View rootView, @NonNull LayoutInflater inflater, Context context)
     {
         // Invalid views or invalid cards are ignored completely
-        if (!ValidityCheck(card) || rootView == null) {
-            Log.d ("ERROR", "An Invalid card was not inserted into the view.");
+        if (!validityCheck(card) || rootView == null || context == null) {
+            Log.d ("NOTICE", "An Invalid card was not inserted into the view.");
             return;
         }
 
@@ -70,15 +61,18 @@ public class CardGenerator {
         {
             View view = child.getChildAt(i);
 
-            InfoToCard(view, card, context);
+            if (view == null)
+                continue; // Encase a child has a null reference? Perhaps removed
+
+            infoToCard(view, card, context);
         }
 
         ((LinearLayout) rootView.findViewById(R.id.card_layout)).addView(child);
-        AddButtonClickEvents(child, context, card.getContact(), rootView);
+        addButtonClickEvents(child, context, card.getContact(), rootView);
     }
 
     // Add button click events to the email/phone icons
-    private static void AddButtonClickEvents(View root, Context context, Contact contactInfo, View parentRoot)
+    private static void addButtonClickEvents(View root, Context context, Contact contactInfo, View parentRoot)
     {
         // Email onclick event
         ImageView emailImg = (ImageView)(root.findViewById(R.id.emailIMG));
@@ -153,22 +147,10 @@ public class CardGenerator {
             private void resizeImage()
             {
                 if (!resized) {
-                    boolean adjustScroll = false;
-                    final int CLOSE_SCROLL_AMOUNT = 1550;
-                    Log.d ("Cur", "" + (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() ));
-                    if (scrollLayout.getMeasuredHeight() - scrollLayout.getScrollY() <= CLOSE_SCROLL_AMOUNT)
-                        adjustScroll = true;
-
                     // Enlarge the card
                     background.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
                     background.setScaleType(ImageView.ScaleType.FIT_XY);
                     resized = true;
-
-                    // FIXME does not work atm
-                    // The reason is most likely that this call is to early, I need to call it in the next frame after the enlarged image is drawn
-                    // To resolve this, I need to wait until the next frame, then perform the action
-                    if (adjustScroll)
-                        scrollLayout.setScrollY(scrollLayout.getHeight());
                 }
                 else
                 {
@@ -182,33 +164,36 @@ public class CardGenerator {
     }
 
     // Change the info of the view to the corresponding info on the card
-    // TODO throw an exception if any view has the correct tag but incorrect type
-    private static void InfoToCard(View child, Profile card, Context context)
+    private static void infoToCard(View child, Profile card, Context context)
     {
         String tag = (String)child.getTag();
 
+        // Update the corresponding text views based on the provided information of the card
         if (tag == context.getString(R.string.name_tag)) {
-            // View is a name
             ((TextView)child).setText(card.getName().toString());
         }
         else if (tag == context.getString(R.string.description_tag))
         {
-            // View is a description
             ((TextView)child).setText(card.getDescription());
         }
         else if (tag == context.getString(R.string.phone_tag))
         {
-            // View is a phone
             ((TextView)child).setText(card.getContact().getCellPhone());
         }
         else if (tag == context.getString(R.string.email_tag))
         {
-            // View is a email
             ((TextView)child).setText(card.getContact().getEmailAddress());
+        }
+        else if (tag == context.getString(R.string.service_tag))
+        {
+            ((TextView)child).setText(card.getService());
+        }
+        else if (tag == context.getString(R.string.address_tag))
+        {
+            ((TextView)child).setText(card.getAddress().getFormattedAddress());
         }
         else if (tag == context.getString(R.string.template_tag))
         {
-            // View is template
             ((ImageView)child).setImageResource(template (new CardDatabaseConnector().fetchTemplate()));
         }
     }
@@ -217,7 +202,6 @@ public class CardGenerator {
     public static int template(int cardTemplateNum)
     {
         int ret = -1; // Invalid template
-        Log.d ("Test", "" + cardTemplateNum);
         switch (cardTemplateNum)
         {
             case 1:

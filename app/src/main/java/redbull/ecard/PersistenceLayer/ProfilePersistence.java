@@ -49,7 +49,6 @@ public class ProfilePersistence implements PersistenceInterface  {
             createUserAddress(dbTableRef.child(profile.getUID()).child("address"), profile.getAddress());
             createUserContact(dbTableRef.child(profile.getUID()).child("contact"), profile.getContact());
             createUserDescription(dbTableRef.child(profile.getUID()).child("description"), profile.getDescription());
-//            createUserServices(dbTableRef.child(profile.getUID()).child("serviceIndexes"), profile.getServices());
             dbTableRef.child(profile.getUID()).child("service").setValue(profile.getService());
         }
         else {
@@ -77,7 +76,7 @@ public class ProfilePersistence implements PersistenceInterface  {
         dbUserContactRef.child("emailAddress").setValue(contact.getEmailAddress());
     }
     private void createUserDescription(DatabaseReference dbUserDescriptionRef, String description) {
-        dbUserDescriptionRef.child("description").setValue(description);
+        dbUserDescriptionRef.setValue(description);
     }
 
 //    TODO NO required in the way currently service implemented as we only have one service for one person
@@ -97,7 +96,7 @@ public class ProfilePersistence implements PersistenceInterface  {
                     readListener.onProfileNotFound();
                 }
                 else {
-                    profile.map((HashMap<String, Object>) task.getResult().getValue());
+               profile.map((HashMap<String, Object>) task.getResult().getValue());
                     readListener.onSuccess(profile);
                 }
             }
