@@ -29,7 +29,6 @@ public class AddressBehaviourCheck {
         }catch(Exception e){
             fail();
         }
-
         testAddress.setHouseNumber("23");
         assertEquals(testAddress.getHouseNumber(),"23");
         assertTrue(testAddress.isValid());

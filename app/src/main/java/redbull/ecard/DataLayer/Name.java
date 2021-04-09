@@ -17,7 +17,6 @@ public class Name extends Model {
 	public Name() {
 		// Superclass default value
 		super();
-
 		// Default Values
 		this.firstName = "First name not given";
 		this.lastName = "Last name not given";
@@ -27,7 +26,6 @@ public class Name extends Model {
 
 	public Name(String firstName, String lastName, String middleName) {
 		super();
-
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
