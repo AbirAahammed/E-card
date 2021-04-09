@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public class CardsFragment extends Fragment {
                     AnimationUtils.loadAnimation(getActivity(), R.anim.rotation)
             );
             new CardDatabaseConnector (callBackSuccesses, callBackFailures).fetchProfileInformation ();
+
         }else {
             // Skip the database accesses and just grab the cached profile
             setupUIForCardsList(CardDatabaseConnector.getCachedUserProfile());
@@ -69,6 +71,8 @@ public class CardsFragment extends Fragment {
 
         // Fetch the connections from the database and pass our success and failure callback methods
         new CardDatabaseConnector (listSuccesses, listFailures).fetchConnectionsList ();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 
     // This method is called when database retrieval fails
