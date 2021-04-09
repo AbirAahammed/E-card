@@ -44,8 +44,20 @@ public class Contact extends Model {
 
 	// A valid cell number
 	public boolean validCell()
-	{												// A phone number may include () or -, with one occurrence, some numbers are also longer
-		return this.cellPhone != null && this.cellPhone.length() >= VALID_PHONE_NUM_LEN && this.cellPhone.length() <= VALID_PHONE_NUM_LEN + 3;
+	{
+		boolean isValid = true;
+
+		for (int i = 0; i < this.cellPhone.length(); i++)
+		{
+			if (!((this.cellPhone.charAt(i) >= '0' && this.cellPhone.charAt(i) <= '9') ||
+			// Valid cell chars
+					this.cellPhone.charAt(i) == '(' || this.cellPhone.charAt(i) == ')' ||
+					this.cellPhone.charAt(i) == '-'
+			))
+				isValid = false;
+		}
+															// A phone number may include () or -, with one occurrence, some numbers are also longer
+		return this.cellPhone != null && isValid && this.cellPhone.length() >= VALID_PHONE_NUM_LEN && this.cellPhone.length() <= VALID_PHONE_NUM_LEN + 3;
 	}
 
 	// Returns true if the email is valid
