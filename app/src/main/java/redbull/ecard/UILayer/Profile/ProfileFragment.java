@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment{
     {
         Profile userInfo = getCachedUserProfile();
         generatedProfile = userInfo != null;
-        Log.d("tag", userInfo.getService());
+
         if (!generatedProfile)
         {
             // Do nothing if the profile is not setup yet
