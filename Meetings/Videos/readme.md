@@ -117,3 +117,21 @@ Team Requirements:
 - Test various aspects of the system
 
 - Discuss work left to do, check with the groups on how they are currently doing for completion of their tasks.
+
+## March 31st, 2:30pm
+
+[Video](https://www.youtube.com/watch?v=W4vBqeTFHS4)
+
+Team Requirements:
+
+- Discuss what is is incomplete from sprint 3 and requires completion in sprint 4
+
+## April 5th, 8:00pm
+
+[Video part 1](https://www.youtube.com/watch?v=5-8Ar56HvU8&feature=youtu.be)
+
+[Video part 2](https://www.youtube.com/watch?v=5-8Ar56HvU8&feature=youtu.be)
+
+Team Requirements:
+
+- Review sprint 4 requirements, and current state of project. Assure sprint 4 completion and finalized code.
