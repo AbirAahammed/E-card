@@ -44,17 +44,8 @@ public class Contact extends Model {
 
 	// A valid cell number
 	public boolean validCell()
-	{
-		boolean isValid = false;
-
-		try {
-			Integer.parseInt(this.cellPhone);
-			isValid = true;
-
-			// Valid if not failed
-		} catch (Exception e) {}
-															// A phone number may include () or -, with one occurrence, some numbers are also longer
-		return this.cellPhone != null && isValid && this.cellPhone.length() >= VALID_PHONE_NUM_LEN && this.cellPhone.length() <= VALID_PHONE_NUM_LEN + 3;
+	{												// A phone number may include () or -, with one occurrence, some numbers are also longer
+		return this.cellPhone != null && this.cellPhone.length() >= VALID_PHONE_NUM_LEN && this.cellPhone.length() <= VALID_PHONE_NUM_LEN + 3;
 	}
 
 	// Returns true if the email is valid
