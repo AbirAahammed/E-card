@@ -43,20 +43,10 @@ public class ConnectionPersistence implements PersistenceInterface {
     }
 
     public void create(String uid) {
-        this.dbTableRef.child(profile.getUID()).child(CONNECTION).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    maxid = snapshot.getChildrenCount();
-                    Log.i("Connection",""+maxid);
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-//        TODO Check if the id exists here
+        ArrayList<Profile> connections = profile.getConnections();
+        if (connections != null && connections.size()>0) {
+            maxid = connections.size() - 1;
+        }
         this.dbTableRef.child(profile.getUID()).child(CONNECTION).child(String.valueOf(maxid)).setValue(uid);
     }
     @Override
