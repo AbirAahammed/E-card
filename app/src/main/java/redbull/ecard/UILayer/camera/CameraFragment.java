@@ -36,7 +36,6 @@ import redbull.ecard.UILayer.camera.CameraViewModel;
 public class CameraFragment extends Fragment {
     private CameraViewModel cameraViewModel;
     static String scannedUID;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         cameraViewModel =
@@ -75,7 +74,7 @@ public class CameraFragment extends Fragment {
                 callBackFailures.add( () -> scanfetchCallbackfailure());
 
                 scannedUID = result.getContents();
-                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchscannerProfileInformation (result.getContents());
+                new CardDatabaseConnector(callBackSuccesses, callBackFailures).fetchScannerProfileInformation (result.getContents());
             }
         }
     }
@@ -83,12 +82,20 @@ public class CameraFragment extends Fragment {
         Profile curProfile = CardDatabaseConnector.getCachedUserProfile();
         Profile scannedProfile = CardDatabaseConnector.getScannerProfile();
 
+        if (scannedProfile == null)
+            return;
+
         if (scannedUID != null)
         scannedProfile.setUID (scannedUID);
 
-        curProfile.getConnections().add(scannedProfile);
+        // First check if we already have that connection
+        // Do not add duplicates
+        if (!curProfile.hasConnection(scannedProfile)) {
+            curProfile.getConnections().add(scannedProfile);
 
-        ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+            ShareLogic.getInstance(curProfile).createConnection(scannedProfile.getUID());
+        }
     }
     private void scanfetchCallbackfailure(){}
+
 }

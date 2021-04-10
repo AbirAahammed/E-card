@@ -30,4 +30,21 @@
         </LinearLayout>
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/loadingRotation"
+        android:layout_width="414dp"
+        android:layout_height="291dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="@string/loading_default"
+        android:src="@drawable/loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

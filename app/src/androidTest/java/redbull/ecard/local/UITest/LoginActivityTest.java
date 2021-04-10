@@ -1,14 +1,12 @@
-package redbull.ecard.local.login;
+package redbull.ecard.local.UITest;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
 import androidx.test.filters.SmallTest;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import redbull.ecard.MainActivity;
-import redbull.ecard.DataLayer.testData.testID;
+import redbull.ecard.util.testData.testID;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -28,7 +26,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import redbull.ecard.R;
-import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
 
 
 @SmallTest

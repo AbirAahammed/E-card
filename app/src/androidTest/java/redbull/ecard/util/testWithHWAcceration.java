@@ -7,9 +7,7 @@ import androidx.test.espresso.IdlingResource;
 
 import org.hamcrest.Matcher;
 
-import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.MainActivity;
-import redbull.ecard.R;
+import redbull.ecard.util.testData.testID;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -22,7 +20,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import redbull.ecard.util.ViewShownIdlingResource;
+
 public class testWithHWAcceration extends testContent {
     @Override
     public void signUp_test_success() {

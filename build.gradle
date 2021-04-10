@@ -12,6 +12,13 @@ buildscript {
         // Firebase support  @see https://firebase.google.com/docs/android/setup
         classpath 'com.google.gms:google-services:4.3.5'  // Google Services plugin
 
+        // Add the Crashlytics Gradle plugin (be sure to add version
+        // 2.0.0 or later if you built your app with Android Studio 4.1).
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.2'
+
+        // Add the dependency for the Performance Monitoring plugin
+        classpath 'com.google.firebase:perf-plugin:1.3.5'  // Performance Monitoring plugin
+
     }
 }
 

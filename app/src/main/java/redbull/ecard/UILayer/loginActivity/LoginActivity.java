@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.login;
+package redbull.ecard.UILayer.loginActivity;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         // check if there is any logged in user, if so then go to main landing page
         if (firebaseAuth.getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             this.finish();
         }
 

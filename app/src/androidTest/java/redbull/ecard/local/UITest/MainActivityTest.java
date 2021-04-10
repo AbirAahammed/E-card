@@ -1,26 +1,16 @@
-package redbull.ecard.local.login;
+package redbull.ecard.local.UITest;
 
-import androidx.annotation.NonNull;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.SmallTest;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import redbull.ecard.DataLayer.testData.testID;
-import redbull.ecard.MainActivity;
 import redbull.ecard.R;
-import redbull.ecard.UILayer.login.LoginActivity;
+import redbull.ecard.UILayer.loginActivity.LoginActivity;
 import redbull.ecard.util.testContent;
 import redbull.ecard.util.testWithHWAcceration;
 
@@ -41,7 +31,7 @@ public class MainActivityTest {
     public ActivityScenarioRule<LoginActivity> rule =
             new ActivityScenarioRule<LoginActivity>(LoginActivity.class);
     @Test
-    public void fragmentTest(){
+    public void fragmentTest(){ //this will include view Profile, view added Card and camera usages
         testWithHWAcceration.waitTime();
         testContent test = new testContent();
         test.loginActivityTest_success();

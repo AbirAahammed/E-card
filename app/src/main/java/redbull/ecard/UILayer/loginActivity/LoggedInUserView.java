@@ -1,4 +1,4 @@
-package redbull.ecard.UILayer.login;
+package redbull.ecard.UILayer.loginActivity;
 
 /**
  * Class exposing authenticated user details to the UI.

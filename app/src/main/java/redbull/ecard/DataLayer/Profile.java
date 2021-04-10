@@ -4,12 +4,12 @@ package redbull.ecard.DataLayer;
  * This class contains all of the information/variables of a user's profile.
  */
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Profile extends Model{
 	// Variables
@@ -40,8 +40,6 @@ public class Profile extends Model{
 		this.address = address;
 		this.connections = new ArrayList<>();
 		this.description = description;
-//		this.services = new Services();
-//		this.services.addServices(services); // Add service to the list of services
 		this.service = service;
 	}
 
@@ -77,9 +75,15 @@ public class Profile extends Model{
 	}
 
 	public void setDescription (String description) { this.description = description; }
+
 	public void setContact (Contact contact) { this.contact = contact; }
-	public void setService (String service) { this.description = service; }
+
+	public void setService (String service) {
+		Log.d("Tag", "Updating service: " + service);this.service = service; }
+
 	public void setUID(String uID) { this.uID = uID; }
+
+	public void updateHouseAddress(String road) { this.address.setHouseNumber(road); }
 
 	// Connections have been fetched
 	public void fetchedCon() { this.fetchedConnections = true; }
@@ -126,11 +130,11 @@ public class Profile extends Model{
 		return viewedTemplate;
 	}
 
-	// Returns true if this card does not have any information attached
-	public boolean IsValid()
+	// Returns false if this card does not have sufficient information attached
+	public boolean isValid()
 	{
-		return this.name != null && this.name.IsValid() && this.contact != null && this.contact.ValidContact()
-				&& this.address != null && this.address.IsValid();
+		return this.name != null && this.contact != null && this.contact.validContact()
+				&& this.address != null && this.address.isValid();
 	}
 
 	@Override
@@ -143,6 +147,19 @@ public class Profile extends Model{
 				", description=" + description +
 				", services=" + service +
 				'}';
+	}
+
+	// Returns true if the current profile has the profile p as a connection
+	public boolean hasConnection (Profile p)
+	{
+		// We already have that UID
+		for (int i = 0; i < this.connections.size(); i++)
+		{
+			if (this.connections.get(i).getUID().equals(p.getID()))
+				return true;
+		}
+
+		return false;
 	}
 
 	// Get the data for the current profile
@@ -166,9 +183,7 @@ public class Profile extends Model{
 			}
 		}
 		if(map.get("description") != null) {
-			if(map.get("description") instanceof String) {
-				this.description = (String) map.get("description");
-			}
+			this.description = (String) map.get("description");
 		}
 
 		// Ensure the profile on the database has services
@@ -180,6 +195,9 @@ public class Profile extends Model{
 
  	// Get the data for another profile
 	public void mapConnection(HashMap<String, Object> map) {
+		if(map==null){
+			return;
+		}
 		if(map.get("name") != null) {
 			this.name.map((HashMap<String, String>) map.get("name"));
 		}
@@ -190,9 +208,7 @@ public class Profile extends Model{
 			this.contact.map((HashMap<String, String>) map.get("contact"));
 		}
 		if(map.get("description") != null) {
-			if(map.get("description") instanceof String) {
-				this.description = (String) map.get("description");
-			}
+			this.description = (String) map.get("description");
 		}
 		if(map.get("service") != null) {
 			this.service = map.get("service").toString();
