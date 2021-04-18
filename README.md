@@ -9,7 +9,7 @@ Abir Sakib | sakiba@myumanitoba.ca	| AbirAahammed
 Connor Gehman | gehmanc@myumanitoba.ca   |	ConnorGehman				
 Chenbo Ma | mac3456@myumanitoba.ca | CBM6
 
-All developers are team leaders in different areas. 
+All developers are team leaders in different areas, for every sprint. 
 
 ## Objective
 Our primary goal is to develop an android app, supported by An API service in order to access the database.This will enable our customers to share their business card digitally.
